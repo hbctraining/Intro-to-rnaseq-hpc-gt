@@ -158,7 +158,7 @@ scripts:
 ```
 ### File naming conventions
 
-Another aspect of staying organized is making sure that all the filenames in an analysis are as consistent as possible, and are not things like `alignment1.bam`, but more like `20170823_kd_rep1_STAR-1.4.bam`. [This link](https://datamanagement.hms.harvard.edu/file-naming-conventions) and [this slideshow](http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf) have some good guidelines for file naming dos and don'ts.
+Another aspect of staying organized is making sure that all the filenames in an analysis are as consistent as possible, and are not things like `alignment1.bam`, but more like `20170823_kd_rep1_gmap-1.4.bam`. [This link](https://datamanagement.hms.harvard.edu/file-naming-conventions) and [this slideshow](http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf) have some good guidelines for file naming dos and don'ts.
 
 *** 
 ### Homework exercise
@@ -209,7 +209,7 @@ A simplified version of the workflow we will be using in this course is provided
 1. Library preparation of biological samples (pre-sequencing)
 2. Quality control - Assessing quality of sequence reads using FastQC
 3. Quality control *(Optional)* - Adapter Trimming
-4. Align reads to reference genome using STAR (splice-aware aligner)
+4. Align reads to reference genome using GMAP-GSNAP (splice-aware aligner)
 5. Quantifying expression/Counting the number of reads mapping to each gene
 6. Statistical analysis to identify differentially expressed genes (count normalization, linear modeling using R-based tools)
 
