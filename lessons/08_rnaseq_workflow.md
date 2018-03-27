@@ -17,7 +17,7 @@ Approximate time: 90 minutes
 To get started with this lesson, we will start an interactive session and ask for 6 cores, by adding `-n 6` to the `srun` command:
 
 ```bash
-$ srun --pty -p interactive -t 0-12:00 -n 6 --mem 8G --reservation=hbc bash	
+$ srun --pty -p defq -t 0-12:00 -n 6 --mem 8G --qos=interactive	
 ```
 
 Change directories into the `unix_workshop` directory and copy the `reference_data` folder into your project directory:
@@ -48,12 +48,12 @@ Below is a general overview of the steps involved in RNA-seq analysis.
 So let's get started by loading up some of the modules for tools we need for this section to perform alignment and assess the alignment: 
 
 ```bash
-$ module load gcc/6.2.0 star/2.5.2b samtools/1.3.1
+$ module load GMAP-GSNAP
 ```
 Create an output directory for our alignment files:
 
 ```bash
-$ mkdir results/STAR
+$ mkdir results/gmap
 ```
 In the automation script, we will eventually loop over all of our files and have the cluster work on the files in parallel. For now, we're going to work on just one to test and set up our workflow. To start we will use the first replicate in the Mov10 overexpression group, `Mov10_oe_1_subset.fq`.
 
