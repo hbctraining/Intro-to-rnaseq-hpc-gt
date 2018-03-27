@@ -36,7 +36,7 @@ By default, there is no terminal for the bash shell available in the Windows OS,
 Type in the following command with your username to login:
 
 ```bash
-ssh username@o2.hms.harvard.edu
+ssh username@hpcpilot.gene.com
 ```
 
 You will receive a prompt for your password, and you should type in your associated password; note that the cursor will *not move* as you type in your password.
@@ -56,17 +56,17 @@ The command prompt will have some characters before it, something like `[rc_trai
 The first command we will type on the command prompt will be to start a so-called "interactive session" on O2.
 
 ```bash
-$ srun --pty -p interactive -t 0-12:00 --mem 8G --reservation=hbc bash
+$ srun --pty -p defq -t 0-12:00 --mem 8G
 ```
 
-Press enter after you type in that command. You will get a couple of messages, but in a few seconds you should get back the command prompt `$`; the string of characters before the command prompt, however, have changed. They should say something like `[rc_training01@compute-a-16-73 ~]`. *We will be explaining what this means in more detail later when we talk about HPC and O2.* 
+Press enter after you type in that command. You will get a couple of messages, but in a few seconds you should get back the command prompt `$`; the string of characters before the command prompt, however, have changed. They should say something like `[username@computerID ~]`. *We will be explaining what this means in more detail later when we talk about HPC and the cluster.* 
 
 Make sure that your command prompt is now preceded by a character string that contains the word "compute".
 
 Copy our example data folder to your home directory using the following command:
 
 ```bash
-$ cp -r /n/groups/hbctraining/unix_workshop/ .
+$ cp -r /gstore/data/hbctraining/unix_workshop/ .
 ```
 
 >'cp' is the command for copy. This command required you to specify the location of the item you want to copy (/groups/hbctraining/unix_workshop/) and the location of the destination (.); please note the space between the 2 in the command. The "-r" is an option that modifies the copy command to do something slightly different than usual. The "." means "here", i.e. the destination location is where you currently are.
@@ -257,7 +257,7 @@ $ pwd
 ```
 
 ```
-/home/username
+/gstore/home/username
 ```
 
 which is the full path for your home directory. This tells you that you are in a directory called `username`, which sits inside a directory called `home` which sits inside the very top directory in the hierarchy, the *root directory*. So, to summarize: `username` is a directory in `home` which is a directory in `/`.
@@ -265,7 +265,7 @@ which is the full path for your home directory. This tells you that you are in a
 Now enter the following command:
 
 ```bash
-$ cd /home/username/unix_workshop/raw_fastq/
+$ cd /gstore/home/username/unix_workshop/raw_fastq/
 ```
 
 This jumps to `raw_fastq`. Now go back to the home directory (`cd`). We saw
@@ -275,7 +275,7 @@ earlier that the command:
 $ cd unix_workshop/raw_fastq/
 ```
 
-had the same effect - it took us to the `raw_fastq` directory. But, instead of specifying the full path (`/home/username/unix_workshop/raw_fastq`), we specified a *relative path*. In other words, we specified the path **relative to our current working directory**. 
+had the same effect - it took us to the `raw_fastq` directory. But, instead of specifying the full path (`/gstore/home/username/unix_workshop/raw_fastq`), we specified a *relative path*. In other words, we specified the path **relative to our current working directory**. 
 
 **A full path always starts with a `/`, a relative path does not.**
 
@@ -288,7 +288,7 @@ Over time, it will become easier for you to keep a mental note of the structure 
 ***
 **Exercise**
 
-Change directories to `/home/username/unix_workshop/raw_fastq/`, and list the contents of `unix_workshop/other` without changing directories again.
+Change directories to `/gstore/home/username/unix_workshop/raw_fastq/`, and list the contents of `unix_workshop/other` without changing directories again.
 ***
 
 ### Saving time with tab completion, wildcards and other shortcuts 
@@ -357,10 +357,7 @@ BONUS: List all of the files in `/bin` that contain the letter 'a' or 'c'.
 ****
 #### Shortcuts
 
-There are some shortcuts which you should know about. Dealing with the
-home directory is very common. So, in the shell the tilde character,
-"~", is a shortcut for your home directory. Navigate to the `raw_fastq`
-directory:
+There are some shortcuts which you should know about. Dealing with the home directory is very common. So, in the shell the tilde character, "~", is a shortcut for your home directory. Navigate to the `raw_fastq` directory:
 
 ```bash
 $ cd
@@ -376,7 +373,7 @@ Then enter the command:
 $ ls ~
 ```
 
-This prints the contents of your home directory, without you having to type the full path because the tilde "~" is equivalent to "/home/username".
+This prints the contents of your home directory, without you having to type the full path because the tilde "~" is equivalent to "/gstore/home/username".
 
 Another shortcut is the "..":
 
@@ -390,12 +387,12 @@ The shortcut `..` always refers to the directory above your current directory. S
 $ ls ../..
 ```
 
-prints the contents of `/home/username` which is your home directory. 
+prints the contents of `/gstore/home/username` which is your home directory. 
 
 Finally, the special directory `.` always refers to your current directory. So, `ls`, `ls .`, and `ls ././././.` all do the same thing, they print the contents of the current directory. This may seem like a useless shortcut right now, but we used it earlier when we copied over the data to our home directory.
 
 
-To summarize, while you are in your home directory, the commands `ls ~`, `ls ~/.`, and `ls /home/username` all do exactly the same thing. These shortcuts are not necessary, but they are really convenient!
+To summarize, while you are in your home directory, the commands `ls ~`, `ls ~/.`, and `ls /gstore/home/username` all do exactly the same thing. These shortcuts are not necessary, but they are really convenient!
 
 #### Command History
 
