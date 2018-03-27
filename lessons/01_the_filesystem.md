@@ -17,13 +17,13 @@ date: "August 7, 2017"
 
 We will spend most of our time learning about the basics of the shell by exploring experimental data.
 
-Since we are going to be working with this data on our remote server, **Orchestra 2 (O2)**, we first need to log onto the server. After we're logged on, we will each make our own copy of the example data folder.
+Since we are going to be working with this data on the remote server (the new Genentech cluster): `hpcpilot.gene.com` , we first need to log onto the server. After we're logged on, we will each make our own copy of the example data folder.
 
 ### Logging in
 
 **With Macs**
 
-Macs have a utility application called "**Terminal**" for performing tasks on the command line (shell), both locally and on remote machines. We will be using it to log into O2.
+Macs have a utility application called "**Terminal**" for performing tasks on the command line (shell), both locally and on remote machines. We will be using it to log into the new cluster here at Genentech.
 
 **With Windows**
 
@@ -45,15 +45,15 @@ A warning might pop up the first time you try to connect to a remote machine, ty
 
 #### Copying example data folder
 
-Once logged in, you should see the O2 icon, some news, and the command prompt: 
+Once logged in, you should see the some information scroll by, and a new command prompt: 
 
 ```bash
-[rc_training10@login01 ~]$ 
+[username@login_computerID ~]$ 
 ```
 
-The command prompt will have some characters before it, something like `[rc_training01@login01 ~]`, this is telling you what the name of the computer you are working on is.
+The command prompt will have some characters before it, something like `[username@login_computerID ~]`, this is telling you what the name of the computer you are working on is.
 
-The first command we will type on the command prompt will be to start a so-called "interactive session" on O2.
+The first command we will type on the command prompt will be to start a so-called "interactive session":
 
 ```bash
 $ srun --pty -p defq -t 0-12:00 --mem 8G
