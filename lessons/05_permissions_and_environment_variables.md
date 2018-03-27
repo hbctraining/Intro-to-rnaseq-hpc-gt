@@ -40,7 +40,7 @@ The user-and-group model means that for each file every user on the system falls
 
 For each of these three categories, the computer keeps track of whether people in that category can read the file, write to the file, or execute the file (i.e., run it if it is a program).
 
-Let's look at this model in action by running the command `ls -l ~/unix_workshop`, to list the files in that directory:
+Let's look at this model in action by running the command `ls -l ~/unix_lesson`, to list the files in that directory:
 
 ```bash
 $ ls -l
@@ -74,15 +74,15 @@ The final triplet shows us what everyone who isn't the file's owner, or in the f
 To change permissions, we use the `chmod` command (whose name stands for "change mode"). Let's make our README.txt file **inaccessible** to all users other than you and the group the file belong to (you, in this case), currently they are able to read it:
 
 ```bash
-$ ls -l ~/unix_workshop/README.txt
+$ ls -l ~/unix_lesson/README.txt
 
--rw-rw-r-- 1 rsk27 rsk27 377 Oct  6 10:28 /home/rsk27/unix_workshop/README.txt
+-rw-rw-r-- 1 rsk27 rsk27 377 Oct  6 10:28 /home/rsk27/unix_lesson/README.txt
 
-$ chmod o-rw ~/unix_workshop/README.txt         # the "-" after o denotes removing that permission
+$ chmod o-rw ~/unix_lesson/README.txt         # the "-" after o denotes removing that permission
 
-$ ls -l ~/unix_workshop/README.txt
+$ ls -l ~/unix_lesson/README.txt
 
--rw-rw---- 1 rsk27 rsk27 377 Oct  6 10:28 /home/rsk27/unix_workshop/README.txt
+-rw-rw---- 1 rsk27 rsk27 377 Oct  6 10:28 /home/rsk27/unix_lesson/README.txt
 ```
 
 The 'o' signals that we're changing the privileges of "others".
@@ -90,17 +90,17 @@ The 'o' signals that we're changing the privileges of "others".
 Let's change it back to allow it to be readable by others:
 
 ```bash
-$ chmod o+r ~/unix_workshop/README.txt         # the "+" after o denotes adding/giving that permission
+$ chmod o+r ~/unix_lesson/README.txt         # the "+" after o denotes adding/giving that permission
 
-$ ls -l ~/unix_workshop/README.txt
+$ ls -l ~/unix_lesson/README.txt
 
--rw-rw-r-- 1 rsk27 rsk27 377 Oct  6 10:28 /home/rsk27/unix_workshop/README.txt
+-rw-rw-r-- 1 rsk27 rsk27 377 Oct  6 10:28 /home/rsk27/unix_lesson/README.txt
 ```
 
 If we wanted to make this an executable file for ourselves (the file's owners) we would say `chmod u+rwx`, where the 'u' signals that we are changing permission for the file's owner. To change permissions for the "group", you'd use the letter "g", e.g. `chmod g-w`. 
 
 Before we go any further,
-let's run `ls -l` on the `~/unix_workshop` directory to get a long-form listing:
+let's run `ls -l` on the `~/unix_lesson` directory to get a long-form listing:
 
 ```bash
 $ ls -l
@@ -115,7 +115,7 @@ Look at the permissions for directories (`drwxrwsr-x`): the 'x' indicates that "
 
 Well, 'x' means something different for directories. It gives someone the right to *traverse* the directory, but not to look at its contents. This is beyond the scope of today's class, but note that you can give access to a specific file that's deep inside a directory structure without giving them access to all the files and sub-directories within.
 
->> The fact that something is marked as executable doesn't actually mean it contains or is a program of some kind. We could easily mark the `~/unix_workshop/raw_fastq/Irrel_kd_1.subset.fq` file as executable using `chmod`. Depending on the operating system we're using, trying to "run" it will fail (because it doesn't contain instructions the computer recognizes, i.e. it is not a script of some type).
+>> The fact that something is marked as executable doesn't actually mean it contains or is a program of some kind. We could easily mark the `~/unix_lesson/raw_fastq/Irrel_kd_1.subset.fq` file as executable using `chmod`. Depending on the operating system we're using, trying to "run" it will fail (because it doesn't contain instructions the computer recognizes, i.e. it is not a script of some type).
 
 ****
 **Exercise**

@@ -20,10 +20,10 @@ To get started with this lesson, we will start an interactive session and ask fo
 $ srun --pty -p defq -t 0-12:00 -n 6 --mem 8G --qos=interactive	
 ```
 
-Change directories into the `unix_workshop` directory and copy the `reference_data` folder into your project directory:
+Change directories into the `unix_lesson` directory and copy the `reference_data` folder into your project directory:
 
 ```bash
-$ cd ~/unix_workshop/rnaseq
+$ cd ~/unix_lesson/rnaseq
 ```
 
 You should have a directory tree setup similar to that shown below. It is best practice to have all files you intend on using for your workflow present within the same directory.
@@ -155,7 +155,7 @@ Now let's put it all together! The full STAR alignment command is provided below
 
 ```bash
 $ STAR --runThreadN 6 \
---genomeDir /n/groups/hbctraining/unix_workshop_other/reference_STAR \
+--genomeDir /n/groups/hbctraining/intro_rnaseq_hpc/reference_STAR \
 --readFilesIn raw_data/Mov10_oe_1.subset.fq \
 --outFileNamePrefix results/STAR/Mov10_oe_1_ \
 --outSAMtype BAM SortedByCoordinate \
@@ -228,7 +228,7 @@ So, it looks like the usage is `featureCounts [options] -a <annotation_file> -o 
 It can also take multiple bam files as input. Since we have only run STAR on 1 FASTQ file, let's copy over the other bam files that we would need so we can generate the full count matrix.
 
 ```bash
-cp /n/groups/hbctraining/unix_workshop_other/bam_STAR/*bam ~/unix_workshop/rnaseq/results/STAR/
+cp /n/groups/hbctraining/unix_lesson_other/bam_STAR/*bam ~/unix_lesson/rnaseq/results/STAR/
 ```
 
 We are going to use the following options:
@@ -238,17 +238,17 @@ We are going to use the following options:
 
 and the following are the values for the required parameters:
 
-* `-a ~/unix_workshop/rnaseq/reference_data/chr1-hg19_genes.gtf # required option for specifying path to GTF`
-* `-o ~/unix_workshop/rnaseq/results/counts/Mov10_featurecounts.txt # required option for specifying path to, and name of the text output (count matrix)`
-* `~/unix_workshop/rnaseq/results/STAR/*bam # the list of all the bam files we want to collect count information for`
+* `-a ~/unix_lesson/rnaseq/reference_data/chr1-hg19_genes.gtf # required option for specifying path to GTF`
+* `-o ~/unix_lesson/rnaseq/results/counts/Mov10_featurecounts.txt # required option for specifying path to, and name of the text output (count matrix)`
+* `~/unix_lesson/rnaseq/results/STAR/*bam # the list of all the bam files we want to collect count information for`
 
 #### Running featureCounts
 
 ``` bash
 $ featureCounts -T 4 -s 2 \
-  -a ~/unix_workshop/rnaseq/reference_data/chr1-hg19_genes.gtf \
-  -o ~/unix_workshop/rnaseq/results/counts/Mov10_featurecounts.txt \
-  ~/unix_workshop/rnaseq/results/STAR/*bam
+  -a ~/unix_lesson/rnaseq/reference_data/chr1-hg19_genes.gtf \
+  -o ~/unix_lesson/rnaseq/results/counts/Mov10_featurecounts.txt \
+  ~/unix_lesson/rnaseq/results/STAR/*bam
 ```
 #### featureCounts output
 
@@ -287,7 +287,7 @@ Vim has nice shortcuts for cleaning up the header of our file using the followin
 1. Move the cursor to the beginning of the document by typing: `gg` (in command mode). 
 2. Remove the first line by typing: `dd` (in command mode).
 2. Remove the file name following the sample name by typing: `:%s/_Aligned.sortedByCoord.out.bam//g` (in command mode).
-3. Remove the path leading up to the file name by typing: `:%s/\/home\/rc_training10\/unix_workshop\/rnaseq\/results\/STAR\/bams\///g` (in command mode).
+3. Remove the path leading up to the file name by typing: `:%s/\/home\/rc_training10\/unix_lesson\/rnaseq\/results\/STAR\/bams\///g` (in command mode).
 	
 	> Note that we have a `\` preceding each `/`, which tells vim that we are not using the `/` as part of our search and replace command, but instead the `/` is part of the pattern that we are replacing. This is called *escaping* the `/`.
 
@@ -317,9 +317,9 @@ $ samtools index results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam
 
 Use _**FileZilla**_ to copy the following files to your local machine:
  
-`~/unix_workshop/results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam`
+`~/unix_lesson/results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam`
 
-`~/unix_workshop/results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam.bai` 
+`~/unix_lesson/results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam.bai` 
 
 > **NOTE: You can also transfer files to your laptop using the command line**
 >
@@ -328,7 +328,7 @@ Use _**FileZilla**_ to copy the following files to your local machine:
 > First, identify the location of the _origin file_ you intend to copy, followed by the _destination_ of that file. Since the original file is located on O2, this requires you to provide remote host and login information.
 
 > ```bash
-> $ scp user_name@transfer.rc.hms.harvard.edu:/home/user_name/unix_workshop/rnaseq/results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam* /path/to/directory_on_laptop
+> $ scp user_name@transfer.rc.hms.harvard.edu:/home/user_name/unix_lesson/rnaseq/results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam* /path/to/directory_on_laptop
 > ```
 
 **Visualize**
