@@ -35,6 +35,7 @@
 |16:30 - 17:00 | Wrap-up, Discussion, Q&A | Dr. Radhika Khetani |
 
 ----
+
 ## Contact Info:
 
 Webpage: [http://bioinformatics.sph.harvard.edu/]()
@@ -44,4 +45,5 @@ Email: [hbctraining (at) hsph (dot) harvard (dot) edu](mailto:hbctraining@hsph.h
 Twitter: [https://twitter.com/bioinfocore]()
 
 Training materials: [https://hbctraining.github.io/main/]()
+
 ---
