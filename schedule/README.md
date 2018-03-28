@@ -34,7 +34,8 @@
 |15:15 - 16:30 | Quantifying expression using alignment-free methods (Salmon) | Dr. Mary Piper |
 |16:30 - 17:00 | Wrap-up, Discussion, Q&A | Dr. Radhika Khetani |
 
-**Contact Info:**
+### Contact Info:
+
 Webpage: [http://bioinformatics.sph.harvard.edu/]()
 
 Email: [hbctraining (at) hsph (dot) harvard (dot) edu](mailto:hbctraining@hsph.harvard.edu)
