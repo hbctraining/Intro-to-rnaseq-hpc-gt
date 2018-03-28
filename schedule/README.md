@@ -32,4 +32,4 @@
 |14:45 - 15:00 | *Break* | |
 |15:00 - 15:15 | Alternative workflows for analyzing RNA-seq data | Radhika |
 |15:15 - 16:30 | Quantifying expression using alignment-free methods (Salmon) | Mary |
-|16:30 - 17:00 | Wrap-up | Radhika |
+|16:30 - 17:00 | Wrap-up, Discussion, Q&A | Radhika |
