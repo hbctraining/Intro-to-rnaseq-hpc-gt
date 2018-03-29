@@ -198,7 +198,6 @@ Following the shebang line are the Orchestra options. For the script to run, we 
 ```bash
 #SBATCH -p defq 		# partition name
 #SBATCH --qos=short
-#SBATCH -t 0-2:00 		# hours:minutes runlimit after which job will be killed
 #SBATCH -n 6 		# number of cores requested -- this needs to be greater than or equal to the number of cores you plan to use to run your job
 #SBATCH --job-name rnaseq_mov10_fastqc 		# Job name
 #SBATCH -o %j.out			# File to which standard out will be written
