@@ -31,9 +31,9 @@ This repository has teaching materials for a 2-day Introduction to RNA-sequencin
 |:------------------------|:----------|
 | RNA-seq experimental design best practices | 50 min |
 | Introduction to High-Performance Computing for HMS-RC's Orchestra | 45 min |
-| RNA-seq data QC with FastQC | 75 min |
-| RNA-seq workflow: Alignment and Counting | 90 min |
-| Automating the RNA-seq workflow | 60 min |
+| [RNA-seq data QC with FastQC](07_assessing_quality.md) | 75 min |
+| [RNA-seq workflow: Alignment and Counting](08_rnaseq_workflow.md) | 90 min |
+| [Automating the RNA-seq workflow](09_automating_workflow.md) | 60 min |
 | Alternative workflows for analyzing RNA-seq data | 15 min |
 | Quantifying expression using alignment-free methods (Salmon) | 75 min |
 
