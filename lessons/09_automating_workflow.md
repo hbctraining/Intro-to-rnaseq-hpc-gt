@@ -212,7 +212,7 @@ Below is what this second script would look like **\[DO NOT RUN THIS\]**:
 #SBATCH -p defq 		# partition name
 #SBATCH --qos=short
 #SBATCH -n 6 		# number of cores requested -- this needs to be greater than or equal to the number of cores you plan to use to run your job
-#SBATCH --job-name STAR_mov10 		# Job name
+#SBATCH --job-name gsnap_mov10 		# Job name
 #SBATCH -o %j.out			# File to which standard out will be written
 #SBATCH -e %j.err 		# File to which standard err will be written
 
