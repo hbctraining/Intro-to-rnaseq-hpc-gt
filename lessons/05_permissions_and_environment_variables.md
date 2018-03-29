@@ -206,15 +206,6 @@ $ ls -al ~/
 
 Open the `.bashrc` file and at the end of the file add the export command that adds a specific location to the list in $PATH. This way when you start a new shell, that location will always be in your path. 
 
-The location we want to add to the beginning of the list is `/n/app/bcbio/tools/bin`, we need this for when we run the RNA-Seq workflow later.
-
-```bash
-$ vim ~/.bashrc
-
-# at the end of the file type in the following - "export PATH=/n/app/bcbio/tools/bin:$PATH"
-# Don't forget the ":" between!
-```
-
 **In closing, permissions and environment variables, especially $PATH, are very useful and important concepts to understand in the context of UNIX and HPC.**
 
 ---
