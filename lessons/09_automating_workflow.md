@@ -24,7 +24,7 @@ $ squeue -u eCommonsID
 We need to have an interactive session with 6 cores, if you already have one you are set. If you have a session with fewer cores then `exit` out of your current interactive session and start a new one with `-n 6`.
 
 ```bash
-$ srun --pty -p interactive -t 0-12:00 -n 6 --mem 8G --reservation=hbc bash
+$ srun --pty -p defq --qos=interactive -n 6 --mem 8G 
 ```
 
 ### More Flexibility with variables
@@ -96,7 +96,7 @@ Next we'll initialize 2 more variables named `genome` and `gtf`, these will cont
 ```
 # directory with genome reference FASTA and index files + name of the gene annotation file
 
-genome=/n/groups/hbctraining/intro_rnaseq_hpc/reference_STAR/
+genome=???chr1_reference_gsnap???
 gtf=~/unix_lesson/rnaseq/reference_data/chr1-hg19_genes.gtf
 ```
 
@@ -107,9 +107,9 @@ We'll create output directories, but with the `-p` option. This will make sure t
 # The -p option means mkdir will create the whole path if it 
 # does not exist and refrain from complaining if it does exist
 
-mkdir -p ~/unix_lesson/rnaseq/results/fastqc/
-mkdir -p ~/unix_lesson/rnaseq/results/STAR
-mkdir -p ~/unix_lesson/rnaseq/results/counts
+mkdir -p ~/unix_workshop/rnaseq/results/fastqc/
+mkdir -p ~/unix_workshop/rnaseq/results/gsnap/
+mkdir -p ~/unix_workshop/rnaseq/results/counts/
 ```
 
 Now that we have already created our output directories, we can now specify variables with the path to those directories both for convenience but also to make it easier to see what is going on in a long command.
@@ -117,10 +117,9 @@ Now that we have already created our output directories, we can now specify vari
 ```
 # set up output filenames and locations
 
-fastqc_out=~/unix_lesson/rnaseq/results/fastqc/
-align_out=~/unix_lesson/rnaseq/results/STAR/${base}_
-counts_input_bam=~/unix_lesson/rnaseq/results/STAR/${base}_Aligned.sortedByCoord.out.bam
-counts=~/unix_lesson/rnaseq/results/counts/${base}_featurecounts.txt
+fastqc_out=~/unix_workshop/rnaseq/results/fastqc/
+align_out=~/unix_workshop/rnaseq/results/gsnap/${base}_Aligned.sortedByCoord.out.bam
+counts=~/unix_workshop/rnaseq/results/counts/${base}_featurecounts.txt
 ```
 
 ### Keeping track of tool versions
@@ -130,11 +129,10 @@ All of our variables are now staged. Next, let's make sure all the modules are l
 ```
 # set up the software environment
 
-module load fastqc/0.11.5
-module load gcc/6.2.0  
-module load star/2.5.2b
-module load samtools/1.3.1
-PATH=/n/app/bcbio/tools/bin:$PATH 	# for using featureCounts if not already in $PATH
+module load fastqc
+module load GMAP-GSNAP
+module load samtools
+module load subread
 ```
 
 ### Preparing for future debugging
@@ -156,14 +154,16 @@ echo "Processing file $fq"
 # Run FastQC and move output to the appropriate folder
 fastqc $fq
 
-# Run STAR
-STAR --runThreadN $cores --genomeDir $genome --readFilesIn $fq --outFileNamePrefix $align_out --outSAMtype BAM SortedByCoordinate --outSAMunmapped Within --outSAMattributes Standard
+# Run gsnap
+gsnap -d hg19_chr1 -D ~/unix_workshop/reference_data/ -t 6 --quality-protocol=sanger \
+-M 2 -n 10 -B 2 -i 1 -N 1 -w 200000 -E 1 --pairmax-rna=200000 --clip-overlap \
+-A sam $fq | samtools sort - | samtools view -bS - > $align_out
 
 # Create BAM index
-samtools index $counts_input_bam
+samtools index $align_out
 
 # Count mapped reads
-featureCounts -T $cores -s 2 -a $gtf -o $counts $counts_input_bam
+featureCounts -T $cores -s 2 -a $gtf -o $counts $align_out
 ```
 
 ### Last addition to the script
@@ -209,8 +209,8 @@ Below is what this second script would look like **\[DO NOT RUN THIS\]**:
 ```
 #!/bin/bash
 
-#SBATCH -p medium 		# partition name
-#SBATCH -t 0-2:00 		# hours:minutes runlimit after which job will be killed
+#SBATCH -p defq 		# partition name
+#SBATCH --qos=short
 #SBATCH -n 6 		# number of cores requested -- this needs to be greater than or equal to the number of cores you plan to use to run your job
 #SBATCH --job-name STAR_mov10 		# Job name
 #SBATCH -o %j.out			# File to which standard out will be written
@@ -253,7 +253,7 @@ This script loops through the same files as in the previous (demo) script, but t
 for fq in ~/unix_lesson/rnaseq/raw_data/*.fq
 do
 
-sbatch -p short -t 0-2:00 -n 6 --job-name rnaseq-workflow --wrap="sh ~/unix_lesson/rnaseq/scripts/rnaseq_analysis_on_input_file.sh $fq"
+batch -p defq --qos=short -n 6 --job-name rnaseq-workflow --wrap="sh ~/unix_lesson/rnaseq/scripts/rnaseq_analysis_on_input_file.sh $fq"
 sleep 1	# wait 1 second between each job submission
   
 done
@@ -262,7 +262,7 @@ done
 
 What you should see on the output of your screen would be the jobIDs that are returned from the scheduler for each of the jobs that your script submitted.
 
-You can use `squeue -u eCommonsID` to check progress.
+You can use `sacct` to check progress.
 
 Don't forget about the `scancel` command, should something go wrong and you need to cancel your jobs.
 
