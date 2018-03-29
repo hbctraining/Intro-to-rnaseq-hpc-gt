@@ -14,11 +14,11 @@ echo "Sample name is $base"
 
 # specify the number of cores to use
 
-cores=2
+cores=6
 
 # directory with genome reference FASTA and index files + name of the gene annotation file
 
-genome=/groups/hbctraining/unix_workshop_other/reference_STAR/
+genome=???chr1_reference_gsnap???
 gtf=~/unix_workshop/rnaseq/reference_data/chr1-hg19_genes.gtf
 
 # make all of the output directories
@@ -26,33 +26,34 @@ gtf=~/unix_workshop/rnaseq/reference_data/chr1-hg19_genes.gtf
 # does not exist and refrain from complaining if it does exist
 
 mkdir -p ~/unix_workshop/rnaseq/results/fastqc/
-mkdir -p ~/unix_workshop/rnaseq/results/STAR
-mkdir -p ~/unix_workshop/rnaseq/results/counts
+mkdir -p ~/unix_workshop/rnaseq/results/gsnap/
+mkdir -p ~/unix_workshop/rnaseq/results/counts/
 
 # set up output filenames and locations
 
 fastqc_out=~/unix_workshop/rnaseq/results/fastqc/
-align_out=~/unix_workshop/rnaseq/results/STAR/${base}_
-counts_input_bam=~/unix_workshop/rnaseq/results/STAR/${base}_Aligned.sortedByCoord.out.bam
+align_out=~/unix_workshop/rnaseq/results/gsnap/${base}_Aligned.sortedByCoord.out.bam
 counts=~/unix_workshop/rnaseq/results/counts/${base}_featurecounts.txt
 
 # set up the software environment
 
-module load seq/fastqc/0.11.3
-module load seq/STAR/2.5.3a
-module load seq/samtools/1.3
-PATH=/opt/bcbio/centos/bin:$PATH 	# for using featureCounts if not already in $PATH
+module load fastqc
+module load GMAP-GSNAP
+module load samtools
+module load subread
 
 echo "Processing file $fq"
 
 # Run FastQC and move output to the appropriate folder
 fastqc $fq
 
-# Run STAR
-STAR --runThreadN $cores --genomeDir $genome --readFilesIn $fq --outFileNamePrefix $align_out --outFilterMultimapNmax 10 --outSAMstrandField intronMotif --outReadsUnmapped Fastx --outSAMtype BAM SortedByCoordinate --outSAMunmapped Within --outSAMattributes NH HI NM MD AS
+# Run gsnap
+gsnap -d hg19_chr1 -D ~/unix_workshop/reference_data/ -t 6 --quality-protocol=sanger \
+-M 2 -n 10 -B 2 -i 1 -N 1 -w 200000 -E 1 --pairmax-rna=200000 --clip-overlap \
+-A sam $fq | samtools sort - | samtools view -bS - > $align_out
 
 # Create BAM index
-samtools index $counts_input_bam
+samtools index $align_out
 
 # Count mapped reads
-featureCounts -T $cores -s 2 -a $gtf -o $counts $counts_input_bam
+featureCounts -T $cores -s 2 -a $gtf -o $counts $align_out
