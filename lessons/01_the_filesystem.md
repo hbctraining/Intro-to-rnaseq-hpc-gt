@@ -66,10 +66,10 @@ Make sure that your command prompt is now preceded by a character string that co
 Copy our example data folder to your home directory using the following command:
 
 ```bash
-$ cp -r /gstore/data/hbctraining/unix_lesson/ .
+$ cp -r /gpfs/scratchfs1/hpctrain/unix_lesson/ .
 ```
 
->'cp' is the command for copy. This command required you to specify the location of the item you want to copy (/groups/hbctraining/unix_lesson/) and the location of the destination (.); please note the space between the 2 in the command. The "-r" is an option that modifies the copy command to do something slightly different than usual. The "." means "here", i.e. the destination location is where you currently are.
+>'cp' is the command for copy. This command required you to specify the location of the item you want to copy (/gpfs/scratchfs1/hpctrain/unix_lesson/) and the location of the destination (.); please note the space between the 2 in the command. The "-r" is an option that modifies the copy command to do something slightly different than usual. The "." means "here", i.e. the destination location is where you currently are.
 
 ## Starting with the shell
 
