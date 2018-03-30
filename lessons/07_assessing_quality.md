@@ -82,7 +82,7 @@ The main functions of FastQC are:
 Before we run FastQC, let's start an interactive session on the cluster (if you don't already have one going):
 
 ```bash
-$ srun --pty -p defq --qos=interactive --mem 8G  
+$ srun --pty -p defq --qos=interactive --mem 8G bash
 ```
 
 ***An interactive session is very useful to test tools, workflows, run jobs that open new interactive windows (X11-forwarding) and so on.***
@@ -140,7 +140,7 @@ Exit the interactive session and start a new one with 6 cores, and use the multi
 ```bash
 $ exit  #exit the current interactive session
 
-$ srun --pty -p defq -n 6 -t 0-12:00 --mem 8G --qos=interactive  #start a new one with 6 cpus (-n 6)
+$ srun --pty -p defq -n 6 -t 0-12:00 --mem 8G --qos=interactive bash    #start a new one with 6 cpus (-n 6)
 
 $ module load fastqc  #reload the module for the new session
 
