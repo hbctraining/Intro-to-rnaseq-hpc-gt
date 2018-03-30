@@ -24,7 +24,7 @@ $ squeue -u eCommonsID
 We need to have an interactive session with 6 cores, if you already have one you are set. If you have a session with fewer cores then `exit` out of your current interactive session and start a new one with `-n 6`.
 
 ```bash
-$ srun --pty -p defq --qos=interactive -n 6 --mem 8G 
+$ srun --pty -p defq --qos=interactive -n 6 --mem 8G bash
 ```
 
 ### More Flexibility with variables
