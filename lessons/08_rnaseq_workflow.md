@@ -154,25 +154,13 @@ Now let's put it all together! The full STAR alignment command is provided below
 > If you like you can copy-paste it directly into your terminal. Alternatively, you can manually enter the command, but it is advisable to first type out the full command in a text editor (i.e. [Sublime Text](http://www.sublimetext.com/) or [Notepad++](https://notepad-plus-plus.org/)) on your local machine and then copy paste into the terminal. This will make it easier to catch typos and make appropriate changes. 
 
 ```bash
-$ STAR --runThreadN 6 \
---genomeDir /n/groups/hbctraining/intro_rnaseq_hpc/reference_STAR \
---readFilesIn raw_data/Mov10_oe_1.subset.fq \
---outFileNamePrefix results/STAR/Mov10_oe_1_ \
---outSAMtype BAM SortedByCoordinate \
---outSAMunmapped Within \
---outSAMattributes NH HI NM MD AS
+gsnap -d hg19_chr1 -D /gpfs/scratchfs1/hpctrain/chr1_reference_gsnap \
+-t 6 --quality-protocol=sanger -M 2 -n 10 -B 2 -i 1 -N 1 \
+-w 200000 -E 1 --pairmax-rna=200000 --clip-overlap \
+-A sam raw_data/Mov10_oe_1.subset.fq | \
+samtools sort - | \
+samtools view -bS - > results/gsnap/Mov10_oe_1.subset.Aligned.sortedByCoord.out.bam
 ```
-***
-
-**Exercise**
-
-* How many files do you see in your output directory? 
-* Using the `less` command take a look at `Mov10_oe_1_Log.final.out` and answer the following questions:  
-	1. How many reads are uniquely mapped?
-	2. How many reads map to more than 10 locations on the genome?
-	3. How many reads are unmapped due to read length?
-***
-
 ### Alignment Outputs (SAM/BAM)
 
 The output we requested from STAR is a BAM file, and by default returns a file in SAM format. **BAM is a binary version of the SAM file, also known as Sequence Alignment Map format.** The SAM file is a tab-delimited text file that contains information for each individual read and its alignment to the genome. The file begins with an optional header (which starts with '@'), followed by an alignment section in which each line corresponds to alignment information for a single read. **Each alignment line has 11 mandatory fields** for essential mapping information and a variable number of fields for aligner specific information.
@@ -186,7 +174,7 @@ These fields are described briefly below, but for more detailed information the 
 Let's take a quick look at our alignment. To do so we first convert our BAM file into SAM format using samtools and then pipe it to the `less` command. This allows us to look at the contents without having to write it to file (since we don't need a SAM file for downstream analyses).
 
 ```bash
-$ samtools view -h results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam | less
+$ samtools view -h results/gsnap/Mov10_oe_1_Aligned.sortedByCoord.out.bam | less
 ```
 Scroll through the SAM file and see how the fields correspond to what we expected.
 
@@ -212,7 +200,7 @@ $ mkdir results/counts
 `featureCounts` is not available as a module on O2, but we have already added the path for it (`/opt/bcbio/local/bin`) to our `$PATH` variable last time. 
 
 ``` bash
-$ which featureCounts  # should return /n/app/bcbio/tools/bin/featureCounts 
+$ module load subread
 ```
 
 > ** If running the above command does not return `/n/app/bcbio/tools/bin/featureCounts`, run `export PATH=/n/app/bcbio/tools/bin:$PATH` and try the `which` command again.**
@@ -228,7 +216,7 @@ So, it looks like the usage is `featureCounts [options] -a <annotation_file> -o 
 It can also take multiple bam files as input. Since we have only run STAR on 1 FASTQ file, let's copy over the other bam files that we would need so we can generate the full count matrix.
 
 ```bash
-cp /n/groups/hbctraining/unix_lesson_other/bam_STAR/*bam ~/unix_lesson/rnaseq/results/STAR/
+cp /gpfs/scratchfs1/hpctrain/bam_gsnap/*bam ~/unix_lesson/rnaseq/results/STAR/
 ```
 
 We are going to use the following options:
@@ -240,7 +228,7 @@ and the following are the values for the required parameters:
 
 * `-a ~/unix_lesson/rnaseq/reference_data/chr1-hg19_genes.gtf # required option for specifying path to GTF`
 * `-o ~/unix_lesson/rnaseq/results/counts/Mov10_featurecounts.txt # required option for specifying path to, and name of the text output (count matrix)`
-* `~/unix_lesson/rnaseq/results/STAR/*bam # the list of all the bam files we want to collect count information for`
+* `~/unix_lesson/rnaseq/results/gsnap/*bam # the list of all the bam files we want to collect count information for`
 
 #### Running featureCounts
 
@@ -248,7 +236,7 @@ and the following are the values for the required parameters:
 $ featureCounts -T 4 -s 2 \
   -a ~/unix_lesson/rnaseq/reference_data/chr1-hg19_genes.gtf \
   -o ~/unix_lesson/rnaseq/results/counts/Mov10_featurecounts.txt \
-  ~/unix_lesson/rnaseq/results/STAR/*bam
+  ~/unix_lesson/rnaseq/results/gsnap/*bam
 ```
 #### featureCounts output
 
@@ -287,7 +275,7 @@ Vim has nice shortcuts for cleaning up the header of our file using the followin
 1. Move the cursor to the beginning of the document by typing: `gg` (in command mode). 
 2. Remove the first line by typing: `dd` (in command mode).
 2. Remove the file name following the sample name by typing: `:%s/_Aligned.sortedByCoord.out.bam//g` (in command mode).
-3. Remove the path leading up to the file name by typing: `:%s/\/home\/rc_training10\/unix_lesson\/rnaseq\/results\/STAR\/bams\///g` (in command mode).
+3. Remove the path leading up to the file name by typing: `:%s/\/home\/rc_training10\/unix_lesson\/rnaseq\/results\/gsnap\/bams\///g` (in command mode).
 	
 	> Note that we have a `\` preceding each `/`, which tells vim that we are not using the `/` as part of our search and replace command, but instead the `/` is part of the pattern that we are replacing. This is called *escaping* the `/`.
 
