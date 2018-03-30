@@ -56,7 +56,7 @@ The command prompt will have some characters before it, something like `[usernam
 The first command we will type on the command prompt will be to start a so-called "interactive session":
 
 ```bash
-$ srun --pty -p defq --qos=interactive --mem 8G 
+$ srun --pty -p defq --qos=interactive --mem 8G bash
 ```
 
 Press enter after you type in that command. You will get a couple of messages, but in a few seconds you should get back the command prompt `$`; the string of characters before the command prompt, however, have changed. They should say something like `[username@computerID ~]`. *We will be explaining what this means in more detail later when we talk about HPC and the cluster.* 
