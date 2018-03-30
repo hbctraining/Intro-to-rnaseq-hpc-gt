@@ -18,7 +18,7 @@ cores=6
 
 # directory with genome reference FASTA and index files + name of the gene annotation file
 
-genome=???chr1_reference_gsnap???
+genome=/gpfs/scratchfs1/hpctrain/chr1_reference_gsnap
 gtf=~/unix_workshop/rnaseq/reference_data/chr1-hg19_genes.gtf
 
 # make all of the output directories
