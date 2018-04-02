@@ -17,7 +17,7 @@ date: "August 7, 2017"
 
 We will spend most of our time learning about the basics of the shell by exploring experimental data.
 
-Since we are going to be working with this data on the remote server (the new Genentech cluster): `hpcpilot.gene.com` , we first need to log onto the server. After we're logged on, we will each make our own copy of the example data folder.
+Since we are going to be working with this data on the remote server (the new Genentech cluster): `gredhpc.gene.com` , we first need to log onto the server. After we're logged on, we will each make our own copy of the example data folder.
 
 ### Logging in
 
@@ -36,7 +36,7 @@ By default, there is no terminal for the bash shell available in the Windows OS,
 Type in the following command with your username to login:
 
 ```bash
-ssh username@hpcpilot.gene.com
+ssh username@gredhpc.gene.com
 ```
 
 You will receive a prompt for your password, and you should type in your associated password; note that the cursor will *not move* as you type in your password.
