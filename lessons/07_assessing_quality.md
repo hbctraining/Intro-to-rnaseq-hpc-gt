@@ -82,7 +82,7 @@ The main functions of FastQC are:
 Before we run FastQC, let's start an interactive session on the cluster (if you don't already have one going):
 
 ```bash
-$ srun --pty -p defq --qos=interactive --mem 8G bash
+% srun --pty -p defq --qos=interactive --mem 8G bash
 ```
 
 ***An interactive session is very useful to test tools, workflows, run jobs that open new interactive windows (X11-forwarding) and so on.***
@@ -90,7 +90,7 @@ $ srun --pty -p defq --qos=interactive --mem 8G bash
 Once your interactive job starts, notice that the command prompt has changed; this is because we are working on a compute node now, not on a login node. Change directories to `raw_data`.
 
 ```bash
-$ cd ~/unix_lesson/rnaseq/raw_data
+% cd ~/unix_lesson/rnaseq/raw_data
 ```  
 
 Before we start using software, we have to load the environments for each software package. On the O2 cluster, this is done using an **LMOD** system. 
@@ -98,39 +98,39 @@ Before we start using software, we have to load the environments for each softwa
 If we check which modules we currently have loaded, we should not see FastQC.
 
 ```bash
-$ module list
+% module list
 ```
 
 This is because the FastQC program is not in our $PATH (i.e. its not in a directory that unix will automatically check to run commands/programs).
 
 ```bash
-$ echo $PATH
+% echo $PATH
 ```
 
 To run the FastQC program, we first need to load the appropriate module, so it puts the program into our path. To find the FastQC module to load we need to search the versions available:
 
 ```bash
-$ module spider
+% module spider
 ```
 
 Then we can load the FastQC module:
 
 ```bash
-$ module load fastqc
+% module load fastqc
 ```
 
 Once a module for a tool is loaded, you have essentially made it directly available to you like any other basic UNIX command.
 
 ```bash
-$ module list
+% module list
 
-$ echo $PATH
+% echo $PATH
 ```
 
 FastQC will accept multiple file names as input, so we can use the `*.fq` wildcard.
 
 ```bash
-$ fastqc *.fq
+% fastqc *.fq
 ```
 
 *Did you notice how each file was processed serially? How do we speed this up?*
@@ -138,33 +138,33 @@ $ fastqc *.fq
 Exit the interactive session and start a new one with 6 cores, and use the multi-threading functionality of FastQC to run 6 jobs at once.
 
 ```bash
-$ exit  #exit the current interactive session
+% exit  #exit the current interactive session
 
-$ srun --pty -p defq -n 6 -t 0-12:00 --mem 8G --qos=interactive bash    #start a new one with 6 cpus (-n 6)
+% srun --pty -p defq -n 6 -t 0-12:00 --mem 8G --qos=interactive bash    #start a new one with 6 cpus (-n 6)
 
-$ module load fastqc  #reload the module for the new session
+% module load fastqc  #reload the module for the new session
 
-$ cd ~/unix_lesson/rnaseq/raw_data
+% cd ~/unix_lesson/rnaseq/raw_data
 
-$ fastqc -t 6 *.fq  #note the extra parameter we specified for 6 threads
+% fastqc -t 6 *.fq  #note the extra parameter we specified for 6 threads
 ```
 
 How did I know about the -t argument for FastQC?
 
 ```bash
-$ fastqc --help      # check usage and version number
+% fastqc --help      # check usage and version number
 ```
 
 Now, let's create a home for our results
 
 ```bash
-$ mkdir ~/unix_lesson/rnaseq/results/fastqc
+% mkdir ~/unix_lesson/rnaseq/results/fastqc
 ```
 
 ...and move them there (recall, we are still in `~/unix_lesson/rnaseq/raw_data/`)
 
 ```bash
-$ mv *fastqc* ~/unix_lesson/rnaseq/results/fastqc/
+% mv *fastqc* ~/unix_lesson/rnaseq/results/fastqc/
 ```
 
 ### Performing quality assessment using job submission scripts
@@ -174,7 +174,7 @@ So far in our FASTQC analysis, we have been directly submitting commands to O2 u
 
 ```bash
 # DO NOT RUN THIS
-$ sbatch job_submission_script.run
+% sbatch job_submission_script.run
 ```
 
 Submission of the script using the `sbatch` command allows SLURM to run your job when its your turn. Let's create a job submission script to load the FASTQC module, run FASTQC on all of our fastq files, and move the files to the appropriate directory.
@@ -182,9 +182,9 @@ Submission of the script using the `sbatch` command allows SLURM to run your job
 Change directories to `~/unix_lesson/rnaseq/scripts`, and create a script named `mov10_fastqc.run` using `vim`.
 
 ```bash
-$ cd ~/unix_lesson/rnaseq/scripts
+% cd ~/unix_lesson/rnaseq/scripts
 
-$ vim mov10_fastqc.run
+% vim mov10_fastqc.run
 ```
 
 The first thing we need in our script is the **shebang line**:
@@ -222,23 +222,23 @@ mv *fastqc* ../results/fastqc/
 Save and quit the script. Now, let's submit the job to the SLURM:
 
 ```bash
-$ sbatch mov10_fastqc.run
+% sbatch mov10_fastqc.run
 ```
 
 You can check on the status of your job with:
 
 ```bash
-$ sacct
+% sacct
 ```
 
 ```bash
-$ ls -lh ../results/fastqc/
+% ls -lh ../results/fastqc/
 ```
 There should also be standard error (`.err`) and standard out (`.out`) files from the job listed in `~/unix_lesson/rnaseq/scripts`. You can move these over to your `logs` directory and give them more intuitive names:
 
 ```bash
-$ mv *.err ../logs/fastqc.err
-$ mv *.out ../logs/fastqc.out
+% mv *.err ../logs/fastqc.err
+% mv *.out ../logs/fastqc.out
 ```
 
 ***
@@ -252,7 +252,7 @@ How would you change the `mov10_fastqc.run` script if you had 9 fastq files you 
    
 Let's take a closer look at the files generated by FastQC:
    
-`$ ls -lh ~/unix_lesson/rnaseq/results/fastqc/`
+`% ls -lh ~/unix_lesson/rnaseq/results/fastqc/`
 
 #### HTML reports
 The .html files contain the final reports generated by fastqc, let's take a closer look at them. Transfer the file for `Mov10_oe_1.subset.fq` over to your laptop via **??**.
@@ -277,8 +277,8 @@ We will go over the remaining plots in class. Remember, our report only represen
 >The other output of FastQC is a .zip file. These .zip files need to be unpacked with the `unzip` program. If we try to `unzip` them all at once:
 >
 >```bash
->$ cd ~/unix_lesson/rnaseq/results/fastqc/    
->$ unzip *.zip
+>% cd ~/unix_lesson/rnaseq/results/fastqc/    
+>% unzip *.zip
 >```
 >
 >Did it work? 
@@ -295,7 +295,7 @@ We will go over the remaining plots in class. Remember, our report only represen
 >This loop is basically a simple program. When it runs
 >
 >```bash
->$ for zip in *.zip
+>% for zip in *.zip
 > do
 > unzip $zip
 > done
@@ -313,15 +313,15 @@ We will go over the remaining plots in class. Remember, our report only represen
 >What information is contained in the unzipped folder?
 >
 >```bash
->$ ls -lh Mov10_oe_1.subset_fastqc
->$ head Mov10_oe_1.subset_fastqc/summary.txt
+>% ls -lh Mov10_oe_1.subset_fastqc
+>% head Mov10_oe_1.subset_fastqc/summary.txt
 >```
 >
 >To save a record, let's `cat` all `fastqc summary.txt` files into one `full_report.txt` and move this to `~/unix_lesson/rnaseq/docs`. 
 >You can use wildcards in paths as well as file names.  Do you remember how we said `cat` is really meant for concatenating text files?
 >    
 >```bash
->$ cat */summary.txt > ~/unix_lesson/rnaseq/logs/fastqc_summaries.txt
+>% cat */summary.txt > ~/unix_lesson/rnaseq/logs/fastqc_summaries.txt
 >```
 
 ## Quality Control (*Optional*) - Trimming 
@@ -342,7 +342,7 @@ If you need to perform trimming on your fastq data to remove unwanted sequences/
 Example of cutadapt usage:
 
 ```bash
-$ cutadapt --adapter=AGATCGGAAGAG --minimum-length=25  -o myfile_trimmed.fastq.gz myfile.fastq.gz 
+% cutadapt --adapter=AGATCGGAAGAG --minimum-length=25  -o myfile_trimmed.fastq.gz myfile.fastq.gz 
 ```
 
 After trimming, cutadapt can remove any reads that are too short to ensure that you do not get spurious mapping of very short sequences to multiple locations on the genome. In addition to adapter trimming, cutadapt can trim off any low-quality bases too, but **please note that quality-based trimming is not considered best practice, since majority of the newer, recommended alignment tools can account for this.**

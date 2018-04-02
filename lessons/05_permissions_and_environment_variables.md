@@ -21,7 +21,7 @@ Users of a multi-user UNIX system can belong to any number of groups.
 Let's see what groups we all belong to:
 
 ```bash
-$ groups
+% groups
 ```
 
 Depending on our affiliation, we all belong to at least a couple of groups. I belong to 4 groups,
@@ -43,7 +43,7 @@ For each of these three categories, the computer keeps track of whether people i
 Let's look at this model in action by running the command `ls -l ~/unix_lesson`, to list the files in that directory:
 
 ```bash
-$ ls -l
+% ls -l
 
 drwxrwsr-x 2 rsk27 rsk27  78 Oct  6 10:29 genomics_data
 drwxrwsr-x 2 rsk27 rsk27 228 Oct  6 10:28 raw_fastq
@@ -74,13 +74,13 @@ The final triplet shows us what everyone who isn't the file's owner, or in the f
 To change permissions, we use the `chmod` command (whose name stands for "change mode"). Let's make our README.txt file **inaccessible** to all users other than you and the group the file belong to (you, in this case), currently they are able to read it:
 
 ```bash
-$ ls -l ~/unix_lesson/README.txt
+% ls -l ~/unix_lesson/README.txt
 
 -rw-rw-r-- 1 rsk27 rsk27 377 Oct  6 10:28 /home/rsk27/unix_lesson/README.txt
 
-$ chmod o-rw ~/unix_lesson/README.txt         # the "-" after o denotes removing that permission
+% chmod o-rw ~/unix_lesson/README.txt         # the "-" after o denotes removing that permission
 
-$ ls -l ~/unix_lesson/README.txt
+% ls -l ~/unix_lesson/README.txt
 
 -rw-rw---- 1 rsk27 rsk27 377 Oct  6 10:28 /home/rsk27/unix_lesson/README.txt
 ```
@@ -90,9 +90,9 @@ The 'o' signals that we're changing the privileges of "others".
 Let's change it back to allow it to be readable by others:
 
 ```bash
-$ chmod o+r ~/unix_lesson/README.txt         # the "+" after o denotes adding/giving that permission
+% chmod o+r ~/unix_lesson/README.txt         # the "+" after o denotes adding/giving that permission
 
-$ ls -l ~/unix_lesson/README.txt
+% ls -l ~/unix_lesson/README.txt
 
 -rw-rw-r-- 1 rsk27 rsk27 377 Oct  6 10:28 /home/rsk27/unix_lesson/README.txt
 ```
@@ -103,7 +103,7 @@ Before we go any further,
 let's run `ls -l` on the `~/unix_lesson` directory to get a long-form listing:
 
 ```bash
-$ ls -l
+% ls -l
 
 drwxrwsr-x 2 rsk27 rsk27  78 Oct  6 10:29 genomics_data
 drwxrwsr-x 2 rsk27 rsk27 228 Oct  6 10:28 raw_fastq
@@ -145,13 +145,13 @@ In the context of the shell the environment variables are usually all in upper c
 
 First, let's see our list of environmental variables:
 ```bash
-$ env
+% env
 ```
 
 Let's see what is stored in these variables:
 
 ```bash
-$ echo $HOME
+% echo $HOME
 
 /home/trainingaccount_03
 ```
@@ -159,7 +159,7 @@ $ echo $HOME
 Variables, in most systems, are called or denoted with a "$" before the variable name, just like a regular variable.
 
 ```bash
-$ echo $PATH
+% echo $PATH
 
 /opt/lsf/7.0/linux2.6-glibc2.3-x86_64/bin:/groups/bcbio/bcbio/anaconda/bin:/opt/bcbio/local/bin:/opt/lsf/7.0/linux2.6-glibc2.3-x86_64/etc:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin
 ```
@@ -182,9 +182,9 @@ For any command you execute on the command prompt, you can find out where they a
 
 Try it on a few of the basic commands we have learned so far:
 ```bash
-$ which ls
-$ which <your favorite command>
-$ which <your favorite command>
+% which ls
+% which <your favorite command>
+% which <your favorite command>
 ```
 
 Are the directories listed by the `which` command within $PATH?
@@ -201,7 +201,7 @@ The $PATH variable is reset to a set of defaults (/bin:/usr/bin and so on), each
 
 Check what hidden files exist in our home directory using the `-a` flag:
 ```bash
-$ ls -al ~/
+% ls -al ~/
 ```
 
 Open the `.bashrc` file and at the end of the file add the export command that adds a specific location to the list in $PATH. This way when you start a new shell, that location will always be in your path. 

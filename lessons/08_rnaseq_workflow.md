@@ -17,13 +17,13 @@ Approximate time: 90 minutes
 To get started with this lesson, we will start an interactive session and ask for 6 cores, by adding `-n 6` to the `srun` command:
 
 ```bash
-$ srun --pty -p defq --qos=interactive -n 6 --mem 8G bash
+% srun --pty -p defq --qos=interactive -n 6 --mem 8G bash
 ```
 
 Change directories into the `unix_lesson` directory and copy the `reference_data` folder into your project directory:
 
 ```bash
-$ cd ~/unix_lesson/rnaseq
+% cd ~/unix_lesson/rnaseq
 ```
 
 You should have a directory tree setup similar to that shown below. It is best practice to have all files you intend on using for your workflow present within the same directory.
@@ -48,12 +48,12 @@ Below is a general overview of the steps involved in RNA-seq analysis.
 So let's get started by loading up some of the modules for tools we need for this section to perform alignment and assess the alignment: 
 
 ```bash
-$ module load GMAP-GSNAP
+% module load GMAP-GSNAP
 ```
 Create an output directory for our alignment files:
 
 ```bash
-$ mkdir results/gmap
+% mkdir results/gmap
 ```
 In the automation script, we will eventually loop over all of our files and have the cluster work on the files in parallel. For now, we're going to work on just one to test and set up our workflow. To start we will use the first replicate in the Mov10 overexpression group, `Mov10_oe_1_subset.fq`.
 
@@ -110,7 +110,7 @@ Aligning reads using STAR is a two-step process:
 > A quick note on shared databases for human and other commonly used model organisms. The O2 cluster has a designated directory at `/groups/shared_databases/` in which there are files that can be accessed by any user. These files contain, but are not limited to, genome indices for various tools, reference sequences, tool specific data, and data from public databases, such as NCBI and PDB. So when using a tool and requires a reference of sorts, it is worth taking a quick look here because chances are it's already been taken care of for you. 
 
 ```bash
-$ ls -l /n/groups/shared_databases/igenome
+% ls -l /n/groups/shared_databases/igenome
 ```
 
 #### Creating a genome index
@@ -174,7 +174,7 @@ These fields are described briefly below, but for more detailed information the 
 Let's take a quick look at our alignment. To do so we first convert our BAM file into SAM format using samtools and then pipe it to the `less` command. This allows us to look at the contents without having to write it to file (since we don't need a SAM file for downstream analyses).
 
 ```bash
-$ samtools view -h results/gsnap/Mov10_oe_1_Aligned.sortedByCoord.out.bam | less
+% samtools view -h results/gsnap/Mov10_oe_1_Aligned.sortedByCoord.out.bam | less
 ```
 Scroll through the SAM file and see how the fields correspond to what we expected.
 
@@ -195,12 +195,12 @@ Once we have our reads aligned to the genome, the next step is to count how many
 Let's start by creating a directory for the output:
 
 ```bash
-$ mkdir results/counts
+% mkdir results/counts
 ```
 `featureCounts` is not available as a module on O2, but we have already added the path for it (`/opt/bcbio/local/bin`) to our `$PATH` variable last time. 
 
 ``` bash
-$ module load subread
+% module load subread
 ```
 
 > ** If running the above command does not return `/n/app/bcbio/tools/bin/featureCounts`, run `export PATH=/n/app/bcbio/tools/bin:$PATH` and try the `which` command again.**
@@ -208,7 +208,7 @@ $ module load subread
 How do we use this tool, what is the command and what options/parameters are available to us?
 
 ``` bash
-$ featureCounts
+% featureCounts
 ```
 
 So, it looks like the usage is `featureCounts [options] -a <annotation_file> -o <output_file> input_file1 [input_file2] ... `, where `-a`, `-o` and input files are required. 
@@ -233,7 +233,7 @@ and the following are the values for the required parameters:
 #### Running featureCounts
 
 ``` bash
-$ featureCounts -T 4 -s 2 \
+% featureCounts -T 4 -s 2 \
   -a ~/unix_lesson/rnaseq/reference_data/chr1-hg19_genes.gtf \
   -o ~/unix_lesson/rnaseq/results/counts/Mov10_featurecounts.txt \
   ~/unix_lesson/rnaseq/results/gsnap/*bam
@@ -243,12 +243,12 @@ $ featureCounts -T 4 -s 2 \
 The output of this tool is 2 files, *a count matrix* and *a summary file* that tabulates how many the reads were "assigned" or counted and the reason they remained "unassigned". Let's take a look at the summary file:
 	
 ``` bash
-$ less results/counts/Mov10_featurecounts.txt.summary
+% less results/counts/Mov10_featurecounts.txt.summary
 ```
 Now let's look at the count matrix:
 	
 ``` bash
-$ less results/counts/Mov10_featurecounts.txt
+% less results/counts/Mov10_featurecounts.txt
 ```
 The count matrix that we need to perform differential gene expression analysis needs to look something like this:
 
@@ -257,7 +257,7 @@ The count matrix that we need to perform differential gene expression analysis n
 Since the featureCounts output has additional columns with information about genomic coordinates, gene length etc., we can use the `cut` command to select only those columns that you are interested in. 
 	
 ``` bash
-$ cut -f1,7,8,9,10,11,12 results/counts/Mov10_featurecounts.txt > results/counts/Mov10_featurecounts.Rmatrix.txt
+% cut -f1,7,8,9,10,11,12 results/counts/Mov10_featurecounts.txt > results/counts/Mov10_featurecounts.Rmatrix.txt
 ```
 
 ```bash
@@ -267,7 +267,7 @@ less results/counts/Mov10_featurecounts.Rmatrix.txt
 To ready this text file (count matrix) for the next step of differential gene expression analysis, you will need to clean it up further by removing the first header line, and modifying the column names (headers) to simpler, smaller sampleIDs. We can do this using a GUI text editor on our local laptops, or we can try using some of the shortcuts available in `vim`!
 	
 ``` bash
-$ vim results/counts/Mov10_featurecounts.Rmatrix.txt
+% vim results/counts/Mov10_featurecounts.Rmatrix.txt
 ```
 
 Vim has nice shortcuts for cleaning up the header of our file using the following steps: 
@@ -300,7 +300,7 @@ This text file with a matrix of raw counts can be used as input to tools like [D
 Index the BAM file for visualization with IGV:
 
 ```bash
-$ samtools index results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam
+% samtools index results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam
 ```
 
 Use _**FileZilla**_ to copy the following files to your local machine:
@@ -316,7 +316,7 @@ Use _**FileZilla**_ to copy the following files to your local machine:
 > First, identify the location of the _origin file_ you intend to copy, followed by the _destination_ of that file. Since the original file is located on O2, this requires you to provide remote host and login information.
 
 > ```bash
-> $ scp user_name@transfer.rc.hms.harvard.edu:/home/user_name/unix_lesson/rnaseq/results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam* /path/to/directory_on_laptop
+> % scp user_name@transfer.rc.hms.harvard.edu:/home/user_name/unix_lesson/rnaseq/results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam* /path/to/directory_on_laptop
 > ```
 
 **Visualize**

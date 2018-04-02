@@ -94,11 +94,11 @@ Using multiple complex modeling approaches, like Expectation Maximization (EM), 
 First start an interactive session and create a new directory for our Salmon analysis:
 
 ```bash
-$ srun --pty -p interactive -t 0-12:00 --mem 8G --reservation=hbc /bin/bash
+% srun --pty -p interactive -t 0-12:00 --mem 8G --reservation=hbc /bin/bash
 
-$ mkdir ~/unix_lesson/rnaseq/salmon
+% mkdir ~/unix_lesson/rnaseq/salmon
 
-$ cd ~/unix_lesson/rnaseq/salmon
+% cd ~/unix_lesson/rnaseq/salmon
 ```   
 
 > Salmon is not available as a module on O2, but it is installed as part of the bcbio pipeline. Since we already have the appropriate path (`/n/app/bcbio/tools/bin/`) in our `$PATH` variable we can use it by simply typing in `salmon`.     
@@ -110,7 +110,7 @@ As you can imagine from the description above, when running Salmon there are als
     
 ```bash
 ## DO NOT RUN THIS CODE
-$ salmon index -t transcripts.fa -i transcripts_index --type quasi -k 31
+% salmon index -t transcripts.fa -i transcripts_index --type quasi -k 31
 ```
 > **NOTE:** Default for salmon is --type quasi and -k 31, so we do not need to include these parameters in the index command. The kmer default of 31 is optimized for 75bp or longer reads, so if your reads are shorter, you may want a smaller kmer to use with shorter reads (kmer size needs to be an odd number).
 
@@ -131,7 +131,7 @@ Get the transcript abundance estimates using the `quant` command and the paramet
 To run the quantification step on a single sample we have the command provided below. Let's try running it on our subset sample for `Mov10_oe_1.subset.fq`:
 
 ```bash
-$ salmon quant -i /n/groups/hbctraining/unix_lesson_other/salmon.ensembl37.idx/ \
+% salmon quant -i /n/groups/hbctraining/unix_lesson_other/salmon.ensembl37.idx/ \
  -l SR \
  -r ~/unix_lesson/rnaseq/raw_data/Mov10_oe_1.subset.fq \
  -o Mov10_oe_1.subset.salmon \
@@ -155,7 +155,7 @@ $ salmon quant -i /n/groups/hbctraining/unix_lesson_other/salmon.ensembl37.idx/ 
 
 You should see a new directory has been created that is named by the string value you provided in the `-o` command. Take a look at what is contained in this directory:
 
-    $ ls -l Mov10_oe_1.subset.salmon/
+    % ls -l Mov10_oe_1.subset.salmon/
     
 There is a logs directory, which contains all of the text that was printed to screen as Sailfish was running. Additionally, there is a file called `quant.sf`. 
 
@@ -187,7 +187,7 @@ We just ran Salmon on a single sample (and keep in mind a subset of chr1 from th
 
 Open up a script in `vim`:
 
-	$ vim salmon_all_samples.sh
+	% vim salmon_all_samples.sh
 
 Now we can create a for loop to iterate over all FASTQ samples, and submit a job to **run Salmon on each sample in parallel**. We begin by listing all BSUB directives to specify the resources we are requesting including memory, cores and wall time.
 

@@ -38,9 +38,9 @@ To write and edit files, we're going to use a text editor called 'Vim'. Vim is a
 You can create a document by calling a text editor and providing the name of the document you wish to create. Change directories to the `unix_lesson/other` folder and create a document using `vim` entitled `draft.txt`:
 
 ```bash
-$ cd ~/unix_lesson/other
+% cd ~/unix_lesson/other
 	
-$ vim draft.txt
+% vim draft.txt
 ```
 
 Notice the `"draft.txt" [New File]` typed at the bottom left-hand section of the screen. This tells you that you just created a new file in vim. 

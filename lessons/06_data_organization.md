@@ -44,8 +44,8 @@ We will start by creating a directory that we can use for the rest of the RNA-se
 First, make sure that you are in your home directory.
 
 ```bash
-$ cd
-$ pwd
+% cd
+% pwd
 ```
 
 This should return `/gstore/data/username`.
@@ -53,7 +53,7 @@ This should return `/gstore/data/username`.
 Now make a directory for the RNA-seq analysis within the `unix_lesson/` folder using the `mkdir` command. You can use the parents flag (`-p` or `--parents`) to complete the file path by creating any parent directories that do not exist. However, this isn't the case here, since we already have the `unix_lesson/`, but it can be very useful when scripting workflows. 
 
 ```bash
-$ mkdir -p ~/unix_lesson/rnaseq
+% mkdir -p ~/unix_lesson/rnaseq
 ```
 
 Next, we will set up the following structure within your project directory to keep files organized. 
@@ -80,8 +80,8 @@ rnaseq
 Create subdirectories for the project by changing into `rnaseq/` and then using `mkdir`.
 
 ```bash
-$ cd ~/unix_lesson/rnaseq
-$ mkdir -p logs meta raw_data results scripts
+% cd ~/unix_lesson/rnaseq
+% mkdir -p logs meta raw_data results scripts
 ``` 
 Verify that the subdirectories now exist.
 
@@ -94,13 +94,13 @@ Let's populate the `rnaseq/` project with our example RNA-seq FASTQ data.
 The FASTQ files are located inside `~/unix_lesson/raw_fastq/`, and we need to copy them to `raw_data/`. We can match them by file extension with `*.fq`.
 
 ```bash
-$ cp ~/unix_lesson/raw_fastq/*.fq raw_data/
+% cp ~/unix_lesson/raw_fastq/*.fq raw_data/
 ```
 
 Later in the workflow when we perform alignment, we will require genome reference files (.fa, .gtf) for alignment and read counting. These files are also in the `unix_lesson/` directory inside `reference_data/`, we can copy over the whole folder in this case. You can use `.` as a shortcut for the current working directory as the destination.
 
 ```bash
-$ cp -r ~/unix_lesson/reference_data/ .
+% cp -r ~/unix_lesson/reference_data/ .
 ```
 
 Perfect, now the structure of `rnaseq/` should look like this:

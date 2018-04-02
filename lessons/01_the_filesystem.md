@@ -76,7 +76,7 @@ Copy our example data folder to your home directory using the following command:
 We have each created our own copy of the example data folder into our home directory, **unix_lesson**. Let's go into the data folder and explore the data using the shell.
 
 ```bash
-$ cd unix_lesson
+% cd unix_lesson
 ```
 
 > 'cd' stands for 'change directory'
@@ -84,7 +84,7 @@ $ cd unix_lesson
 Let's see what is in here. Type:
 
 ```bash
-$ ls
+% ls
 ```
 
 You will see:
@@ -97,7 +97,7 @@ genomics_data  other  raw_fastq  README.txt  reference_data
 There are five items listed. What types of files are they? We can use a "modifier" with `ls` to get more information; this modifier is called an argument (more below).
 
 ```bash
-$ ls -F
+% ls -F
 
 genomics_data/  other/  raw_fastq/  README.txt  reference_data/
 ```
@@ -109,7 +109,7 @@ Anything with a "/" after it is a directory. Things with a "*" after them are pr
 You can also use the command:
 
 ```bash
-$ ls -l
+% ls -l
 ```
 
 to see whether items in a directory are files or directories. `ls -l` gives a lot more information too.
@@ -125,9 +125,9 @@ drwxrwsr-x 2 mp298 mp298 238 Sep 30 10:47 reference_data
 Let's go into the raw_fastq directory and see what is in there.
 
 ```bash
-$ cd raw_fastq/
+% cd raw_fastq/
 
-$ ls -F
+% ls -F
 
 Irrel_kd_1.subset.fq  Irrel_kd_3.subset.fq  Mov10_oe_2.subset.fq
 Irrel_kd_2.subset.fq  Mov10_oe_1.subset.fq  Mov10_oe_3.subset.fq
@@ -144,7 +144,7 @@ Most commonly used shell commands have a manual available in the shell. You can 
 manual using the `man` command. Try entering:
 
 ```bash
-$ man ls
+% man ls
 ```
 
 This will open the manual page for `ls`. Use the 'space' key to go forward and 'b' to go backwards. When you are done reading, just hit `q` to quit.
@@ -181,7 +181,7 @@ Now let's go do that same navigation at the command line.
 Type:
 
 ```bash
-$ cd
+% cd
 ```
 
 > This puts you in your home directory. No matter where you are in the directory system, `cd` will always bring you back to your home directory.
@@ -192,7 +192,7 @@ Now using `cd` and `ls`, go in to the `unix_lesson` directory and list its conte
 Let's also check to see where we are. Sometimes when we're wandering around in the file system, it's easy to lose track of where we are. The command that tells you this is:
 
 ```bash
-$ pwd
+% pwd
 ```
 
 > This stands for 'print working directory'. i.e. the directory you're currently working in.
@@ -204,7 +204,7 @@ To go 'back up a level' we can use `..`
 Type:
 
 ```bash
-$ cd ..
+% cd ..
 ```
 
 Now do `ls` and `pwd`. 
@@ -219,13 +219,13 @@ By default, the `ls` commands lists the contents of the working directory (i.e. 
 Type:
 
 ```bash
-$ cd
+% cd
 ```
 
 Then enter the command:
 
 ```bash
-$ ls unix_lesson/
+% ls unix_lesson/
 ```
 
 This will list the contents of the `unix_lesson` directory without you having to navigate there.
@@ -233,8 +233,8 @@ This will list the contents of the `unix_lesson` directory without you having to
 The `cd` command works in a similar way.
 
 ```bash
-$ cd unix_lesson/raw_fastq/
-$ pwd
+% cd unix_lesson/raw_fastq/
+% pwd
 ```
 
 You should now be in `raw_fastq` and you got there without having to go through the intermediate directory. 
@@ -253,7 +253,7 @@ List the `Mov10_oe_1.subset.fq` file from your home directory without changing d
 The `cd` command takes an argument which is the directory name. Directories can be specified using either a *relative path* or a *full path*. As we know, the directories on the computer are arranged into a hierarchy. The full path tells you where a directory is in that hierarchy. Navigate to the home directory (`cd`). Now, enter the `pwd` command and you should see:
 
 ```bash
-$ pwd
+% pwd
 ```
 
 ```
@@ -265,14 +265,14 @@ which is the full path for your home directory. This tells you that you are in a
 Now enter the following command:
 
 ```bash
-$ cd /gstore/home/username/unix_lesson/raw_fastq/
+% cd /gstore/home/username/unix_lesson/raw_fastq/
 ```
 
 This jumps to `raw_fastq`. Now go back to the home directory (`cd`). We saw
 earlier that the command:
 
 ```bash
-$ cd unix_lesson/raw_fastq/
+% cd unix_lesson/raw_fastq/
 ```
 
 had the same effect - it took us to the `raw_fastq` directory. But, instead of specifying the full path (`/gstore/home/username/unix_lesson/raw_fastq`), we specified a *relative path*. In other words, we specified the path **relative to our current working directory**. 
@@ -298,13 +298,13 @@ Change directories to `/gstore/home/username/unix_lesson/raw_fastq/`, and list t
 Navigate to the home directory. Typing out directory names can waste a lot of time. When you start typing out the name of a directory, then hit the tab key, the shell will try to fill in the rest of the directory name. For example, type `cd` to get back to your home directly, then enter:
 
 ```bash
-$ cd uni<tab>
+% cd uni<tab>
 ```
 
 The shell will fill in the rest of the directory name for `unix_lesson`. Now go to `unix_lesson/raw_fastq` and 
 
 ```bash
-$ ls Mov10_oe_<tab><tab>
+% ls Mov10_oe_<tab><tab>
 ```
 
 When you hit the first tab, nothing happens. The reason is that there are multiple directories in the home directory which start with `Mov10_oe_`. Thus, the shell does not know which one to fill in. When you hit tab again, the shell will list the possible choices.
@@ -321,19 +321,19 @@ directory contains FASTQ files from our RNA-Seq experiment.
 The '*' character is a shortcut for "everything". Thus, if you enter `ls *`, you will see all of the contents of a given directory. Now try this command:
 
 ```bash
-$ ls *fq
+% ls *fq
 ```
 
 This lists every file that ends with a `fq`. This command:
 
 ```bash
-$ ls /usr/bin/*.sh
+% ls /usr/bin/*.sh
 ```
 
 Lists every file in `/usr/bin` that ends in the characters `.sh`.
 
 ```bash
-$ ls Mov10*fq
+% ls Mov10*fq
 ```
 
 lists only the files that begin with 'Mov10' and end with 'fq'
@@ -360,17 +360,17 @@ BONUS: List all of the files in `/bin` that contain the letter 'a' or 'c'.
 There are some shortcuts which you should know about. Dealing with the home directory is very common. So, in the shell the tilde character, "~", is a shortcut for your home directory. Navigate to the `raw_fastq` directory:
 
 ```bash
-$ cd
+% cd
 ```
 
 ```bash
-$ cd unix_lesson/raw_fastq
+% cd unix_lesson/raw_fastq
 ```
 
 Then enter the command:
 
 ```bash
-$ ls ~
+% ls ~
 ```
 
 This prints the contents of your home directory, without you having to type the full path because the tilde "~" is equivalent to "/gstore/home/username".
@@ -378,13 +378,13 @@ This prints the contents of your home directory, without you having to type the 
 Another shortcut is the "..":
 
 ```bash
-$ ls ..
+% ls ..
 ```
 
 The shortcut `..` always refers to the directory above your current directory. So, it prints the contents of the `unix_lesson`. You can chain these together, so:
 
 ```bash
-$ ls ../..
+% ls ../..
 ```
 
 prints the contents of `/gstore/home/username` which is your home directory. 
@@ -404,7 +404,7 @@ is very useful.
 You can also review your recent commands with the `history` command.  Just enter:
 
 ```bash
-$ history
+% history
 ```
 
 to see a numbered list of recent commands, including this just issues
@@ -427,7 +427,7 @@ The easiest way to examine a file is to just print out all of the
 contents using the command `cat`. Print the contents of `unix_lesson/other/sequences.fa` by entering the following command:
 
 ```bash
-$ cat ~/unix_lesson/other/sequences.fa
+% cat ~/unix_lesson/other/sequences.fa
 ```
 
 This prints out the all the contents of `sequences.fa` to the screen.
@@ -472,19 +472,19 @@ The commands are `head` and `tail` and they just let you look at
 the beginning and end of a file respectively.
 
 ```bash
-$ head Mov10_oe_1.subset.fq
+% head Mov10_oe_1.subset.fq
 ```
 
 ```bash
-$ tail Mov10_oe_1.subset.fq
+% tail Mov10_oe_1.subset.fq
 ```
 
 The `-n` option to either of these commands can be used to print the first or last `n` lines of a file. To print the first/last line of the file use:
 
 ```bash
-$ head -n 1 Mov10_oe_1.subset.fq
+% head -n 1 Mov10_oe_1.subset.fq
 
-$ tail -n 1 Mov10_oe_1.subset.fq
+% tail -n 1 Mov10_oe_1.subset.fq
 ```
 
 ## Creating, moving, copying, and removing
@@ -496,9 +496,9 @@ Our raw data in this case is fastq files. We don't want to change the original f
 Lets copy the file using the copy `cp` command. Navigate to the `raw_fastq` directory and enter:
 
 ```bash
-$ cp Mov10_oe_1.subset.fq Mov10_oe_1.subset-copy.fq
+% cp Mov10_oe_1.subset.fq Mov10_oe_1.subset-copy.fq
 
-$ ls -l
+% ls -l
 ```
 
 Now ``Mov10_oe_1.subset-copy.fq`` has been created as a copy of `Mov10_oe_1.subset.fq`
@@ -509,7 +509,7 @@ The `mkdir` command is used to make a directory. Just enter `mkdir`
 followed by a space, then the directory name.
 
 ```bash
-$ mkdir backup
+% mkdir backup
 ```
 
 > File/directory/program names with spaces in them do not work in unix, use characters like hyphens or underscores instead.
@@ -517,11 +517,11 @@ $ mkdir backup
 We can now move our backed up file in to this directory. We can move files around using the command `mv`. Enter this command:
 
 ```bash
-$ mv *copy.fq backup
+% mv *copy.fq backup
 ```
 
 ```bash
-$ ls -l backup
+% ls -l backup
 
 -rw-rw-r-- 1 mp298 mp298 75706556 Sep 30 13:56 Mov10_oe_1.subset-copy.fq
 ```
@@ -530,11 +530,11 @@ The `mv` command is also how you rename files. Since this file is so
 important, let's rename it:
 
 ```bash
-$ cd backup
+% cd backup
 
-$ mv Mov10_oe_1.subset-copy.fq Mov10_oe_1.subset-backup.fq
+% mv Mov10_oe_1.subset-copy.fq Mov10_oe_1.subset-backup.fq
 
-$ ls
+% ls
 
 Mov10_oe_1.subset-backup.fq
 ```
@@ -542,9 +542,9 @@ Mov10_oe_1.subset-backup.fq
 Finally, we decided this was silly and want to start over.
 
 ```bash
-$ cd ..
+% cd ..
 
-$ rm backup/Mov*
+% rm backup/Mov*
 ```
 
 > The `rm` file permanently removes the file. Be careful with this command. The shell doesn't
@@ -555,7 +555,7 @@ just nicely put the files in the Trash. They're really gone.
 We really don't need these backup directories, so, let's delete both. By default, `rm`, will NOT delete directories, but you use the `-r` flag if you are sure that you want to delete the directories and everything within them. To be safe, let's use it with the `-i` flag.
 
 ```bash
-$ rm -ri backup_ref_data/ backup_fastq/ 
+% rm -ri backup_ref_data/ backup_fastq/ 
 ```
 
 - `-r`: recursive, commonly used as an option when working with directories, e.g. with `cp`. 

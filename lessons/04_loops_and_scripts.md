@@ -30,7 +30,7 @@ We are finally ready to see what makes the shell such a powerful programming env
 First open a new file using `vim`:
 
 ```bash
-$ vim listing.sh
+% vim listing.sh
 ```
 
 Then type in the following lines in the `listing.sh` file:
@@ -45,7 +45,7 @@ ls -l
 Exit `vim` and save the file. Now let's run the new script we have created. To run a shell script you usually use the `bash` or `sh` command.
 
 ```bash
-$ sh listing.sh
+% sh listing.sh
 ```
 
 > Did it work like you expected?
@@ -62,19 +62,19 @@ Extending the bucket analogy: the bucket has a name associated with it, i.e. the
 Let's start with a simple variable that has a single number stored in it:
 
 ```bash
-$ num=25
+% num=25
 ```
 
 *How do we know that we actually created the bash variable?* We can use the `echo` command to print to terminal:
 
 ```bash
-$ echo num
+% echo num
 ```
 
 What do you see in the terminal? The `echo` utility takes what arguments you provide and prints to terminal. In this case it interpreted `num` as a a character string and simply printed it back to us. This is because **when trying to retrieve the value stored in the variable, we explicitly use a `$` in front of it**:
 
 ```bash
-$ echo $num
+% echo $num
 ```
 
 Now you should see the number 25 returned to you. Did you notice that when we created the variable we just typed in the variable name? This is standard shell notation (syntax) for defining and using variables. When defining the variable (i.e. setting the value) you can just type it as is, but when **retrieving the value of a variable don't forget the `$`!** 
@@ -82,20 +82,20 @@ Now you should see the number 25 returned to you. Did you notice that when we cr
 Variables can also store a string of character values. In the example below, we define a variable or a 'bucket' called `file`. We will put a filename `Mov10_oe_1.subset.fq` as the value inside the bucket.
 
 ```bash
-$ file=Mov10_oe_1.subset.fq
+% file=Mov10_oe_1.subset.fq
 ```
 
 Once you press return, you should be back at the command prompt. Let's check what's stored inside `file`, but first move into the `raw_fastq` directory::
 
 ```bash
-$ cd ~/unix_lesson/raw_fastq
-$ echo $file
+% cd ~/unix_lesson/raw_fastq
+% echo $file
 ```
 
 Let's try another command using the variable that we have created. We can also count the number of lines in `Mov10_oe_1.subset.fq` by referencing the `file` variable:
 
 ```bash
-$ wc -l $file
+% wc -l $file
 ```
 
 > *NOTE:* The variables we create in a session are system-wide, and independent of where you are in the filesystem. This is why we can reference it from any directory. However, it is only available for your current session. If you exit the cluster and login again at a later time, the variables you have created will no longer exist.
@@ -113,13 +113,13 @@ Ok, so we know variables are like buckets, and so far we have seen that bucket f
 To list all the filenames in the directory that have a `.fq` extension, we know the command is:
 
 ```bash
-$ ls *.fq
+% ls *.fq
 ```
 
 Now we want to *assign* the output of `ls` to the variable:
 
 ```bash
-$ filenames=$(ls *.fq)
+% filenames=$(ls *.fq)
 ```
 
 > Note the syntax for assigning output of commands to variables, i.e. the ticks around the `ls` command.
@@ -127,13 +127,13 @@ $ filenames=$(ls *.fq)
 Check and see what's stored inside our newly created variable using `echo`:
 	
 ```bash
-$ echo $filenames
+% echo $filenames
 ```
 
 Let's try the `wc -l` command again, but this time using our new variable `filenames` as the argument:
 
 ```bash
-$ wc -l $filenames
+% wc -l $filenames
 ```
 
 What just happened? Because our variable contains multiple values, the shell runs the command on each value stored in `filenames` and prints the results to screen. 
@@ -201,19 +201,19 @@ Pretty simple and cool, huh?
 Before we get started on creating more complex scripts, we want to introduce you to a command that will be useful for future scripting. The `basename` command is used for extracting the base name of a file, which is accomplished using string splitting to strip the directory and any suffix from filenames. Let's try an example, by first moving back to your home directory:
 
 ```bash
-$ cd
+% cd
 ```
 
 The we will run the `basename` command on one of the FASTQ files. Be sure to specify the path to the file:
 
 ```bash
-$ basename ~/unix_lesson/raw_fastq/Mov10_oe_1.subset.fq
+% basename ~/unix_lesson/raw_fastq/Mov10_oe_1.subset.fq
 ```
 
 What is returned to you? The filename was split into the path `unix_lesson/raw_fastq/` and the filename `Mov10_oe_1.subset.fq`. The command returns only the filename. Now, suppose we wanted to also trim off the file extension (i.e. remove `.fq` leaving only the file *base name*). We can do this by adding a parameter to the command to specify what string of characters we want trimmed.
 
 ```bash
-$ basename ~/unix_lesson/raw_fastq/Mov10_oe_1.subset.fq .fq
+% basename ~/unix_lesson/raw_fastq/Mov10_oe_1.subset.fq .fq
 ```
 
 You should now see that only `Mov10_oe_1.subset` is returned. 
@@ -240,9 +240,9 @@ You might not realize it, but this is something that you now know how to do. Let
 Rather than doing all of this in the terminal we are going to create a script file with all relevant commands. Move back in to `unix_lesson` and use `vim` to create our new script file:
 
 ```bash
-$ cd ~/unix_lesson
+% cd ~/unix_lesson
 
-$ vim generate_bad_reads_summary.sh
+% vim generate_bad_reads_summary.sh
 ```
 
 We always want to start our scripts with a shebang line: 
@@ -333,16 +333,16 @@ cat *badreads.count.summary >> runlog.txt
 To run this script, we simply enter the following command:
 
 ```bash
-$ sh generate_bad_reads_summary.sh
+% sh generate_bad_reads_summary.sh
 ```
 
 To keep our data organized, let's move all of the bad read files out of the `raw_fastq` directory into a new directory called `other`, and the script to a new directory called `scripts`.
 
 ```bash
-$ mkdir scripts
+% mkdir scripts
 
-$ mv raw_fastq/*bad* other/
-$ mv generate_bad_reads_summary.sh scripts/
+% mv raw_fastq/*bad* other/
+% mv generate_bad_reads_summary.sh scripts/
 ```
 
 ---

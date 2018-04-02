@@ -18,13 +18,13 @@ This will ensure that you run every sample with the exact same parameters, and w
 Before we start with the script, let's check how many cores our interactive session has by using `squeue`. 
 
 ```bash
-$ squeue -u eCommonsID
+% squeue -u eCommonsID
 ```
 
 We need to have an interactive session with 6 cores, if you already have one you are set. If you have a session with fewer cores then `exit` out of your current interactive session and start a new one with `-n 6`.
 
 ```bash
-$ srun --pty -p defq --qos=interactive -n 6 --mem 8G bash
+% srun --pty -p defq --qos=interactive -n 6 --mem 8G bash
 ```
 
 ### More Flexibility with variables
@@ -182,9 +182,9 @@ It is okay to specify this everything else is set up, since you will have most c
 To transfer the contents of the script to O2, you can copy and paste the contents into a new file using `vim`. 
 
 ```bash
-$ cd ~/unix_lesson/rnaseq/scripts/
+% cd ~/unix_lesson/rnaseq/scripts/
 
-$ vim rnaseq_analysis_on_input_file.sh 
+% vim rnaseq_analysis_on_input_file.sh 
 ```
 > *Alternatively, you can save the script on your computer and transfer it to `~/unix_lesson/rnaseq/scripts/` using FileZilla.*
 
@@ -192,7 +192,7 @@ $ vim rnaseq_analysis_on_input_file.sh
 We should all have an interactive session with 6 cores, so we can run the script as follows:
 
 ```bash
-$ sh rnaseq_analysis_on_input_file.sh ~/unix_lesson/rnaseq/raw_data/Mov10_oe_1.subset.fq
+% sh rnaseq_analysis_on_input_file.sh ~/unix_lesson/rnaseq/raw_data/Mov10_oe_1.subset.fq
 ```
 
 ## Running the script to submit jobs in parallel to the SLURM scheduler
@@ -242,7 +242,7 @@ Parallelization will save you a lot of time with real (large) datasets. To paral
 Use `vim` to start a new shell script called `rnaseq_analysis_on_allfiles-for_slurm.sh`: 
 
 ```bash
-$ vim rnaseq_analysis_on_allfiles_for-slurm.sh
+% vim rnaseq_analysis_on_allfiles_for-slurm.sh
 ```
 
 This script loops through the same files as in the previous (demo) script, but the command being submitted within the `for` loop is `sbatch` with SLURM directives specified on the same line:
