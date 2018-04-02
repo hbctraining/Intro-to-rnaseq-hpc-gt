@@ -48,25 +48,25 @@ A warning might pop up the first time you try to connect to a remote machine, ty
 Once logged in, you should see the some information scroll by, and a new command prompt: 
 
 ```bash
-[username@login_computerID ~]$ 
+username@nl### ~ % 
 ```
 
-The command prompt will have some characters before it, something like `[username@login_computerID ~]`, this is telling you what the name of the computer you are working on is.
+The command prompt will have some characters and numbers before it, something like `username@nl002 ~`, this is telling you what the name/ID/number of the computer you are working on is.
 
 The first command we will type on the command prompt will be to start a so-called "interactive session":
 
 ```bash
-$ srun --pty -p defq --qos=interactive --mem 8G bash
+% srun --pty -p defq --qos=interactive --mem 8G bash
 ```
 
-Press enter after you type in that command. You will get a couple of messages, but in a few seconds you should get back the command prompt `$`; the string of characters before the command prompt, however, have changed. They should say something like `[username@computerID ~]`. *We will be explaining what this means in more detail later when we talk about HPC and the cluster.* 
+Press enter after you type in that command. You will get a couple of messages, but in a few seconds you should get back the command prompt `%`; the string of characters before the command prompt, however, have changed. They should say something like `username@nc002 ~`. *We will be explaining what this means in more detail later when we talk about HPC and the cluster.* 
 
-Make sure that your command prompt is now preceded by a character string that contains the word "compute".
+Make sure that your command prompt now says "username@**nc**" instead of "username@**nl**".
 
 Copy our example data folder to your home directory using the following command:
 
 ```bash
-$ cp -r /gpfs/scratchfs1/hpctrain/unix_lesson/ .
+% cp -r /gpfs/scratchfs1/hpctrain/unix_lesson/ .
 ```
 
 >'cp' is the command for copy. This command required you to specify the location of the item you want to copy (/gpfs/scratchfs1/hpctrain/unix_lesson/) and the location of the destination (.); please note the space between the 2 in the command. The "-r" is an option that modifies the copy command to do something slightly different than usual. The "." means "here", i.e. the destination location is where you currently are.
