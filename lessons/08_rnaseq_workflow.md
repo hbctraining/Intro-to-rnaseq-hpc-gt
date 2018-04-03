@@ -58,98 +58,45 @@ Create an output directory for our alignment files:
 In the automation script, we will eventually loop over all of our files and have the cluster work on the files in parallel. For now, we're going to work on just one to test and set up our workflow. To start we will use the first replicate in the Mov10 overexpression group, `Mov10_oe_1_subset.fq`.
 
 ## Read Alignment
-The alignment process consists of choosing an appropriate reference genome to map our reads against, and performing the read alignment using one of several splice-aware alignment tools such as [STAR](https://github.com/alexdobin/STAR) or [HISAT2](https://ccb.jhu.edu/software/hisat2/index.shtml) (HISAT2 is a successor to both HISAT and TopHat2). The choice of aligner is a personal preference and also dependent on the computational resources that are available to you.
+The alignment process consists of choosing an appropriate reference genome to map our reads against, and performing the read alignment using one of several splice-aware alignment tools such as [GMAP-SNAP](http://research-pub.gene.com/gmap/), [STAR](https://github.com/alexdobin/STAR) or [HISAT2](https://ccb.jhu.edu/software/hisat2/index.shtml) (HISAT2 is a successor to both HISAT and TopHat2). The choice of aligner is a personal preference and also dependent on the computational resources that are available to you.
  
-For this workshop we will be using STAR (Spliced Transcripts Alignment to a Reference), an aligner designed to specifically address many of the challenges of RNAseq read mapping. STAR is shown to have **high accuracy** and outperforms other aligners by more than a **factor of 50 in mapping speed (but also requires quite a bit of memory**). 
+For this workshop we will be using GMAP-GSNAP, an aligner using the hash tables strategy and developed here at Genentech. This aligner is not just a splice-aware aligner for RNA-seq data, but it is versatile and is able to align various different types of DNA and protein inputs.
 
-### STAR Alignment Strategy
+### Running GMAP-GSNAP
 
-STAR is shown to have **high accuracy** and outperforms other aligners by more than a **factor of 50 in mapping speed (but also requires quite a bit of memory)**. The algorithm achieves this highly efficient mapping by performing a two-step process:
-
-1. Seed searching
-2. Clustering, stitching, and scoring
-
-#### Seed searching
-
-For every read that STAR aligns, STAR will search for the longest sequence that exactly matches the reference genome:
-
-![STAR_step1](../img/alignment_STAR_step1.png)
-	
-The different parts of the read that are mapped separately are called 'seeds'. So the first MMP that is mapped to the genome is called *seed1*.
-
-STAR will then search again for only the unmapped portion of the read to find the next longest sequence that exactly matches the reference genome, which will be *seed2*. 
-
-![STAR_step2](../img/alignment_STAR_step2.png)
-
-This sequential searching of only the unmapped portions of reads underlies the efficiency of the STAR algorithm. STAR uses an uncompressed suffix array (SA) to efficiently search for the longest matching portions of the read, this allows for quick searching against even the largest reference genomes. Other slower aligners use algorithms that often search for the entire read sequence before splitting reads and performing iterative rounds of mapping. More details on the algorithm itself can be found in the [STAR publication](http://bioinformatics.oxfordjournals.org/content/early/2012/10/25/bioinformatics.bts635). 
-
-**If STAR does not find an exact matching sequence** for each part of the read due to mismatches or indels, the seed will be extended.
-
-![STAR_step3](../img/alignment_STAR_step3.png)
-
-**If extension does not give a good alignment**, then the poor quality or adapter sequence (or other contaminating sequence) will be soft clipped.
-
-![STAR_step4](../img/alignment_STAR_step4.png)
-
-
-#### Clustering, stitching, and scoring
-
-The separate seeds are stitched together to create a complete read by first clustering the seeds together based on proximity to a set of seeds that have good alignment scores and are not multi-mapping.
-
-Then the seeds are stitched together based on the best alignment for the read (scoring based on mismatches, indels, gaps, etc.). 
-
-![STAR_step5](../img/alignment_STAR_step5.png)
-
-### Running STAR
-
-Aligning reads using STAR is a two-step process:   
+Aligning reads using GMAP-GSNAP is a two-step process:   
 
 1. Create a genome index 
 2. Map reads to the genome
 
-> A quick note on shared databases for human and other commonly used model organisms. The O2 cluster has a designated directory at `/groups/shared_databases/` in which there are files that can be accessed by any user. These files contain, but are not limited to, genome indices for various tools, reference sequences, tool specific data, and data from public databases, such as NCBI and PDB. So when using a tool and requires a reference of sorts, it is worth taking a quick look here because chances are it's already been taken care of for you. 
-
-```bash
-% ls -l /n/groups/shared_databases/igenome
-```
-
 #### Creating a genome index
 
-For this workshop we are using reads that originate from a small subsection of chromosome 1 (~300,000 reads) and so we are using only chr1 as the reference genome. Therefore, we cannot use any of the ready-made indices available in the `/n/groups/shared_databases/` folder.
+For this workshop we are using reads that originate from a small subsection of chromosome 1 (~300,000 reads) and so we are using only chr1 as the reference genome. Therefore, we cannot use any of the ready-made indices made available with the GMAP-SNAP install on the cluster.
 
-For this workshop, we have already indexed the reference genome for you as this can take a while. We have provided the code below that you would use to index the genome for your future reference, but please **do not run the code below**. For indexing the reference genome, a reference genome (FASTA) is required and an annotation file (GTF or GFF3) is suggested a more accurate alignment of the reads. 
+We have already created an index of chromosome1, which will be standing in for a reference genome. The indexing takes a lot longer than the actual alignment, and we can't run it in class, but we have provided the code below that you would use to index the genome for your future reference. For indexing the reference genome, a reference genome (FASTA) is required and an annotation file (GTF or GFF3) is optional.
 
-The basic options to **generate genome indices** using STAR are as follows:
+The basic options to **generate genome indices** using GMAP-GSNAP are as follows:
 
-* `--runThreadN`: number of threads
-* `--runMode`: genomeGenerate mode
-* `--genomeDir`: /path/to/store/genome_indices
-* `--genomeFastaFiles`: /path/to/FASTA_file (reference genome)
-* `--sjdbGTFfile`: /path/to/GTF_file (gene annotation)
-* `--sjdbOverhang`: readlength -1
+* 
+* 
+* 
+* 
+* 
+* 
 
 ```bash
 ** DO NOT RUN**
-STAR --runThreadN 6 --runMode genomeGenerate --genomeDir ./ --genomeFastaFiles chr1.fa --sjdbGTFfile chr1-hg19_genes.gtf --sjdbOverhang 99
+GMAP 
 ```
 
-The basic options for **mapping reads** to the genome using STAR are as follows:
+The basic options for **mapping RNA-seq reads** to the genome using GMAP-GSNAP are as follows:
 
-* `--runThreadN`: number of threads
-* `--readFilesIn`: /path/to/FASTQ_file
-* `--genomeDir`: /path/to/genome_indices
-* `--outFileNamePrefix`: prefix for all output files
+* 
+* 
+* 
+* 
 
-We will also be using some advanced options:
-* `--outSAMtype`: output filetype (SAM default)
-* `--outSAMUnmapped`: what to do with unmapped reads
-* `--outSAMattributes`: SAM attributes
-
-Note that default filtering is applied in which the maximum number of multiple alignments allowed for a read is set to 10. If a read exceeds this number there is no alignment output. To change the default you can use `--outFilterMultimapNmax`, but for this lesson we will leave it as default. The advanced parameters that we are going to use are described below:
-
-More details on STAR and its functionality can be found in the [user manual](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf), we encourage you to peruse through to get familiar with all available options.
-
-Now let's put it all together! The full STAR alignment command is provided below.
+Now let's put it all together! The full GMAP-GSNAP alignment command is provided below.
 
 > If you like you can copy-paste it directly into your terminal. Alternatively, you can manually enter the command, but it is advisable to first type out the full command in a text editor (i.e. [Sublime Text](http://www.sublimetext.com/) or [Notepad++](https://notepad-plus-plus.org/)) on your local machine and then copy paste into the terminal. This will make it easier to catch typos and make appropriate changes. 
 
@@ -158,12 +105,17 @@ gsnap -d hg19_chr1 -D /gpfs/scratchfs1/hpctrain/chr1_reference_gsnap \
 -t 6 --quality-protocol=sanger -M 2 -n 10 -B 2 -i 1 -N 1 \
 -w 200000 -E 1 --pairmax-rna=200000 --clip-overlap \
 -A sam raw_data/Mov10_oe_1.subset.fq | \
+samtools view -bS - | \
 samtools sort - | \
-samtools view -bS - > results/gsnap/Mov10_oe_1.subset.Aligned.sortedByCoord.out.bam
+ > results/gsnap/Mov10_oe_1.subset.Aligned.sortedByCoord.out.bam
 ```
 ### Alignment Outputs (SAM/BAM)
 
-The output we requested from STAR is a BAM file, and by default returns a file in SAM format. **BAM is a binary version of the SAM file, also known as Sequence Alignment Map format.** The SAM file is a tab-delimited text file that contains information for each individual read and its alignment to the genome. The file begins with an optional header (which starts with '@'), followed by an alignment section in which each line corresponds to alignment information for a single read. **Each alignment line has 11 mandatory fields** for essential mapping information and a variable number of fields for aligner specific information.
+The default output from GMAP-GSNAP is a SAM file, but we have used the pipe "\|" to first convert it into a BAM file (see below), and then sort the entries (each read) in the BAM file by the genomic coordinates they align to. 
+
+> When using the pipe with samtools, a special syntax is needed, wherein we need to use the hyphen "-" after the command to let samtools know that the input for that command is being piped. You may encounter this with other tools as well.
+
+**BAM is a binary version of the SAM file, also known as Sequence Alignment Map format.** The SAM file is a tab-delimited text file that contains information for each individual read and its alignment to the genome. The file begins with an optional header (which starts with '@'), followed by an alignment section in which each line corresponds to alignment information for a single read. **Each alignment line has 11 mandatory fields** for essential mapping information and a variable number of fields for aligner specific information.
 
 These fields are described briefly below, but for more detailed information the paper by [Heng Li et al](http://bioinformatics.oxfordjournals.org/content/25/16/2078.full) is a good start.
 
@@ -180,7 +132,7 @@ Scroll through the SAM file and see how the fields correspond to what we expecte
 
 ### Counting reads
 
-Once we have our reads aligned to the genome, the next step is to count how many reads have been mapped to each gene. The input files required for counting include the BAM file and an associated gene annotation file in GTF format. [htseq-count](http://htseq.readthedocs.io/en/release_0.9.1/count.html) and [featureCounts](http://bioinf.wehi.edu.au/featureCounts/) are 2 commonly used counting tools. Today, we will be using featureCounts to get the *gene* counts. We picked this tool because it is accurate, fast and is relatively easy to use. 
+Once we have our reads aligned to the genome, the next step is to count how many reads have been mapped to each gene. The input files required for counting include the BAM file and an associated gene annotation file in GTF format. [htseq-count](http://htseq.readthedocs.io/en/release_0.9.1/count.html) and [featureCounts](http://bioinf.wehi.edu.au/featureCounts/) (part of the [`subread`](http://subread.sourceforge.net/) toolkit) are 2 commonly used counting tools. Today, we will be using featureCounts to get the *gene* counts. We picked this tool because it is accurate, fast and is relatively easy to use. 
 
 `featureCounts` works by **taking the alignment coordinates for each read and cross-referencing that to the coordinates for *features* described in the GTF**. Most commonly a feature is considered to be a gene, which is the union of all exons (which is also a feature type) that make up that gene. *Please note that this tool is best used for counting reads associated with **genes**, and not for splice isoforms or transcripts, we will be covering that later today.* 
 
@@ -202,8 +154,6 @@ Let's start by creating a directory for the output:
 ``` bash
 % module load subread
 ```
-
-> ** If running the above command does not return `/n/app/bcbio/tools/bin/featureCounts`, run `export PATH=/n/app/bcbio/tools/bin:$PATH` and try the `which` command again.**
 
 How do we use this tool, what is the command and what options/parameters are available to us?
 
@@ -277,9 +227,7 @@ Vim has nice shortcuts for cleaning up the header of our file using the followin
 2. Remove the file name following the sample name by typing: `:%s/_Aligned.sortedByCoord.out.bam//g` (in command mode).
 3. Remove the path leading up to the file name by typing: `:%s/\/home\/rc_training10\/unix_lesson\/rnaseq\/results\/gsnap\/bams\///g` (in command mode).
 	
-	> Note that we have a `\` preceding each `/`, which tells vim that we are not using the `/` as part of our search and replace command, but instead the `/` is part of the pattern that we are replacing. This is called *escaping* the `/`.
-
-> **NOTE:** The home directory will need to be changed to either or eCommons ID or the training account your are using.
+> Note that we have a `\` preceding each `/`, which tells vim that we are not using the `/` as part of our search and replace command, but instead the `/` is part of the pattern that we are replacing. This is called *escaping* the `/`.
 
 ***
 
@@ -293,7 +241,7 @@ Vim has nice shortcuts for cleaning up the header of our file using the followin
 
 ### Next Steps: Performing DE analysis on the count matrix
 
-This text file with a matrix of raw counts can be used as input to tools like [DESeq2](http://bioconductor.org/packages/release/bioc/html/DESeq2.html), [EdgeR](http://bioconductor.org/packages/release/bioc/html/edgeR.html) and [limma-voom](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2014-15-2-r29). Running the DE analysis tools are outside the scope of this workshop since they require a working knowledge of R. We do have [additional materials](https://github.com/hbctraining/Intro-to-rnaseq-hpc/blob/master/lessons/DE_analysis.md) that you can go through for performing these analyses using the MOV10 dataset, and we might walk through them if time permits today. 
+This text file with a matrix of raw counts can be used as input to tools like [DESeq2](http://bioconductor.org/packages/release/bioc/html/DESeq2.html), [EdgeR](http://bioconductor.org/packages/release/bioc/html/edgeR.html) and [limma-voom](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2014-15-2-r29). Running the DE analysis tools are outside the scope of this workshop since they require a working knowledge of R. 
 
 ### Visual assessment of the alignment
 
@@ -303,35 +251,24 @@ Index the BAM file for visualization with IGV:
 % samtools index results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam
 ```
 
-Use _**FileZilla**_ to copy the following files to your local machine:
- 
-`~/unix_lesson/results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam`
+Once we have the `.bai` index file to go with the `.bam` file, we can copy them over to our directory in the designated location to visualize with IGV.
 
-`~/unix_lesson/results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam.bai` 
-
-> **NOTE: You can also transfer files to your laptop using the command line**
->
-> Similar to the `cp` command, there is a command that allows you to securely copy files between computers. The command is called `scp` and allows files to be copied to, from, or between different hosts. It uses ssh for data transfer and provides the same authentication and same level of security as `ssh`. 
->
-> First, identify the location of the _origin file_ you intend to copy, followed by the _destination_ of that file. Since the original file is located on O2, this requires you to provide remote host and login information.
-
-> ```bash
-> % scp user_name@transfer.rc.hms.harvard.edu:/home/user_name/unix_lesson/rnaseq/results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam* /path/to/directory_on_laptop
-> ```
 
 **Visualize**
 
 * Start [IGV](https://www.broadinstitute.org/software/igv/download), *you should have this previously installed on your laptop*.
-* Load the Human genome (hg19) into IGV using the dropdown menu at the top left of your screen. 
-**Note**: there is also an option to "Load Genomes from File..." under the "Genomes" pull-down menu - this is useful when working with non-model organisms
-* Load the .bam file using the **"Load from File..."** option under the **"File"** pull-down menu. *IGV requires the `.bai` file to be in the same location as corresponding `.bam` file that you want to load into IGV, but there is no other direct use for this index file.*
+* Load the Human genome (hg38) into IGV using the dropdown menu at the top left of your screen. If you can't find hg38 right away, click on the "more.." at the bottom of the pull down menu and search for it using the search bar at the top.
+
+**Note**: there is also an option to "Load Genomes from File..." under the "Genomes" pull-down menu - this is useful when working with non-model organisms or with fasta files that are unavailable in IGV.
+
+* Using the "Load from URL..." option under the **"File"** pull-down menu, add the link to the `.bam` file on the cluster. *IGV requires the `.bai` file to be in the same location as corresponding `.bam` file that you want to load into IGV, but there is no other direct use for this index file.*
 
 ![IGV screenshot](../img/igv_screenshot.png)
 
 ***
 **Exercise**
 
-Now that we have done this for one sample, let's try using the same commands to perform alignment on one of the control samples. Create an index for the `Irrel_kd_1_Aligned.sortedByCoord.out.bam` file and them to your laptop and load into IGV for visualization. 
+Now that we have done this for one sample, let's try using the same commands to create a samtools index for the `Irrel_kd_1_Aligned.sortedByCoord.out.bam` file, and load into IGV for visualization. 
 
 1. How does the MOV10 gene look in the control sample in comparison to the overexpression sample?
 2. Take a look at a few other genes by typing into the search bar. For example, PPM1J and PTPN22. How do these genes compare? 
