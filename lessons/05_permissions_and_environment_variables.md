@@ -1,7 +1,7 @@
 ---
 title: "Permissions and Environment variables"
 author: "Christina Koch, Radhika Khetani"
-date: "Wednesday, September 20, 2017"
+date: "Tuesday, April 3, 2018"
 ---
 
 Approximate time: 40 minutes
@@ -9,8 +9,8 @@ Approximate time: 40 minutes
 ## Learning Objectives
  
 * How to grant or restrict access to files on a multi-user UNIX system
-* What is an "Environment Variable" in a shell.
-* What is $PATH, and why I should care.
+* What is an "Environment Variable" in a shell
+* What is $PATH, and why I should care
 
 ## **Permissions**
 
@@ -24,11 +24,7 @@ Let's see what groups we all belong to:
 % groups
 ```
 
-Depending on our affiliation, we all belong to at least a couple of groups. I belong to 4 groups,
-* rsk27
-* bcbio
-* hbctraining
-* Domain_Users
+Depending on various factors, we all belong to at least a couple of groups. 
 
 As you can imagine, on a shared system it is important to protect each user's data. To start, every file and directory on a Unix computer belongs to one owner and one group. Along with each file's content, the operating system stores the information about the user and group that own it, which is the "metadata" for a given file.
 
@@ -44,18 +40,13 @@ Let's look at this model in action by running the command `ls -l ~/unix_lesson`,
 
 ```bash
 % ls -l
-
-drwxrwsr-x 2 rsk27 rsk27  78 Oct  6 10:29 genomics_data
-drwxrwsr-x 2 rsk27 rsk27 228 Oct  6 10:28 raw_fastq
--rw-rw-r-- 1 rsk27 rsk27 377 Oct  6 10:28 README.txt
-drwxrwsr-x 2 rsk27 rsk27 238 Oct  6 10:28 reference_data
 ```
 
 The `-l` flag tells `ls` to give us a long-form listing. It's a lot of information, so let's go through the columns in turn.
 
-On the right side, we have the files' names. Next to them, moving left, are the times and dates they were last modified. Backup systems and other tools use this information in a variety of ways, but you can use it to tell when you (or anyone else with permission) last changed a file.
+On the right side, we have the files' names. Next to them, moving left, are the times and dates they were last modified (time stamp). Backup systems and other tools use this information in a variety of ways, but you can use it to tell when you (or anyone else with permission) last changed a file.
 
-Next to the modification time is the file's size in bytes and the names of the user and group that owns it (in this case, `rsk27` and `rsk27` respectively). We'll skip over the second column for now (the one showing `1` for each file),  because it's the first column that we care about most. This shows the file's permissions, i.e., who can read, write, or execute it.
+Next to the modification time is the file's size in bytes and the names of the user and group that owns it. We'll skip over the second column for now (the one showing `1` for each file),  because it's the first column that we care about most. This shows the file's permissions, i.e., who can read, write, or execute it.
 
 Let's have a closer look at one of those permission strings for README.txt:
 
@@ -63,57 +54,55 @@ Let's have a closer look at one of those permission strings for README.txt:
 -rw-rw-r--
 ```
 
-The first character tells us what type of thing this is: '-' means it's a regular file and not a directory, while 'd' means it's a directory, and other characters mean more esoteric things.
+**The first character** tells us whether the listing is a regular file `-` or a directory `d`, or there may be some other character meaning more esoteric things. In this case, it is `-` which means it is a regular file.
 
-The next three characters tell us what permissions the file's owner has. Here, the owner can read and write the file: `rw-`.
+The next 9 characters are usually some combination of the following in the order listed below:
 
-The middle triplet shows us the group's permissions. If the permission is turned off, we see a dash, so `rw-` means "read and write, but not execute". (In this case the group and the owner are the same so it makes sense that this is the same for both categories.)
+<button>r</button> = read permission
 
-The final triplet shows us what everyone who isn't the file's owner, or in the file's group, can do. In this case, it's `r--` again, so everyone on the system can look at the file's contents.
+<button>w</button> = write/modify permission
+ 
+<button>x</button> = execute permission (run a script/program or traverse a directory).
+
+The **next three characters** tell us what permissions the file's **owner** has. Here, the owner can read and write the file: `rw-`. 
+
+The **middle triplet** shows us the **group's permissions**. If the permission is turned off, we see a dash, so `rw-` means "read and write, but not execute". (In this case the group and the owner are the same so it makes sense that this is the same for both.)
+
+The **final triplet** shows us what everyone who isn't the file's owner, or in the file's group, can do. In this case, it's `r--` again, so **everyone else** on the system can read the file's contents.
+
+Now, if we take a look at the permissions for directories (e.g. `drwxrwsr-x`): the `x` for the permissions here indicates that "execute" is turned on. What does that mean, given that a directory isn't a program or an executable file, we can't "execute" it? 
+
+Well, `x` means something different for directories. It gives someone the right to *traverse* the directory, but not to look at its contents. This is beyond the scope of today's class, but note that you can give access to a specific file that's deep inside a directory structure without giving them access to all the files and sub-directories within.
+
+> Sometimes the `x` is replaced by another character, but it is beyond the scope of today's class. You can [get more information here](https://en.wikipedia.org/wiki/File_system_permissions#Notation_of_traditional_Unix_permissions), if you are interested.
+>
+> To see some examples of files that are actually executable, try `ls -l /usr/sbin`.
+
+### Changing permissions
 
 To change permissions, we use the `chmod` command (whose name stands for "change mode"). Let's make our README.txt file **inaccessible** to all users other than you and the group the file belong to (you, in this case), currently they are able to read it:
 
 ```bash
-% ls -l ~/unix_lesson/README.txt
-
--rw-rw-r-- 1 rsk27 rsk27 377 Oct  6 10:28 /home/rsk27/unix_lesson/README.txt
-
-% chmod o-rw ~/unix_lesson/README.txt         # the "-" after o denotes removing that permission
-
-% ls -l ~/unix_lesson/README.txt
-
--rw-rw---- 1 rsk27 rsk27 377 Oct  6 10:28 /home/rsk27/unix_lesson/README.txt
+$ ls -l ~/unix_lesson/README.txt
 ```
 
-The 'o' signals that we're changing the privileges of "others".
+```bash
+$ chmod o-rw ~/unix_lesson/README.txt         # the "-" after o denotes removing that permission
+
+$ ls -l ~/unix_lesson/README.txt
+```
+
+The `o` signals that we're changing the privileges of "others".
 
 Let's change it back to allow it to be readable by others:
 
 ```bash
-% chmod o+r ~/unix_lesson/README.txt         # the "+" after o denotes adding/giving that permission
+$ chmod o+r ~/unix_lesson/README.txt         # the "+" after o denotes adding/giving that permission
 
-% ls -l ~/unix_lesson/README.txt
-
--rw-rw-r-- 1 rsk27 rsk27 377 Oct  6 10:28 /home/rsk27/unix_lesson/README.txt
+$ ls -l ~/unix_lesson/README.txt
 ```
 
-If we wanted to make this an executable file for ourselves (the file's owners) we would say `chmod u+rwx`, where the 'u' signals that we are changing permission for the file's owner. To change permissions for the "group", you'd use the letter "g", e.g. `chmod g-w`. 
-
-Before we go any further,
-let's run `ls -l` on the `~/unix_lesson` directory to get a long-form listing:
-
-```bash
-% ls -l
-
-drwxrwsr-x 2 rsk27 rsk27  78 Oct  6 10:29 genomics_data
-drwxrwsr-x 2 rsk27 rsk27 228 Oct  6 10:28 raw_fastq
--rw-rw-r-- 1 rsk27 rsk27 377 Oct  6 10:28 README.txt
-drwxrwsr-x 2 rsk27 rsk27 238 Oct  6 10:28 reference_data
-```
-
-Look at the permissions for directories (`drwxrwsr-x`): the 'x' indicates that "execute" is turned on. What does that mean? A directory isn't a program or an executable file, we can't "execute" it. (To see an example of a file that is actually executable, try `ls -l /bin/ls`.)
-
-Well, 'x' means something different for directories. It gives someone the right to *traverse* the directory, but not to look at its contents. This is beyond the scope of today's class, but note that you can give access to a specific file that's deep inside a directory structure without giving them access to all the files and sub-directories within.
+If we wanted to make this an executable file for ourselves (the file's owners) we would say `chmod u+rwx`, where the `u` signals that we are changing permission for the file's owner. To change permissions for the "group", you'd use the letter `g`, e.g. `chmod g-w`. 
 
 >> The fact that something is marked as executable doesn't actually mean it contains or is a program of some kind. We could easily mark the `~/unix_lesson/raw_fastq/Irrel_kd_1.subset.fq` file as executable using `chmod`. Depending on the operating system we're using, trying to "run" it will fail (because it doesn't contain instructions the computer recognizes, i.e. it is not a script of some type).
 
@@ -128,10 +117,10 @@ If `ls -l myfile.php` returns the following details:
  
 Which of the following statements is true?
  
-1. caro (the owner) can read, write, and execute myfile.php
-2. caro (the owner) cannot write to myfile.php
-3. members of caro (a group) can read, write, and execute myfile.php
-4. members of zoo (a group) cannot execute myfile.php
+1. members of caro (a group) can read, write, and execute myfile.php
+2. members of zoo (a group) cannot execute myfile.php
+3. caro (the owner) can read, write, and execute myfile.php
+
 ****
 
 ## **Environment Variables**
@@ -152,31 +141,28 @@ Let's see what is stored in these variables:
 
 ```bash
 % echo $HOME
-
-/home/trainingaccount_03
 ```
 
 Variables, in most systems, are called or denoted with a "$" before the variable name, just like a regular variable.
 
 ```bash
 % echo $PATH
-
-/opt/lsf/7.0/linux2.6-glibc2.3-x86_64/bin:/groups/bcbio/bcbio/anaconda/bin:/opt/bcbio/local/bin:/opt/lsf/7.0/linux2.6-glibc2.3-x86_64/etc:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin
 ```
 
 I have a lot of full/absolute paths in my $PATH variable, which are separated from each other by a ":"; here is the list in a more readable format:
 
-* /n/cluster/bin
-* /n/app/bcbio/tools/bin
-* /usr/local/bin
+* /cm/shared/apps/slurm/17.02.9/sbin
+* /cm/shared/apps/slurm/17.02.9/bin
+* /usr/lib64/qt-3.3/bin
 * /usr/bin
 * /usr/local/sbin
 * /usr/sbin
-* /opt/puppetlabs/bin
+* /opt/ibutils/bin
+* ~/bin
 
 These are the directories that the shell will look through (in the same order as they are listed) for an executable file that you type on the command prompt.
 
-When someone says a command or an executable file is "in you path", they mean that the parent directory for that command/file is contained in the list within the $PATH variable. 
+When someone says a command or an executable file is "in you path", they mean that the parent directory for that command or executable file is in the list within the $PATH variable. 
 
 For any command you execute on the command prompt, you can find out where they are located using the `which` command.
 
@@ -204,9 +190,9 @@ Check what hidden files exist in our home directory using the `-a` flag:
 % ls -al ~/
 ```
 
-Open the `.bashrc` file and at the end of the file add the export command that adds a specific location to the list in $PATH. This way when you start a new shell, that location will always be in your path. 
+Open the `.bashrc` file and at the end of the file add an `export PATH=/path/to/tool:$PATH` command that adds a specific location to the list in $PATH. This way when you start a new shell, that location will always be in your path. 
 
-**In closing, permissions and environment variables, especially $PATH, are very useful and important concepts to understand in the context of UNIX and HPC.**
+**In closing, permissions and environment variables, especially $PATH, are very useful and important concepts to understand in the context of shell and HPC.**
 
 ---
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
