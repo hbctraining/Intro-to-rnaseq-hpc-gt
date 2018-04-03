@@ -89,19 +89,21 @@ The quasi-mapping approach estimates the numbers of reads mapping to each transc
 - **Step 2: Improving abundance estimates**
 Using multiple complex modeling approaches, like Expectation Maximization (EM), Salmon can also correct the abundance estimates for any sample-specific biases/factors [[4](http://www.nature.com.ezp-prod1.hul.harvard.edu/nmeth/journal/v14/n4/full/nmeth.4197.html?WT.feed_name=subjects_software&foxtrotcallback=true)]. Generally, this step results in more accurate transcript abundance estimation.
 
-## Running Salmon on O2
+## Running Salmon
 
-First start an interactive session and create a new directory for our Salmon analysis:
+First, start an interactive session, load the Salmon module and create a new directory for the Salmon results:
 
 ```bash
-% srun --pty -p interactive -t 0-12:00 --mem 8G --reservation=hbc /bin/bash
+% srun --pty -p defq --qos=interactive --mem 8G bash
 
+% module load Salmon
+```
+
+```bash
 % mkdir ~/unix_lesson/rnaseq/salmon
 
 % cd ~/unix_lesson/rnaseq/salmon
 ```   
-
-> Salmon is not available as a module on O2, but it is installed as part of the bcbio pipeline. Since we already have the appropriate path (`/n/app/bcbio/tools/bin/`) in our `$PATH` variable we can use it by simply typing in `salmon`.     
 
 As you can imagine from the description above, when running Salmon there are also two steps.
 
