@@ -166,7 +166,7 @@ So, it looks like the usage is `featureCounts [options] -a <annotation_file> -o 
 It can also take multiple bam files as input. Since we have only run STAR on 1 FASTQ file, let's copy over the other bam files that we would need so we can generate the full count matrix.
 
 ```bash
-cp /gpfs/scratchfs1/hpctrain/bam_gsnap/*bam ~/unix_lesson/rnaseq/results/STAR/
+% cp /gpfs/scratchfs1/hpctrain/bam_gsnap/*bam ~/unix_lesson/rnaseq/results/STAR/
 ```
 
 We are going to use the following options:
@@ -211,7 +211,7 @@ Since the featureCounts output has additional columns with information about gen
 ```
 
 ```bash
-less results/counts/Mov10_featurecounts.Rmatrix.txt
+% less results/counts/Mov10_featurecounts.Rmatrix.txt
 ```
 
 To ready this text file (count matrix) for the next step of differential gene expression analysis, you will need to clean it up further by removing the first header line, and modifying the column names (headers) to simpler, smaller sampleIDs. We can do this using a GUI text editor on our local laptops, or we can try using some of the shortcuts available in `vim`!
