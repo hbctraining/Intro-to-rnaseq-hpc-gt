@@ -140,7 +140,7 @@ Exit the interactive session and start a new one with 6 cores, and use the multi
 ```bash
 % exit  #exit the current interactive session
 
-% srun --pty -p defq -n 6 -t 0-12:00 --mem 8G --qos=interactive bash    #start a new one with 6 cpus (-n 6)
+% srun --pty -p defq -n 6 --mem 8G --qos=interactive bash    #start a new one with 6 cpus (-n 6)
 
 % module load fastqc  #reload the module for the new session
 
