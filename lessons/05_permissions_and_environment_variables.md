@@ -24,7 +24,12 @@ Let's see what groups we all belong to:
 % groups
 ```
 
-Depending on various factors, we all belong to at least a couple of groups. 
+Depending on various factors, we all belong to at least a couple of groups, eg.
+
+* Bioinfo
+* sstweb23
+* biodev
+* compsci_pg
 
 As you can imagine, on a shared system it is important to protect each user's data. To start, every file and directory on a Unix computer belongs to one owner and one group. Along with each file's content, the operating system stores the information about the user and group that own it, which is the "metadata" for a given file.
 
