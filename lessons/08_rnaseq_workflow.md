@@ -101,7 +101,7 @@ Now let's put it all together! The full GMAP-GSNAP alignment command is provided
 > If you like you can copy-paste it directly into your terminal. Alternatively, you can manually enter the command, but it is advisable to first type out the full command in a text editor (i.e. [Sublime Text](http://www.sublimetext.com/) or [Notepad++](https://notepad-plus-plus.org/)) on your local machine and then copy paste into the terminal. This will make it easier to catch typos and make appropriate changes. 
 
 ```bash
-gsnap -d hg19_chr1 -D /gpfs/scratchfs1/hpctrain/chr1_reference_gsnap \
+% gsnap -d hg19_chr1 -D /gpfs/scratchfs1/hpctrain/chr1_reference_gsnap \
 -t 6 --quality-protocol=sanger -M 2 -n 10 -B 2 -i 1 -N 1 \
 -w 200000 -E 1 --pairmax-rna=200000 --clip-overlap \
 -A sam raw_data/Mov10_oe_1.subset.fq | \
