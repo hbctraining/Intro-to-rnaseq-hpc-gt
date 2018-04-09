@@ -22,9 +22,9 @@
 | Time            |   Topic  | Instructor |
 |:------------------------:|:----------:|:--------:|
 |9:00 - 9:45 | Introduction to High-Performance Computing | Dr. Radhika Khetani |
-|9:45 - 10:30 | NA-seq analysis workflow - Quality Assessment | Dr. Meeta Mistry |
+|9:45 - 10:30 | RNA-seq analysis workflow - Quality Assessment | Dr. Meeta Mistry |
 |10:30 - 10:45 | *Break* | |
-|10:45 - 11:15 | NA-seq analysis workflow - Quality Assessment | Dr. Meeta Mistry |
+|10:45 - 11:15 | RNA-seq analysis workflow - Quality Assessment | Dr. Meeta Mistry |
 |11:15 - 12:00 | Genome builds and alignment strategies| Dr. Meeta Mistry |
 |12:00 - 13:00 | *Lunch* | |
 |13:00 - 14:20 | RNA-seq analysis workflow - Alignment and Counting | Dr. Mary Piper |
