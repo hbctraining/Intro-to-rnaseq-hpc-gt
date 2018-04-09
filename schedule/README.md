@@ -25,9 +25,10 @@
 |9:45 - 10:30 | RNA-seq analysis workflow - Quality Assessment | Dr. Meeta Mistry |
 |10:30 - 10:45 | *Break* | |
 |10:45 - 11:15 | RNA-seq analysis workflow - Quality Assessment | Dr. Meeta Mistry |
-|11:15 - 12:00 | Genome builds and alignment strategies| Dr. Meeta Mistry |
-|12:00 - 13:00 | *Lunch* | |
-|13:00 - 14:20 | RNA-seq analysis workflow - Alignment and Counting | Dr. Mary Piper |
+|11:15 - 11:45 | Genome builds and alignment strategies| Dr. Meeta Mistry |
+|11:45 - 12:30 | RNA-seq analysis workflow - Alignment and Counting | Dr. Mary Piper |
+|12:30 - 13:30 | *Lunch* | |
+|13:30 - 14:20 | RNA-seq analysis workflow - Alignment and Counting (contd.) | Dr. Mary Piper |
 |14:20 - 15:20 | Automating the RNA-seq workflow | Dr. Radhika Khetani |
 |15:20 - 15:35 | *Break* | |
 |15:35 - 15:45 | Alternative workflows for analyzing RNA-seq data | Dr. Radhika Khetani |
