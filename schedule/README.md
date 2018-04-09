@@ -22,12 +22,12 @@
 | Time            |   Topic  | Instructor |
 |:------------------------:|:----------:|:--------:|
 |9:00 - 9:45 | Introduction to High-Performance Computing | Dr. Radhika Khetani |
-|9:45 - 10:30 | Quality Assessment of Sequence Data | Dr. Mary Piper |
+|9:45 - 10:30 | Quality Assessment of Sequence Data | Dr. Meeta Mistry |
 |10:30 - 10:45 | *Break* | |
-|10:45 - 11:15 | Quality Assessment of Sequence Data (contd.) | Dr. Mary Piper |
-|11:15 - 12:00 | RNA-seq analysis workflow - Alignment and Counting | Dr. Meeta Mistry |
+|10:45 - 11:15 | Quality Assessment of Sequence Data (contd.) | Dr. Meeta Mistry |
+|11:15 - 12:00 | RNA-seq analysis workflow - Alignment and Counting | Dr. Mary Piper |
 |12:00 - 13:00 | *Lunch* | |
-|13:00 - 13:45 | RNA-seq analysis workflow - Alignment and Counting (contd.) | Dr. Meeta Mistry |
+|13:00 - 13:45 | RNA-seq analysis workflow - Alignment and Counting (contd.) | Dr. Mary Piper |
 |13:45 - 14:45 | Automating the RNA-seq workflow | Dr. Radhika Khetani |
 |14:45 - 15:00 | *Break* | |
 |15:00 - 15:15 | Alternative workflows for analyzing RNA-seq data | Dr. Radhika Khetani |
