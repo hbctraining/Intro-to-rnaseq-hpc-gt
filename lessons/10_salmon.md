@@ -203,8 +203,8 @@ for fq in /gpfs/scratchfs1/hpctrain/unix_lesson/raw_fastq/*fq  #change this to t
  do 
    base=`basename $fq .fastq`
    sbatch -p priority -n 6 -t 0-1:30 --mem 8G --reservation=hbc -j $base.mov10_salmon -o %j.$base.out -e %j.$base.err \
-   salmon quant -i /gpfs/scratchfs1/hpctrain/salmon.grch38_tx.idx/ \
-   -p 6 -l SR -r $fq --useVBOpt --numBootstraps 30 -o $base.salmon
+   --wrap="salmon quant -i /gpfs/scratchfs1/hpctrain/salmon.grch38_tx.idx/ \
+   -p 6 -l SR -r $fq --useVBOpt --numBootstraps 30 -o $base.salmon"
  done
 ```
 
