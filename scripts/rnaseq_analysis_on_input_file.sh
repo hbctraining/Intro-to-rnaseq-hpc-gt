@@ -18,7 +18,8 @@ cores=6
 
 # directory with genome reference FASTA and index files + name of the gene annotation file
 
-genome=/gpfs/scratchfs1/hpctrain/chr1_reference_gsnap
+genome=grch38_chr1
+genome_dir=/gpfs/scratchfs1/hpctrain/chr1_reference_gsnap
 gtf=~/unix_workshop/rnaseq/reference_data/chr1-hg19_genes.gtf
 
 # make all of the output directories
@@ -48,8 +49,8 @@ echo "Processing file $fq"
 fastqc $fq
 
 # Run gsnap
-gsnap -d hg19_chr1 -D ~/unix_workshop/reference_data/ -t 6 --quality-protocol=sanger \
--M 2 -n 10 -B 2 -i 1 -N 1 -w 200000 -E 1 --pairmax-rna=200000 --clip-overlap \
+gsnap -d $genome -D $genome_dir -t 6 --quality-protocol=sanger \
+-M 2 -n 10 -B 2 -i 1 -N 1 -w 200000 -E 1 --pairmax-rna=200000 \
 -A sam $fq | samtools sort - | samtools view -bS - > $align_out
 
 # Create BAM index
