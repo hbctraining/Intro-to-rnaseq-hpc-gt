@@ -175,14 +175,11 @@ Once we have our reads aligned to the genome, the next step is to count how many
 
 #### Setting up to run featureCounts
 
-Let's start by creating a directory for the output:
+Let's start by creating a directory for the output and load the featureCounts module called `subread`:
 
 ```bash
 % mkdir results/counts
-```
-`featureCounts` is not available as a module on O2, but we have already added the path for it (`/opt/bcbio/local/bin`) to our `$PATH` variable last time. 
 
-``` bash
 % module load subread
 ```
 
@@ -194,10 +191,10 @@ How do we use this tool, what is the command and what options/parameters are ava
 
 So, it looks like the usage is `featureCounts [options] -a <annotation_file> -o <output_file> input_file1 [input_file2] ... `, where `-a`, `-o` and input files are required. 
 
-It can also take multiple bam files as input. Since we have only run STAR on 1 FASTQ file, let's copy over the other bam files that we would need so we can generate the full count matrix.
+It can also take multiple bam files as input. Since we have only run GSNAP on 1 FASTQ file, let's copy over the other bam files that we would need so we can generate the full count matrix.
 
 ```bash
-% cp /gpfs/scratchfs1/hpctrain/bam_gsnap/*bam ~/unix_lesson/rnaseq/results/STAR/
+% cp /gpfs/scratchfs1/hpctrain/bam_gsnap/*bam ~/unix_lesson/rnaseq/results/GSNAP/
 ```
 
 We are going to use the following options:
