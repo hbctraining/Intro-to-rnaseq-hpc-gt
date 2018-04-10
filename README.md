@@ -39,7 +39,7 @@ This repository has teaching materials for a 2-day Introduction to RNA-sequencin
 
 ## Installations
 
-Please have the following programs installed on your laptop: 
+This workshop requires that the following programs are installed on your laptop: 
 
 **Mac users**
 
