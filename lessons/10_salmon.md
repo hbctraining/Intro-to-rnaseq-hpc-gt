@@ -123,7 +123,7 @@ As you can imagine from the description above, when running Salmon there are als
 **Step 2: Quantification:**
 Get the transcript abundance estimates using the `quant` command and the parameters described below (more information on parameters can be found [here](http://salmon.readthedocs.io/en/latest/salmon.html#id5)):
 
-* `-i`: specify the location of the index directory; for us it is `/n/groups/hbctraining/unix_lesson_other/salmon.ensembl37.idx/`
+* `-i`: specify the location of the index directory; for us it is `/gpfs/scratchfs1/hpctrain/salmon.grch38_tx.idx/`
 * `-l SR`: library type - specify stranded single-end reads (more info available [here](http://salmon.readthedocs.io/en/latest/salmon.html#what-s-this-libtype))
 * `-r`: list of files for sample
 * `--useVBOpt`: use variational Bayesian EM algorithm rather than the ‘standard EM’ to optimize abundance estimates (more accurate) 
@@ -133,9 +133,9 @@ Get the transcript abundance estimates using the `quant` command and the paramet
 To run the quantification step on a single sample we have the command provided below. Let's try running it on our subset sample for `Mov10_oe_1.subset.fq`:
 
 ```bash
-% salmon quant -i /n/groups/hbctraining/unix_lesson_other/salmon.ensembl37.idx/ \
+% salmon quant -i /gpfs/scratchfs1/hpctrain/salmon.grch38_tx.idx/ \
  -l SR \
- -r ~/unix_lesson/rnaseq/raw_data/Mov10_oe_1.subset.fq \
+ -r /gpfs/scratchfs1/hpctrain/unix_lesson/raw_fastq/Mov10_oe_1.subset.fq \
  -o Mov10_oe_1.subset.salmon \
  --writeMappings=salmon.out \
  --useVBOpt 
@@ -199,11 +199,11 @@ Next comes the Salmon command. Note, that we are adding a parameter called `--nu
 
 
 ```bash
-for fq in /n/groups/hbctraining/unix_lesson_other/full_dataset/*.fastq
+for fq in /gpfs/scratchfs1/hpctrain/unix_lesson/raw_fastq/*fq  #change this to the full dataset path?
  do 
    base=`basename $fq .fastq`
    sbatch -p priority -n 6 -t 0-1:30 --mem 8G --reservation=hbc -j $base.mov10_salmon -o %j.$base.out -e %j.$base.err \
-   salmon quant -i /n/groups/hbctraining/unix_lesson_other/salmon.ensembl37.idx/ \
+   salmon quant -i /gpfs/scratchfs1/hpctrain/salmon.grch38_tx.idx/ \
    -p 6 -l SR -r $fq --useVBOpt --numBootstraps 30 -o $base.salmon
  done
 ```
