@@ -37,6 +37,28 @@ This repository has teaching materials for a 2-day Introduction to RNA-sequencin
 | Alternative workflows for analyzing RNA-seq data | 15 min |
 | Quantifying expression using alignment-free methods (Salmon) | 75 min |
 
+## Installations
+
+Please have the following programs installed on your laptop: 
+
+**Mac users**
+
+1. [Java](https://www.java.com/en/download/)
+
+2. [Integrative Genomics Viewer (IGV)](https://software.broadinstitute.org/software/igv/download)
+
+3. [Sublime Text](http://www.sublimetext.com/)
+
+**Windows users**
+
+1. [Git Bash](https://git-scm.com/download/win)
+
+2. [Java](https://www.java.com/en/download/)
+
+3. [Integrative Genomics Viewer (IGV)](https://software.broadinstitute.org/software/igv/download)
+
+5. [Notepad++](http://notepad-plus-plus.org/)
+
 ***
 *These materials have been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
 
