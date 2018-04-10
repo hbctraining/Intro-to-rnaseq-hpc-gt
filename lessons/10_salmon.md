@@ -135,7 +135,7 @@ To run the quantification step on a single sample we have the command provided b
 ```bash
 % salmon quant -i /gpfs/scratchfs1/hpctrain/salmon.grch38_tx.idx/ \
  -l SR \
- -r /gpfs/scratchfs1/hpctrain/unix_lesson/raw_fastq/Mov10_oe_1.subset.fq \
+ -r ~/unix_lesson/rnaseq/raw_fastq/Mov10_oe_1.subset.fq \
  -o Mov10_oe_1.subset.salmon \
  --writeMappings=salmon.out \
  --useVBOpt 
@@ -195,7 +195,7 @@ Now we can create a for loop to iterate over all FASTQ samples, and submit a job
 
 Next comes the Salmon command. Note, that we are adding a parameter called `--numBootstraps` to the Salmon command. Salmon has the ability to optionally compute bootstrapped abundance estimates. **Bootstraps are required for estimation of technical variance**. Bootstrapping essentially takes a different sub-sample of reads for each bootstapping run for estimating the transcript abundances. The technical variance is the variation in transcript abundance estimates calculated for each of the different sub-samplings (or bootstraps). We will discuss this in more detail in the next lesson.
 
-> *NOTE:* We are iterating over FASTQ files in the full dataset directory, located at `/n/groups/hbctraining/unix_lesson_other/full_dataset/`
+> *NOTE:* We are iterating over FASTQ files in the full dataset directory, located at ` /gpfs/scratchfs1/hpctrain/unix_lesson/` -- FULL DATASET?
 
 
 ```bash
