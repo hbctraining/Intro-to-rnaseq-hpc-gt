@@ -15,10 +15,10 @@ Once you have optimized all the tools and parameters using a single sample (like
 
 This will ensure that you run every sample with the exact same parameters, and will enable you to keep track of all the tools and their versions. In addition, the script is like a lab notebook; in the future, you (or your colleagues) can go back and check the workflow for methods, which enables efficiency and reproducibility.
 
-Before we start with the script, let's check how many cores our interactive session has by using `squeue`. 
+Before we start with the script, let's check how many cores our interactive session has by using `sacct`. 
 
 ```bash
-% squeue -u eCommonsID
+% sacct
 ```
 
 We need to have an interactive session with 6 cores, if you already have one you are set. If you have a session with fewer cores then `exit` out of your current interactive session and start a new one with `-n 6`.
@@ -96,7 +96,8 @@ Next we'll initialize 2 more variables named `genome` and `gtf`, these will cont
 ```
 # directory with genome reference FASTA and index files + name of the gene annotation file
 
-genome=???chr1_reference_gsnap???
+genome=grch38_chr1
+genome_dir=/gpfs/scratchfs1/hpctrain/chr1_reference_gsnap/
 gtf=~/unix_lesson/rnaseq/reference_data/chr1-hg19_genes.gtf
 ```
 
@@ -155,8 +156,8 @@ echo "Processing file $fq"
 fastqc $fq
 
 # Run gsnap
-gsnap -d hg19_chr1 -D ~/unix_workshop/reference_data/ -t 6 --quality-protocol=sanger \
--M 2 -n 10 -B 2 -i 1 -N 1 -w 200000 -E 1 --pairmax-rna=200000 --clip-overlap \
+gsnap -d $genome -D $genome_dir -t 6 --quality-protocol=sanger \
+-M 2 -n 10 -B 2 -i 1 -N 1 -w 200000 -E 1 --pairmax-rna=200000 \
 -A sam $fq | samtools sort - | samtools view -bS - > $align_out
 
 # Create BAM index
