@@ -276,7 +276,7 @@ This text file with a matrix of raw counts can be used as input to tools like [D
 Index the BAM file for visualization with IGV:
 
 ```bash
-% samtools index results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam
+% samtools index results/gsnap/Mov10_oe_1_Aligned.sortedByCoord.out.bam
 ```
 
 Once we have the `.bai` index file to go with the `.bam` file, we can copy them over to our directory in the designated location to visualize with IGV.
