@@ -20,7 +20,7 @@ To get started with this lesson, we will start an interactive session and ask fo
 % srun --pty -p defq --qos=interactive -n 6 --mem 8G bash
 ```
 
-Change directories into the `unix_lesson` directory and copy the `reference_data` folder into your project directory:
+Change directories into the `rnaseq` directory if not already there:
 
 ```bash
 % cd ~/unix_lesson/rnaseq
@@ -32,8 +32,6 @@ You should have a directory tree setup similar to that shown below. It is best p
 rnaseq/
 	├── raw_data/
 	├── reference_data/
-	   └── chr1.fa
-	   └── chr1-hg19_genes.gtf
 	├── meta/
 	├── results/
 	├── scripts/
@@ -114,7 +112,7 @@ The inputs for mapping are the raw FASTQ files and the reference indices.
 **Options we will keep as defaults, but including because it's important not to change them for this workflow**
 
 * `--quality-protocol`: quality encoding scale, with options including the old quality encoding (illumina) and the current quality encoding (sanger) (default = sanger)
-* `-w`: definition of local novel splicing event (default = 200000 (i.e. parts of reads are within 200000 bases of each other))
+* `-w`: definition of local novel splicing event (default = 200000 (i.e. local splicing events have the parts of reads within 200000 bases of each other))
 * `--pairmax-rna`: max total genomic length for rna-seq paired reads or other reads that could have a splice (should likely match value for -w (default=200000)
 * `-E`: distance splice penalty (where distant splice is an intron of length greater than value specified using -w OR is an inversion, scramble, or translocation between two different chromosomes) (default = 1)
 * `-A`: another format type other than default (options: sam, m8 (BLAST tabular format) (default = sam)
@@ -143,7 +141,7 @@ samtools sort - | \
 > #### Other useful parameters:
 > - FASTQ files from the sequencer are often compressed, to align these files, GSNAP has the options `--gunzip` and `--bunzip2` depending on the compression type. 
 > - Trimming the raw reads for poor quality and adapter sequences is not required as GSNAP performs soft-clipping by default. However, if you desire to perform your own trimming of mismatching sequences, you could turn off this feature using the parameter `--trim-mismatch-score=0`. 
-> - If planning to perform other types of analyses, like SNP identification, intron retention analyses, bisulfite sequencing analysis, or chimeric analyses, among others, this versatile tool has specific parameters to change to optimize its use with these types of data.
+> - If planning to perform other types of analyses, like intron retention analyses, bisulfite sequencing analysis, or chimeric analyses, among others, this versatile tool has specific parameters to change to optimize its use with these types of data.
 
 
 ### Alignment Outputs (SAM/BAM)
@@ -205,19 +203,19 @@ It can also take multiple bam files as input. Since we have only run GSNAP on 1 
 
 We are going to use the following options:
 
-- **`-T`:** number of threads/cores
-- **`-s`:** library strandedness with three possible values: 0 (unstranded), 1 (stranded) and 2 (reversely stranded (dUTP method)). 0 by default. (For paired-end reads, strand of the first read is taken as the strand of the whole fragment.)
+- **`-T`:** number of threads/cores (`6`)
+- **`-s`:** library strandedness with three possible values: 0 (unstranded), 1 (stranded) and 2 (reversely stranded (dUTP method)). 0 by default. For paired-end reads, strand of the first read is taken as the strand of the whole fragment. (`2`)
 
 and the following are the values for the required parameters:
 
-- * `-a ~/unix_lesson/rnaseq/reference_data/chr1-hg19_genes.gtf # required option for specifying path to GTF`
-* `-o ~/unix_lesson/rnaseq/results/counts/Mov10_featurecounts.txt # required option for specifying path to, and name of the text output (count matrix)`
-* `~/unix_lesson/rnaseq/results/gsnap/*bam # the list of all the bam files we want to collect count information for`
+- **`-a`:** path to GTF file (`~/unix_lesson/rnaseq/reference_data/chr1-hg19_genes.gtf`)
+- **`-o`:** path to, and name of the output count matrix (`~/unix_lesson/rnaseq/results/counts/Mov10_featurecounts.txt`)
+- path to all of the bam files (`~/unix_lesson/rnaseq/results/gsnap/*bam`)
 
 #### Running featureCounts
 
 ``` bash
-% featureCounts -T 4 -s 2 \
+% featureCounts -T 6 -s 2 \
   -a ~/unix_lesson/rnaseq/reference_data/chr1-hg19_genes.gtf \
   -o ~/unix_lesson/rnaseq/results/counts/Mov10_featurecounts.txt \
   ~/unix_lesson/rnaseq/results/gsnap/*bam
@@ -269,7 +267,7 @@ Vim has nice shortcuts for cleaning up the header of our file using the followin
 > 
 > For paired-end (PE) data, the bam file contains information about whether both read1 and read2 mapped and if they were at roughly the correct distance from each other, that is to say if they were "properly" paired. For most counting tools, only properly paired reads are considered by default, and each read pair is counted only once as a single "fragment". 
 > 
-> For counting PE fragments associated with genes, the input bam files need to be sorted by read name (i.e. alignment information about both read pairs in adjoining rows). The alignment tool might sort them for you, but watch out for how the sorting was done. If they are sorted by coordinates (like with STAR), you will need to use `samtools sort` to re-sort them by read name before using as input in featureCounts. If you do not sort you BAM file by read name before using as input, featureCounts assumes that almost all the reads are not properly paired.
+> For counting PE fragments associated with genes, the input bam files need to be sorted by read name (i.e. alignment information about both read pairs in adjoining rows). The alignment tool might sort them for you, but watch out for how the sorting was done. If they are sorted by coordinates (like with GSNAP), you will need to use `samtools sort` to re-sort them by read name before using as input in featureCounts. If you do not sort you BAM file by read name before using as input, featureCounts assumes that almost all the reads are not properly paired.
 
 ***
 
