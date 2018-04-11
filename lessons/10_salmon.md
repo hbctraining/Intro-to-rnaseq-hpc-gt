@@ -107,7 +107,7 @@ Get the transcript abundance estimates using the `quant` command and the paramet
 * **`-r`:** list of files for sample (`~/unix_lesson/rnaseq/raw_fastq/Mov10_oe_1.subset.fq`)
 * **`--useVBOpt`:** use variational Bayesian EM algorithm rather than the ‘standard EM’ to optimize abundance estimates (more accurate) 
 * **`-o`:** output quantification file name (`Mov10_oe_1.subset.salmon`)
-* **`--writeMappings`:**** instead of printing to screen write to a file (`--writeMappings=salmon.out`)
+* **`--writeMappings`:** instead of printing to screen, write to a file (`--writeMappings=salmon.out`)
    
 To run the quantification step on a single sample we have the command provided below. Let's try running it on our subset sample for `Mov10_oe_1.subset.fq`:
 
