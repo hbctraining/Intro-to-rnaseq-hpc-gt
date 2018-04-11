@@ -115,7 +115,7 @@ The inputs for mapping are the raw FASTQ files and the reference indices.
 * `-w`: definition of local novel splicing event (default = 200000 (i.e. local splicing events have the parts of reads within 200000 bases of each other))
 * `--pairmax-rna`: max total genomic length for rna-seq paired reads or other reads that could have a splice (should likely match value for -w (default=200000)
 * `-E`: distance splice penalty (where distant splice is an intron of length greater than value specified using -w OR is an inversion, scramble, or translocation between two different chromosomes) (default = 1)
-* `-A`: another format type other than default (options: sam, m8 (BLAST tabular format) (default = sam)
+* `-A`: output format type (options: sam, m8 (BLAST tabular format) (default = sam)
 * `-B`: batch mode for using resources for fastest computation (default = 2) 
 
 **Option important for paired-end reads, which will not affect single-end reads**
