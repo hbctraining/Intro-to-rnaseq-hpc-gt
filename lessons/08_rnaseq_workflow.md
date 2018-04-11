@@ -106,7 +106,7 @@ The inputs for mapping are the raw FASTQ files and the reference indices.
 * `-D`: genome directory (`/gpfs/scratchfs1/hpctrain/chr1_reference_gsnap`)
 * `-t`: threads or cores (`6`)
 * `-M`: report suboptimal hits beyond best hit (default=0) (`2`)
-* `-n`: number of alignments that are maximally printed to the output per read (even if the read matches hundreds of times in the genome, which might happen with very short reads or reads spanning repetitive regions). (default 100) (`10`)
+* `-n`: number of alignments that are maximally printed to the output per read (even if the read matches hundreds of times in the genome, which might happen with very short reads or reads spanning repetitive regions). (default = 100) (`10`)
 * `-N`: look for novel splicing (default = 0 (no)) (`1`)
 
 **Options we will keep as defaults, but including because it's important not to change them for this workflow**
