@@ -1,6 +1,6 @@
 ---
 title: "RNA-Seq workflow"
-author: "Mary Piper, Meeta Mistry, Radhika Khetani,  Bob Freeman"
+author: "Mary Piper, Meeta Mistry, Radhika Khetani"
 date: "Wednesday, April 4th, 2018"
 ---
 
@@ -203,7 +203,7 @@ It can also take multiple bam files as input. Since we have only run GSNAP on 1 
 
 We are going to use the following options:
 
-- **`-T`:** number of threads/cores (`6`)
+- **`-T`:** number of threads or cores (`6`)
 - **`-s`:** library strandedness with three possible values: 0 (unstranded), 1 (stranded) and 2 (reversely stranded (dUTP method)). 0 by default. For paired-end reads, strand of the first read is taken as the strand of the whole fragment. (`2`)
 
 and the following are the values for the required parameters:
