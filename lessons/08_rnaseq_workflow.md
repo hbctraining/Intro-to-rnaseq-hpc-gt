@@ -53,7 +53,7 @@ So let's get started by loading up some of the modules for tools we need for thi
 Create an output directory for our alignment files:
 
 ```bash
-% mkdir results/gmap
+% mkdir results/gsnap
 ```
 In the automation script, we will eventually loop over all of our files and have the cluster work on the files in parallel. For now, we're going to work on just one to test and set up our workflow. To start we will use the first replicate in the Mov10 overexpression group, `Mov10_oe_1_subset.fq`.
 
@@ -194,17 +194,17 @@ So, it looks like the usage is `featureCounts [options] -a <annotation_file> -o 
 It can also take multiple bam files as input. Since we have only run GSNAP on 1 FASTQ file, let's copy over the other bam files that we would need so we can generate the full count matrix.
 
 ```bash
-% cp /gpfs/scratchfs1/hpctrain/bam_gsnap/*bam ~/unix_lesson/rnaseq/results/GSNAP/
+% cp /gpfs/scratchfs1/hpctrain/bam_gsnap/*bam ~/unix_lesson/rnaseq/results/gsnap/
 ```
 
 We are going to use the following options:
 
-* `-T 4 # specify 4 cores`
-* `-s 2 # these data are "reverse"ly stranded`
+- **`-T`:** number of threads/cores
+- **`-s`:** library strandedness with three possible values: 0 (unstranded), 1 (stranded) and 2 (reversely stranded (dUTP method)). 0 by default. (For paired-end reads, strand of the first read is taken as the strand of the whole fragment.)
 
 and the following are the values for the required parameters:
 
-* `-a ~/unix_lesson/rnaseq/reference_data/chr1-hg19_genes.gtf # required option for specifying path to GTF`
+- * `-a ~/unix_lesson/rnaseq/reference_data/chr1-hg19_genes.gtf # required option for specifying path to GTF`
 * `-o ~/unix_lesson/rnaseq/results/counts/Mov10_featurecounts.txt # required option for specifying path to, and name of the text output (count matrix)`
 * `~/unix_lesson/rnaseq/results/gsnap/*bam # the list of all the bam files we want to collect count information for`
 
