@@ -102,31 +102,37 @@ GMAP
 
 The inputs for mapping are the raw FASTQ files and the reference indices. 
 
-The basic options for **mapping RNA-seq reads** to the genome using GMAP-GSNAP are as follows:
+**Basic options for *mapping RNA-seq reads* to the genome using GMAP-GSNAP:**
 
-* `-d`: genome database
-* `-D`: genome directory
-* `-t`: threads or cores
-* `-M`: report suboptimal hits beyond best hit (default=0)
-* `-n`: maximum number of paths to print (default 100)
-* `-i`: indel penalty score (default 2)
-* `-N`: look for novel splicing (default = 0 (no))
-* `--quality-protocol`: quality encoding scale, with options including the old quality encoding (illumina) and the current quality encoding (sanger) 
-* `-w`: definition of local novel splicing event (default = 200000) 
-* `-E`: distance splice penalty (where distant splice is an intron of length greater than value specified using -w OR is an inversion, scramble, or translocation between two different chromosomes
+* `-d`: genome database (`grch38_chr1`)
+* `-D`: genome directory (`/gpfs/scratchfs1/hpctrain/chr1_reference_gsnap`)
+* `-t`: threads or cores (`6`)
+* `-M`: report suboptimal hits beyond best hit (default=0) (`2`)
+* `-n`: number of alignments that are maximally printed to the output per read even if it matches hundreds of times in the genome. This might happen with very short reads or reads spanning repetitive regions (default 100) (`10`)
+* `-N`: look for novel splicing (default = 0 (no)) (`1`)
+
+**Options we will keep as defaults, but including because it's important not to change them for this workflow**
+
+* `--quality-protocol`: quality encoding scale, with options including the old quality encoding (illumina) and the current quality encoding (sanger) (default = sanger)
+* `-w`: definition of local novel splicing event (default = 200000 (i.e. parts of reads are within 200000 bases of each other))
 * `--pairmax-rna`: max total genomic length for rna-seq paired reads or other reads that could have a splice (should likely match value for -w (default=200000)
-* `--clip-overlap`: for paired-end reads whose alignments overlap, clip overlapping region
-* `-A`: another format type other than default (options: sam, m8 (BLAST tabular format))
+* `-E`: distance splice penalty (where distant splice is an intron of length greater than value specified using -w OR is an inversion, scramble, or translocation between two different chromosomes) (default = 1)
+* `-A`: another format type other than default (options: sam, m8 (BLAST tabular format) (default = sam)
 * `-B`: batch mode for using resources for fastest computation (default = 2) 
+
+**Option important for paired-end reads, which will not affect single-end reads**
+
+* `--clip-overlap`: for paired-end reads whose alignments overlap, clip overlapping region (won't affect single-end reads)
 
 Now let's put it all together! The full GMAP-GSNAP alignment command is provided below.
 
 > If you like you can copy-paste it directly into your terminal. Alternatively, you can manually enter the command, but it is advisable to first type out the full command in a text editor (i.e. [Sublime Text](http://www.sublimetext.com/) or [Notepad++](https://notepad-plus-plus.org/)) on your local machine and then copy paste into the terminal. This will make it easier to catch typos and make appropriate changes. 
 
 ```bash
-% gsnap -d hg19_chr1 -D /gpfs/scratchfs1/hpctrain/chr1_reference_gsnap \
--t 6 --quality-protocol=sanger -M 2 -n 10 -B 2 -i 1 -N 1 \
--w 200000 -E 1 --pairmax-rna=200000 --clip-overlap \
+% gsnap -d grch38_chr1 -D /gpfs/scratchfs1/hpctrain/chr1_reference_gsnap \
+-t 6 -M 2 -n 10 -N 1 \
+--quality-protocol=sanger -w 200000 --pairmax-rna=200000 \
+-E 1 -B 2 --clip-overlap \
 -A sam raw_data/Mov10_oe_1.subset.fq | \
 samtools view -bS - | \
 samtools sort - | \
@@ -136,7 +142,7 @@ samtools sort - | \
 >**NOTE:** 
 > #### Other useful parameters:
 > - FASTQ files from the sequencer are often compressed, to align these files, GSNAP has the options `--gunzip` and `--bunzip2` depending on the compression type. 
-> - Trimming the raw reads for poor quality and adapter sequences is not required as GSNAP performs soft-clipping by default. However, if you desire to perform your own trimming, you could turn off this feature using the parameter `--trim-mismatch-score=0`. 
+> - Trimming the raw reads for poor quality and adapter sequences is not required as GSNAP performs soft-clipping by default. However, if you desire to perform your own trimming of mismatching sequences, you could turn off this feature using the parameter `--trim-mismatch-score=0`. 
 > - If planning to perform other types of analyses, like SNP identification, intron retention analyses, bisulfite sequencing analysis, or chimeric analyses, among others, this versatile tool has specific parameters to change to optimize its use with these types of data.
 
 
