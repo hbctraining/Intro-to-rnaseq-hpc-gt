@@ -5,14 +5,14 @@
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
 |9:00 - 9:40 | Workshop Introduction | Dr. Radhika Khetani |
-|9:40 - 10:40 | [Introduction to the Shell](../lessons/01_the_filesystem.html) | Dr. Radhika Khetani |
+|9:40 - 10:40 | [Introduction to the Shell](../lessons/01_the_filesystem.md) | Dr. Radhika Khetani |
 |10:40 - 10:55 | *Break* | |
-|10:55 - 11:25 | [Introduction to the Shell (cont.)](../lessons/01_the_filesystem.html) | Dr. Meeta Mistry |
-|11:25 - 12:00 | [Searching and Redirection](../lessons/02_searching_files.html) | Dr. Mary Piper |
+|10:55 - 11:25 | [Introduction to the Shell (cont.)](../lessons/01_the_filesystem.md) | Dr. Meeta Mistry |
+|11:25 - 12:00 | [Searching and Redirection](../lessons/02_searching_files.md) | Dr. Mary Piper |
 |12:00 - 13:00 | *Lunch* | |
-|13:00 - 13:20 | [Introduction to the Vim Text Editor](../lessons/03_vim.html) | Dr. Mary Piper |
-|13:20 - 14:35 | [Loops and Shell Scripts](../lessons/04_loops_and_scripts.html) | Dr. Meeta Mistry |
-|14:35 - 15:05 | [Permissions and Environment Variables](../lessons/05_permissions_and_environment_variables.html) | Dr. Radhika Khetani |
+|13:00 - 13:20 | [Introduction to the Vim Text Editor](../lessons/03_vim.md) | Dr. Mary Piper |
+|13:20 - 14:35 | [Loops and Shell Scripts](../lessons/04_loops_and_scripts.md) | Dr. Meeta Mistry |
+|14:35 - 15:05 | [Permissions and Environment Variables](../lessons/05_permissions_and_environment_variables.md) | Dr. Radhika Khetani |
 |15:05 - 15:20 | *Break* | |
 |15:20 - 16:00 | Project Organization and Best Practices in Data Management | Dr. Meeta Mistry |
 |16:00 - 17:00 | Introduction to RNA-seq workflow | Dr. Radhika Khetani |
