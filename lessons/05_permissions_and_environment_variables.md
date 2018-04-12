@@ -88,13 +88,13 @@ Well, `x` means something different for directories. It gives someone the right 
 To change permissions, we use the `chmod` command (whose name stands for "change mode"). Let's make our README.txt file **inaccessible** to all users other than you and the group the file belong to (you, in this case), currently they are able to read it:
 
 ```bash
-$ ls -l ~/unix_lesson/README.txt
+% ls -l ~/unix_lesson/README.txt
 ```
 
 ```bash
-$ chmod o-rw ~/unix_lesson/README.txt         # the "-" after o denotes removing that permission
+% chmod o-rw ~/unix_lesson/README.txt         # the "-" after o denotes removing that permission
 
-$ ls -l ~/unix_lesson/README.txt
+% ls -l ~/unix_lesson/README.txt
 ```
 
 The `o` signals that we're changing the privileges of "others".
@@ -102,9 +102,9 @@ The `o` signals that we're changing the privileges of "others".
 Let's change it back to allow it to be readable by others:
 
 ```bash
-$ chmod o+r ~/unix_lesson/README.txt         # the "+" after o denotes adding/giving that permission
+% chmod o+r ~/unix_lesson/README.txt         # the "+" after o denotes adding/giving that permission
 
-$ ls -l ~/unix_lesson/README.txt
+% ls -l ~/unix_lesson/README.txt
 ```
 
 If we wanted to make this an executable file for ourselves (the file's owners) we would say `chmod u+rwx`, where the `u` signals that we are changing permission for the file's owner. To change permissions for the "group", you'd use the letter `g`, e.g. `chmod g-w`. 
