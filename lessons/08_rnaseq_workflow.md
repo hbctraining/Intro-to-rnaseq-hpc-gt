@@ -31,7 +31,6 @@ You should have a directory tree setup similar to that shown below. It is best p
 ```
 rnaseq/
 	├── raw_data/
-	├── reference_data/
 	├── meta/
 	├── results/
 	├── scripts/
@@ -46,7 +45,7 @@ Below is a general overview of the steps involved in RNA-seq analysis.
 So let's get started by loading up some of the modules for tools we need for this section to perform alignment and assess the alignment: 
 
 ```bash
-% module load GMAP-GSNAP
+% module load GMAP-GSNAP samtools
 ```
 Create an output directory for our alignment files:
 
@@ -208,7 +207,7 @@ We are going to use the following options:
 
 and the following are the values for the required parameters:
 
-- **`-a`:** path to GTF file (`~/unix_lesson/rnaseq/reference_data/chr1-hg19_genes.gtf`)
+- **`-a`:** path to GTF file (`/gpfs/scratchfs1/hpctrain/chr1_reference_gsnap/chr1_grch38.gtf`)
 - **`-o`:** path to, and name of the output count matrix (`~/unix_lesson/rnaseq/results/counts/Mov10_featurecounts.txt`)
 - path to all of the bam files (`~/unix_lesson/rnaseq/results/gsnap/*bam`)
 
@@ -216,7 +215,7 @@ and the following are the values for the required parameters:
 
 ``` bash
 % featureCounts -T 6 -s 2 \
-  -a ~/unix_lesson/rnaseq/reference_data/chr1-hg19_genes.gtf \
+  -a /gpfs/scratchfs1/hpctrain/chr1_reference_gsnap/chr1_grch38.gtf \
   -o ~/unix_lesson/rnaseq/results/counts/Mov10_featurecounts.txt \
   ~/unix_lesson/rnaseq/results/gsnap/*bam
 ```
