@@ -15,7 +15,7 @@
 | 14:35 - 15:05 | [Permissions and Environment Variables](../lessons/05_permissions_and_environment_variables.md) | Dr. Radhika Khetani |
 | 15:05 - 15:20 | *Break* | |
 | 15:20 - 16:00 | Project Organization and Best Practices in Data Management | Dr. Meeta Mistry |
-| 16:00 - 17:00 | Introduction to RNA-seq workflow | Dr. Radhika Khetani |
+| 16:00 - 17:00 | [Introduction to RNA-seq workflow](../lectures/rna-seq_design.pdf) | Dr. Radhika Khetani |
 
 ## Day 2
 
@@ -31,7 +31,7 @@
 | 13:30 - 14:20 | RNA-seq analysis workflow - Alignment and Counting (contd.) | Dr. Mary Piper |
 | 14:20 - 15:20 | [Automating the RNA-seq workflow](../lessons/09_automating_workflow.md) | Dr. Radhika Khetani |
 | 15:20 - 15:35 | *Break* | |
-| 15:35 - 15:45 | Alternative workflows for analyzing RNA-seq data | Dr. Radhika Khetani |
+| 15:35 - 15:45 | [Alternative workflows for analyzing RNA-seq data](../lectures/RNAseq-analysis-methods.pdf) | Dr. Radhika Khetani |
 | 15:45 - 16:45 | Quantifying expression using alignment-free methods (Salmon) | Dr. Mary Piper |
 | 16:45 - 17:00 | Wrap-up, Discussion, Q&A | Dr. Radhika Khetani |
 
