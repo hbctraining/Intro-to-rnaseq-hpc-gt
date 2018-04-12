@@ -29,7 +29,7 @@
 | 11:45 - 12:30 | RNA-seq analysis workflow - Alignment and Counting | Dr. Mary Piper |
 | 12:30 - 13:30 | *Lunch* | |
 | 13:30 - 14:20 | RNA-seq analysis workflow - Alignment and Counting (contd.) | Dr. Mary Piper |
-| 14:20 - 15:20 | Automating the RNA-seq workflow | Dr. Radhika Khetani |
+| 14:20 - 15:20 | [Automating the RNA-seq workflow](../lessons/09_automating_workflow.md) | Dr. Radhika Khetani |
 | 15:20 - 15:35 | *Break* | |
 | 15:35 - 15:45 | Alternative workflows for analyzing RNA-seq data | Dr. Radhika Khetani |
 | 15:45 - 16:45 | Quantifying expression using alignment-free methods (Salmon) | Dr. Mary Piper |
