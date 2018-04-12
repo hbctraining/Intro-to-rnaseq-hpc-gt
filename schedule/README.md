@@ -3,7 +3,7 @@
 ## Day 1
 
 | Time            |  Topic  | Instructor |
-|:------------------------:|:------------------------------------------------:|:--------:|
+|:-----------:|:------------------------------------------------:|:--------:|
 |9:00 - 9:40| Workshop Introduction | Dr. Radhika Khetani |
 |9:40 - 10:40| [Introduction to the Shell](../lessons/01_the_filesystem.md) | Dr. Radhika Khetani |
 |10:40 - 10:55| *Break* | |
