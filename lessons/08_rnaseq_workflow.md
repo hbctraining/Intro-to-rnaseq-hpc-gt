@@ -77,23 +77,16 @@ Aligning reads using GMAP-GSNAP is a two-step process:
 
 #### Creating a genome index
 
-For this workshop we are using reads that originate from a small subsection of chromosome 1 (~300,000 reads) and so we are using only chr1 as the reference genome. Therefore, we cannot use any of the ready-made indices made available with the GMAP-SNAP install on the cluster.
+For this workshop we are using reads that originate from a small subsection of chromosome 1 (~300,000 reads) and so we are using only chr1 as the reference genome. Therefore, we cannot use any of the ready-made indices made available with the GMAP-SNAP install on the cluster (see note below for more information).
 
-We have already created an index of chromosome1, which will be standing in for a reference genome. The indexing takes a lot longer than the actual alignment, and we can't run it in class, but we have provided the code below that you would use to index the genome for your future reference. For indexing the reference genome, a reference genome (FASTA) is required and an annotation file (GTF or GFF3) is optional.
-
-The basic options to **generate genome indices** using GMAP-GSNAP are as follows:
-
-* 
-* 
-* 
-* 
-* 
-* 
+We have already created an index of chromosome1, which will be standing in for a reference genome. The indexing takes a lot longer than the actual alignment, and we can't run it in class, but we have provided the code below that you would use to index the genome for your future reference. 
 
 ```bash
 ** DO NOT RUN**
-GMAP 
+gmap_build -d <genome name> <path to genome fasta file>
 ```
+
+> Note: Contact the Bioinformatics & Computational Biology group for guidance if you want to modify the defaults for indexing.
 
 #### Mapping RNA-seq reads
 
@@ -107,6 +100,10 @@ The inputs for mapping are the raw FASTQ files and the reference indices.
 * `-M`: report suboptimal hits beyond best hit (default=0) (`2`)
 * `-n`: number of alignments that are maximally printed to the output per read (even if the read matches hundreds of times in the genome, which might happen with very short reads or reads spanning repetitive regions). (default = 100) (`10`)
 * `-N`: look for novel splicing (default = 0 (no)) (`1`)
+
+> **NOTE:** If you are using the whole human genome, you would specify `-d GRCh38` and there is no need to specify the path to the directory index, i.e. the `-D` option. 
+>
+> If you want to do the alignment against another genome, or different version of the human genome contact the Bioinformatics & Computational Biology group for more information about which indices are available with the GMAP-GSNAP installation.
 
 **Options we will keep as defaults, but including because it's important not to change them for this workflow**
 
@@ -136,7 +133,7 @@ samtools sort - | \
  > results/gsnap/Mov10_oe_1.subset.Aligned.sortedByCoord.out.bam
 ```
 
->**NOTE:** 
+> **NOTE:** 
 > #### Other useful parameters:
 > - FASTQ files from the sequencer are often compressed, to align these files, GSNAP has the options `--gunzip` and `--bunzip2` depending on the compression type. 
 > - Trimming the raw reads for poor quality and adapter sequences is not required as GSNAP performs soft-clipping by default. However, if you desire to perform your own trimming of mismatching sequences, you could turn off this feature using the parameter `--trim-mismatch-score=0`. 
