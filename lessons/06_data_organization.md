@@ -156,7 +156,7 @@ The dataset we are using is part of a larger study described in [Kenny PJ et al.
 
 ### Raw data
 
-From this study we are using the [RNA-seq](http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE50499) data which is publicly available in the [Sequence Read Archive (SRA)][https://www.ncbi.nlm.nih.gov/sra/?term=SRP029367]. 
+From this study we are using the [RNA-seq](http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE50499) data which is publicly available in the [Sequence Read Archive (SRA)](https://www.ncbi.nlm.nih.gov/sra/?term=SRP029367). 
 
 ### Metadata
 
