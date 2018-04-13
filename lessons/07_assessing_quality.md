@@ -93,7 +93,7 @@ Once your interactive job starts, notice that the command prompt has changed; th
 % cd ~/unix_lesson/rnaseq/raw_data
 ```  
 
-Before we start using software, we have to load the environments for each software package. On the O2 cluster, this is done using an **LMOD** system. 
+Before we start using software, we have to load the environments for each software package. On the cluster here, this is done using an **LMOD** system. 
 
 If we check which modules we currently have loaded, we should not see FastQC.
 
