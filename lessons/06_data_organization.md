@@ -63,7 +63,6 @@ rnaseq
   ├── logs
   ├── meta
   ├── raw_data  
-  ├── reference_data
   ├── results
   └── scripts
 ```
@@ -145,7 +144,6 @@ There are six subdirectories in this directory:
 raw_data : contains raw data
 meta:  contains...
 logs:
-reference_data:
 results:
 scripts:
 ```
