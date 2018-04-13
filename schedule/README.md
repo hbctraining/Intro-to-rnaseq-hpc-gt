@@ -26,9 +26,9 @@
 |10:30 - 10:45 | *Break* | |
 |10:45 - 11:15 | [RNA-seq analysis workflow - Quality Assessment](../lessons/07_assessing_quality.md) | Meeta |
 |11:15 - 11:45 | Genome builds and alignment strategies *(slides)* | Meeta |
-|11:45 - 12:30 | RNA-seq analysis workflow - Alignment and Counting | Mary |
+|11:45 - 12:30 | [RNA-seq analysis workflow - Alignment and Counting](../lessons/08_rnaseq_workflow.md) | Mary |
 |12:30 - 13:30 | *Lunch* | |
-|13:30 - 14:20 | RNA-seq analysis workflow - Alignment and Counting (contd.) | Mary |
+|13:30 - 14:20 | [RNA-seq analysis workflow - Alignment and Counting (contd.)](../lessons/08_rnaseq_workflow.md) | Mary |
 |14:20 - 15:20 | [Automating the RNA-seq workflow](../lessons/09_automating_workflow.md) | Radhika |
 |15:20 - 15:35 | *Break* | |
 |15:35 - 15:45 | [Alternative workflows for analyzing RNA-seq data](../lectures/RNAseq-analysis-methods.pdf) *(slides)* | Radhika |
