@@ -33,7 +33,7 @@
 |15:20 - 15:35 | *Break* | |
 |15:35 - 15:45 | [Alternative workflows for analyzing RNA-seq data](../lectures/RNAseq-analysis-methods.pdf) *(slides)* | Radhika |
 |15:45 - 16:45 | [Quantifying expression using alignment-free methods (Salmon)](../lessons/10_salmon.md) | Mary |
-|16:45 - 17:00 | Wrap-up, Discussion, Q&A | Radhika |
+|16:45 - 17:00 | Wrap-up, Discussion, Q&A *(slides)* | Radhika |
 
 ----
 
