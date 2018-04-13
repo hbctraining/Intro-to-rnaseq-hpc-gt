@@ -98,7 +98,7 @@ Let's try another command using the variable that we have created. We can also c
 % wc -l $file
 ```
 
-> *NOTE:* The variables we create in a session are system-wide, and independent of where you are in the filesystem. This is why we can reference it from any directory. However, it is only available for your current session. If you exit the cluster and login again at a later time, the variables you have created will no longer exist.
+> *NOTE:* The variables we create in a session are system-wide, and independent of where you are in the filesystem. This is why we can reference it from any directory. If you wanted to look at what variables you currently have created (and the values stored inside), you can try `declare -p | grep name_of_variable`. However, the variables you create are only available for your current session. If you exit the cluster and login again at a later time, the variables you have created will no longer exist.
 
 ***
 
