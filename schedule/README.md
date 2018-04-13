@@ -14,7 +14,7 @@
 |13:20 - 14:35 | [Loops and Shell Scripts](../lessons/04_loops_and_scripts.md) | Meeta |
 |14:35 - 15:05 | [Permissions and Environment Variables](../lessons/05_permissions_and_environment_variables.md) | Radhika |
 |15:05 - 15:20 | *Break* | |
-|15:20 - 16:00 | Project Organization and Best Practices in Data Management | Meeta |
+|15:20 - 16:00 | [Project Organization and Best Practices in Data Management](../lessons/06_data_organization.md) | Meeta |
 |16:00 - 17:00 | [Introduction to RNA-seq workflow](../lectures/rna-seq_design.pdf) | Radhika |
 
 ## Day 2
