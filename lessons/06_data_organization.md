@@ -97,12 +97,6 @@ The FASTQ files are located inside `~/unix_lesson/raw_fastq/`, and we need to co
 % cp ~/unix_lesson/raw_fastq/*.fq raw_data/
 ```
 
-Later in the workflow when we perform alignment, we will require genome reference files (.fa, .gtf) for alignment and read counting. These files are also in the `unix_lesson/` directory inside `reference_data/`, we can copy over the whole folder in this case. You can use `.` as a shortcut for the current working directory as the destination.
-
-```bash
-% cp -r ~/unix_lesson/reference_data/ .
-```
-
 Perfect, now the structure of `rnaseq/` should look like this:
 
 ```bash
@@ -116,9 +110,6 @@ rnaseq
   │   ├── Mov10_oe_1.subset.fq
   │   ├── Mov10_oe_2.subset.fq
   │   └── Mov10_oe_3.subset.fq
-  ├── reference_data
-  │   ├── chr1.fa
-  │   └── chr1-hg19_genes.gtf
   ├── results
   └── scripts
 ```
