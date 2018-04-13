@@ -4,7 +4,7 @@
 
 | Time            |  Topic  | Instructor |
 |:-----------:|:------------------------------------------------:|:--------:|
-| 9:00 - 9:40 | Workshop Introduction | Dr. Radhika Khetani |
+| 9:00 - 9:40 | [Workshop Introduction](../lecutres/Intro_to_workshop.pdf) | Dr. Radhika Khetani |
 | 9:40 - 10:40 | [Introduction to the Shell](../lessons/01_the_filesystem.md) | Dr. Radhika Khetani |
 | 10:40 - 10:55 | *Break* | |
 | 10:55 - 11:25 | [Introduction to the Shell (cont.)](../lessons/01_the_filesystem.md) | Dr. Meeta Mistry |
