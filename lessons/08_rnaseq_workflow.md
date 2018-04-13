@@ -103,7 +103,7 @@ The inputs for mapping are the raw FASTQ files and the reference indices.
 
 > **NOTE:** If you are using the whole human genome, you would specify `-d GRCh38` and there is no need to specify the path to the directory index, i.e. the `-D` option. 
 >
-> If you want to do the alignment against another genome, or different version of the human genome contact the Bioinformatics & Computational Biology group for more information about which indices are available with the GMAP-GSNAP installation.
+> If you want to do the alignment against another genome, or a different version of the human genome contact the Bioinformatics & Computational Biology group for more information about which indices are available with the GMAP-GSNAP installation, and how to specify them with the `-d` option.
 
 **Options we will keep as defaults, but including because it's important not to change them for this workflow**
 
