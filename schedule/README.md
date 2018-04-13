@@ -21,19 +21,19 @@
 
 | Time            |   Topic  | Instructor |
 |:------------------------:|:----------:|:--------:|
-|9:00 - 9:45 | Introduction to High-Performance Computing | Dr. Radhika Khetani |
-|9:45 - 10:30 | RNA-seq analysis workflow - Quality Assessment | Dr. Meeta Mistry |
+|9:00 - 9:45 | Introduction to High-Performance Computing | Radhika |
+|9:45 - 10:30 | RNA-seq analysis workflow - Quality Assessment | Meeta |
 |10:30 - 10:45 | *Break* | |
-|10:45 - 11:15 | RNA-seq analysis workflow - Quality Assessment | Dr. Meeta Mistry |
-|11:15 - 11:45 | Genome builds and alignment strategies| Dr. Meeta Mistry |
-|11:45 - 12:30 | RNA-seq analysis workflow - Alignment and Counting | Dr. Mary Piper |
+|10:45 - 11:15 | RNA-seq analysis workflow - Quality Assessment | Meeta |
+|11:15 - 11:45 | Genome builds and alignment strategies| Meeta |
+|11:45 - 12:30 | RNA-seq analysis workflow - Alignment and Counting | Mary |
 |12:30 - 13:30 | *Lunch* | |
-|13:30 - 14:20 | RNA-seq analysis workflow - Alignment and Counting (contd.) | Dr. Mary Piper |
-|14:20 - 15:20 | [Automating the RNA-seq workflow](../lessons/09_automating_workflow.md) | Dr. Radhika Khetani |
+|13:30 - 14:20 | RNA-seq analysis workflow - Alignment and Counting (contd.) | Mary |
+|14:20 - 15:20 | [Automating the RNA-seq workflow](../lessons/09_automating_workflow.md) | Radhika |
 |15:20 - 15:35 | *Break* | |
-|15:35 - 15:45 | [Alternative workflows for analyzing RNA-seq data](../lectures/RNAseq-analysis-methods.pdf) | Dr. Radhika Khetani |
-|15:45 - 16:45 | Quantifying expression using alignment-free methods (Salmon) | Dr. Mary Piper |
-|16:45 - 17:00 | Wrap-up, Discussion, Q&A | Dr. Radhika Khetani |
+|15:35 - 15:45 | [Alternative workflows for analyzing RNA-seq data](../lectures/RNAseq-analysis-methods.pdf) | Radhika |
+|15:45 - 16:45 | Quantifying expression using alignment-free methods (Salmon) | Mary |
+|16:45 - 17:00 | Wrap-up, Discussion, Q&A | Radhika |
 
 ----
 
