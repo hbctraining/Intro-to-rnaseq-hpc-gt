@@ -17,13 +17,15 @@ duration: 35
 
 ## Data Management
 
-The data management lifecycle courtesy of the [HMS Data Management Working Group](https://datamanagement.hms.harvard.edu/hms-data-management-working-group):
+The data management lifecycle is displayed below courtesy of the [HMS Data Management Working Group](https://datamanagement.hms.harvard.edu/hms-data-management-working-group):
 
 <img src="../img/data_life_cycle_gouldv2.png" width="350">
 
-Today we will cover some parts of this lifecycle by talking about best practices for  the **Research** half of the above lifecycle. Later in this workshop we will talk a little more about the data storage. For more information about the full lifecycle and more guidelines, please look at the resources linked below.
+_Image aquired from the [Harvard Biomedical Data Management Website](https://datamanagement.hms.harvard.edu/hms-data-lifecycle)_
 
-**Resources**
+Today we will cover some parts of this lifecycle by talking about best practices for  the **Research** half of the above lifecycle. Later in this workshop we will talk a little more about the data storage. For more information about the full lifecycle and more guidelines for data management, please look at the resources linked below.
+
+**Resources at Harvard**
 * The [HMS Data Management Working Group's website](https://datamanagement.hms.harvard.edu/)
 * A guide from the [Harvard library](http://guides.library.harvard.edu/dmp).
 
