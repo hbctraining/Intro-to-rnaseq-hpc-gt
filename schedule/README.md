@@ -7,7 +7,7 @@
 |9:00 - 9:40 | [Workshop Introduction](../lecutres/Intro_to_workshop.pdf) *(slides)* | Radhika |
 |9:40 - 10:40 | [Introduction to the Shell](../lessons/01_the_filesystem.md) | Radhika |
 |10:40 - 10:55 | *Break* | |
-|10:55 - 11:25 | [Introduction to the Shell (cont.)](../lessons/01_the_filesystem.md) | Meeta |
+|10:55 - 11:25 | [Introduction to the Shell (contd.)](../lessons/01_the_filesystem.md) | Meeta |
 |11:25 - 12:00 | [Searching and Redirection](../lessons/02_searching_files.md) | Mary |
 |12:00 - 13:00 | *Lunch* | |
 |13:00 - 13:20 | [Introduction to the Vim Text Editor](../lessons/03_vim.md) | Mary |
