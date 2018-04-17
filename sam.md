@@ -2,7 +2,7 @@
 
 To play around with a few `samtools` commands, first change directories into the directory containing all BAM files.
 
-`$ cd ~/unix_workshop/rnaseq/results/STAR/bams`
+`$ cd ~/unix_workshop/rnaseq/results/gsnap/bams`
 
 ### Write only mapped reads to file (filter out unmapped reads)
 
@@ -30,5 +30,5 @@ To play around with a few `samtools` commands, first change directories into the
 
 ### Visualizing mismatches
 
-`$ samtools view -h Mov10_oe_1_Aligned.sortedByCoord.out.bam | head -n 5 | samtools fillmd -e - ~/unix_workshop/rnaseq/reference_data/chr1.fa`
+`$ samtools view -h Mov10_oe_1_Aligned.sortedByCoord.out.bam | head -n 5 | samtools fillmd -e - /gpfs/scratch/hpctrain/chr1_reference_gsnap/chr1_grch38.fa`
 
