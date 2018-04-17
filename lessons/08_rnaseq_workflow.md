@@ -95,7 +95,7 @@ The inputs for mapping are the raw FASTQ files and the reference indices.
 **Basic options for *mapping RNA-seq reads* to the genome using GMAP-GSNAP:**
 
 * `-d`: genome database (`grch38_chr1`)
-* `-D`: genome directory (`/gpfs/scratchfs1/hpctrain/chr1_reference_gsnap`)
+* `-D`: genome directory (`/gstore/scratch/hpctrain/chr1_reference_gsnap`)
 * `-t`: threads or cores (`6`)
 * `-M`: report suboptimal hits beyond best hit (default=0) (`2`)
 * `-n`: number of alignments that are maximally printed to the output per read (even if the read matches hundreds of times in the genome, which might happen with very short reads or reads spanning repetitive regions). (default = 100) (`10`)
@@ -123,7 +123,7 @@ Now let's put it all together! The full GMAP-GSNAP alignment command is provided
 > If you like you can copy-paste it directly into your terminal. Alternatively, you can manually enter the command, but it is advisable to first type out the full command in a text editor (i.e. [Sublime Text](http://www.sublimetext.com/) or [Notepad++](https://notepad-plus-plus.org/)) on your local machine and then copy paste into the terminal. This will make it easier to catch typos and make appropriate changes. 
 
 ```bash
-% gsnap -d grch38_chr1 -D /gpfs/scratchfs1/hpctrain/chr1_reference_gsnap \
+% gsnap -d grch38_chr1 -D /gstore/scratch/hpctrain/chr1_reference_gsnap \
 -t 6 -M 2 -n 10 -N 1 \
 --quality-protocol=sanger -w 200000 --pairmax-rna=200000 \
 -E 1 -B 2 --clip-overlap \
@@ -194,7 +194,7 @@ So, it looks like the usage is `featureCounts [options] -a <annotation_file> -o 
 It can also take multiple bam files as input. Since we have only run GSNAP on 1 FASTQ file, let's copy over the other bam files that we would need so we can generate the full count matrix.
 
 ```bash
-% cp /gpfs/scratchfs1/hpctrain/bam_gsnap/*bam ~/unix_lesson/rnaseq/results/gsnap/
+% cp /gstore/scratch/hpctrain/bam_gsnap/*bam ~/unix_lesson/rnaseq/results/gsnap/
 ```
 
 We are going to use the following options:
@@ -204,7 +204,7 @@ We are going to use the following options:
 
 and the following are the values for the required parameters:
 
-- **`-a`:** path to GTF file (`/gpfs/scratchfs1/hpctrain/chr1_reference_gsnap/chr1_grch38.gtf`)
+- **`-a`:** path to GTF file (`/gstore/scratch/hpctrain/chr1_reference_gsnap/chr1_grch38.gtf`)
 - **`-o`:** path to, and name of the output count matrix (`~/unix_lesson/rnaseq/results/counts/Mov10_featurecounts.txt`)
 - path to all of the bam files (`~/unix_lesson/rnaseq/results/gsnap/*bam`)
 
@@ -212,7 +212,7 @@ and the following are the values for the required parameters:
 
 ``` bash
 % featureCounts -T 6 -s 2 \
-  -a /gpfs/scratchfs1/hpctrain/chr1_reference_gsnap/chr1_grch38.gtf \
+  -a /gstore/scratch/hpctrain/chr1_reference_gsnap/chr1_grch38.gtf \
   -o ~/unix_lesson/rnaseq/results/counts/Mov10_featurecounts.txt \
   ~/unix_lesson/rnaseq/results/gsnap/*bam
 ```
