@@ -1,7 +1,7 @@
 #!/bin/bash/
 
 # This script takes a fastq file of RNA-Seq data, runs FastQC and outputs a counts file for it.
-# USAGE: sh rnaseq_analysis_on_allfiles.sh <name of fastq file>
+# USAGE: sh rnaseq_analysis_on_input_file.sh <name of fastq file>
 
 # initialize a variable with an intuitive name to store the name of the input fastq file
 
