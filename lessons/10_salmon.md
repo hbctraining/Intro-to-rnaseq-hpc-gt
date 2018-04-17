@@ -164,7 +164,7 @@ ENST00000439842.1       11      2.95387 0       0
  
 ## Running Salmon on multiple samples 
 
-We just ran Salmon on a single sample (and keep in mind a subset of chr1 from the original data). To obtain meaningful results we need to run this on **all samples for the full dataset**. To do so, we will create a shell script which will submit each Salmon run as a job to O2.
+We just ran Salmon on a single sample (and keep in mind a subset of chr1 from the original data). To obtain meaningful results we need to run this on **all samples for the full dataset**. To do so, we will create a shell script which will submit each Salmon run as a job to the cluster.
 
 Open up a script in `vim`:
 
