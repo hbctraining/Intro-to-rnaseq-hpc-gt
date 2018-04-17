@@ -102,7 +102,7 @@ As you can imagine from the description above, when running Salmon there are als
 **Step 2: Quantification:**
 Get the transcript abundance estimates using the `quant` command and the parameters described below (more information on parameters can be found [here](http://salmon.readthedocs.io/en/latest/salmon.html#id5)):
 
-* **`-i`:** specify the location of the index directory (`/gpfs/scratchfs1/hpctrain/salmon.grch38_tx.idx/`)
+* **`-i`:** specify the location of the index directory (`/gstore/scratch/hpctrain/salmon.grch38_tx.idx/`)
 * **`-l`:** library type (more info available [here](http://salmon.readthedocs.io/en/latest/salmon.html#what-s-this-libtype)) (stranded single-end reads `SR`)
 * **`-r`:** list of files for sample (`~/unix_lesson/rnaseq/raw_fastq/Mov10_oe_1.subset.fq`)
 * **`--useVBOpt`:** use variational Bayesian EM algorithm rather than the ‘standard EM’ to optimize abundance estimates (more accurate) 
@@ -112,7 +112,7 @@ Get the transcript abundance estimates using the `quant` command and the paramet
 To run the quantification step on a single sample we have the command provided below. Let's try running it on our subset sample for `Mov10_oe_1.subset.fq`:
 
 ```bash
-% salmon quant -i /gpfs/scratchfs1/hpctrain/salmon.grch38_tx.idx/ \
+% salmon quant -i /gstore/scratch/hpctrain/salmon.grch38_tx.idx/ \
  -l SR \
  -r ~/unix_lesson/rnaseq/raw_fastq/Mov10_oe_1.subset.fq \
  -o Mov10_oe_1.subset.salmon \
@@ -174,15 +174,15 @@ Now we can create a for loop to iterate over all FASTQ samples, and submit a job
 
 Next comes the Salmon command. Note, that we are adding a parameter called `--numBootstraps` to the Salmon command. Salmon has the ability to optionally compute bootstrapped abundance estimates. **Bootstraps are required for estimation of technical variance**. Bootstrapping essentially takes a different sub-sample of reads for each bootstapping run for estimating the transcript abundances. The technical variance is the variation in transcript abundance estimates calculated for each of the different sub-samplings (or bootstraps). We will discuss this in more detail in the next lesson.
 
-> *NOTE:* We are iterating over FASTQ files in the full dataset directory, located at ` /gpfs/scratchfs1/hpctrain/unix_lesson/` -- FULL DATASET?
+> *NOTE:* We are iterating over FASTQ files in the full dataset directory, located at `/gstore/scratch/hpctrain/unix_lesson/` -- FULL DATASET?
 
 
 ```bash
-for fq in /gpfs/scratchfs1/hpctrain/unix_lesson/raw_fastq/*fq  #change this to the full dataset path?
+for fq in /gstore/scratch/hpctrain/unix_lesson/raw_fastq/*fq  #change this to the full dataset path?
  do 
    base=`basename $fq .fastq`
    sbatch -p priority -n 6 -t 0-1:30 --mem 8G --reservation=hbc -j $base.mov10_salmon -o %j.$base.out -e %j.$base.err \
-   --wrap="salmon quant -i /gpfs/scratchfs1/hpctrain/salmon.grch38_tx.idx/ \
+   --wrap="salmon quant -i /gstore/scratch/hpctrain/salmon.grch38_tx.idx/ \
    -p 6 -l SR -r $fq --useVBOpt --numBootstraps 30 -o $base.salmon"
  done
 ```
