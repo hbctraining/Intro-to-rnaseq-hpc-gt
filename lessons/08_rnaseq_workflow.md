@@ -129,7 +129,7 @@ Now let's put it all together! The full GMAP-GSNAP alignment command is provided
 -E 1 -B 2 --clip-overlap \
 -A sam raw_data/Mov10_oe_1.subset.fq | \
 samtools view -bS - | \
-samtools sort - | \
+samtools sort - \
  > results/gsnap/Mov10_oe_1.subset.Aligned.sortedByCoord.out.bam
 ```
 
