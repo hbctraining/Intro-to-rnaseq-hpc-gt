@@ -97,8 +97,8 @@ Next we'll initialize 2 more variables named `genome` and `gtf`, these will cont
 # directory with genome reference FASTA and index files + name of the gene annotation file
 
 genome=grch38_chr1
-genome_dir=/gpfs/scratchfs1/hpctrain/chr1_reference_gsnap/
-gtf=/gpfs/scratchfs1/hpctrain/chr1_reference_gsnap/chr1_grch38.gtf
+genome_dir=/gstore/scratch/hpctrain/chr1_reference_gsnap/
+gtf=/gstore/scratch/hpctrain/chr1_reference_gsnap/chr1_grch38.gtf
 ```
 
 We'll create output directories, but with the `-p` option. This will make sure that `mkdir` will create the directory only if it does not exist, and it won't throw an error if it does exist.
