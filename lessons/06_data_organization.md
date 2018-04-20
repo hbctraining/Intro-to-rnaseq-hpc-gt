@@ -50,7 +50,7 @@ First, make sure that you are in your home directory.
 % pwd
 ```
 
-This should return `/gstore/data/username`.
+This should return `/gstore/home/username`.
 
 Now make a directory for the RNA-seq analysis within the `unix_lesson/` folder using the `mkdir` command. You can use the parents flag (`-p` or `--parents`) to complete the file path by creating any parent directories that do not exist. However, this isn't the case here, since we already have the `unix_lesson/`, but it can be very useful when scripting workflows. 
 
