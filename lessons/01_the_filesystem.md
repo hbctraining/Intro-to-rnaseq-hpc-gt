@@ -130,7 +130,7 @@ Let's go into the raw_fastq directory and see what is in there.
 % ls -l
 ```
 
-Are the 6 items in this `raw_fastq` directory files or sub-directories? Could you have used the `-F` argument to figues this out?
+Are the 6 items in this `raw_fastq` directory files or sub-directories? Could you have used the `-F` argument to figure this out?
 
 #### Arguments
 
