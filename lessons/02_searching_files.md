@@ -8,16 +8,13 @@ Approximate time: 60 minutes
 
 ## Learning objectives
 
-- Learn how to search for characters or patterns in a text file using the `grep` command
-- Learn how to write to file and append to file using output redirection
-- Explore how to use the pipe (`|`) character to chain together commands
+- Search for characters or patterns in a text file using the `grep` command
+- Write to file and append to file using output redirection
+- Use the pipe (`|`) character to chain commands together
 
 ## Searching files
 
-We went over how to search within a file using `less`. We can also
-search within files without even opening them, using `grep`. Grep is a command-line
-utility for searching plain-text data sets for lines matching a pattern or regular expression (regex).
-Let's give it a try!
+We went over how to search within a file using `less`. We can also search within files without opening them, using `grep`. Grep is a command-line utility for searching plain-text data sets for lines matching a pattern or regular expression (regex). Let's give it a try!
 
 We are going to practice searching with `grep` using our fastq files, which contain the sequencing reads (nucleotide sequences) output from a sequencing facility. Each sequencing read in a FASTQ file is associated with four lines of output, with the first line (header line) always starting with an `@` symbol. A whole fastq record for a single read should appear similar to the following:
 
@@ -57,43 +54,33 @@ CACAAATCGGCTCAGGAGGCTTGTAGAAAAGCTCAGCTTGACANNNNNNNNNNNNNNNNNGNGNACGAAACNNNNGNNNN
 ***
 **Exercises**
 
-1. Search for the sequence CTCAATGA in `Mov10_oe_1.subset.fq`.
-In addition to finding the sequence, have your search also return
-the name of the sequence.
+1. Search for the sequence CTCAATGA in `Mov10_oe_1.subset.fq`. In addition to finding the sequence, have your search also return the name of the sequence.
 
 2. Search for that sequence in all Mov10 replicate fastq files.
 ***
 
 ## Redirection
 
-We're excited we have all these sequences that we care about that we
-just got from the FASTQ files. That is a really important motif
-that is going to help us answer our important question. But all those
-sequences just went whizzing by with grep. How can we capture them?
+We're excited we have all these sequences that we care about that we just got from the FASTQ files. That is a really important motif that is going to help us answer our important question. But all those sequences just went whizzing by with grep. How can we capture them?
 
-We can do that with something called "redirection". The idea is that
-we're redirecting the output from the terminal (all the stuff that went
-whizzing by) to something else. In this case, we want to print it
-to a file, so that we can look at it later.
+We can do that with something called "redirection". The idea is that we're redirecting the output from the terminal (all the stuff that went whizzing by) to something else. In this case, we want to print it to a file, so that we can look at it later.
 
-**The redirection command for writing something to file is `>`.**
+**The redirection operator for writing something to file is `>`.**
 
-Let's try it out and put all the sequences that contain 'NNNNNNNNNN'
-from all the files into another file called `bad_reads.txt`.
+Let's try it out and put all the sequences that contain 'NNNNNNNNNN' from all the files into another file called `bad_reads.txt`.
 
 ```bash
 % grep -B 1 -A 2 NNNNNNNNNN Mov10_oe_1.subset.fq > bad_reads.txt
 ```
 
-The prompt should sit there a little bit, and then it should look like nothing
-happened. But you should have a new file called `bad_reads.txt`. 
+The prompt should sit there a little bit, and then it should look like nothing happened. But you should have a new file called `bad_reads.txt`. 
 
 ```bash
 % ls -l
 ```
 Take a look at the file and see if it contains what you think it should. *NOTE: If we already had a file named `bad_reads.txt` in our directory, it would have overwritten it without any warning.*
  
-**The redirection command for appending something to an existing file is `>>`.**
+**The redirection operator for appending something to an existing file is `>>`.**
 
 If we use `>>`, it will append to rather than overwrite a file.  This can be useful for saving more than one search, for example.
     
@@ -109,9 +96,9 @@ Since our `bad_reads.txt` file isn't a raw_fastq file, we should move it to a di
 % mv bad_reads.txt ../other/
 ```
 
-There's one more useful redirection command that we're going to show, and that's called the pipe command. 
+There's one more useful redirection operator that we're going to use called the "pipe". 
 
-**The redirection command for using the output of a command as input for a different command is `|`.**
+**The redirection operator for using the output of a command as input for a different command is `|`.**
 
 It's probably not a key on your keyboard you use very much. What `|` does is take the output that went scrolling by on the terminal and runs it through another command. When it was all whizzing by before, we wished we could just slow it down and look at it, like we can with `less`. Well it turns out that we can! We pipe the `grep` command to `less` or to `head` to just see the first few lines.
 
@@ -131,7 +118,7 @@ This command when used without any arguments would tell us the number of lines, 
 
 Redirecting is not super intuitive, but it's really powerful for stringing together these different commands, so you can do whatever you need to do.
 
-The philosophy behind these commands is that none of them really do anything all that impressive. BUT when you start chaining them together, you can do some really powerful things really efficiently. **To be able to use the shell effectively, becoming proficient with the pipe and redirection operators:  `|`, `>`, `>>` is essential.**
+The philosophy behind these commands is that none of them really do anything all that impressive. BUT when you start chaining them together, you can do some really powerful things really efficiently. **To be able to use the shell effectively, becoming proficient with these redirection operators, `|`, `>`, `>>`, is essential.**
 
 ## Practice with searching and redirection (piping)
 
@@ -185,7 +172,7 @@ We only want the exons (not CDS or start_codon features), so let's use `grep` to
 
 We will define the uniqueness of an exon by its genomic coordinates. Therefore, we only need the genomic location (chr, start, stop, and strand) information to find the total number of unique exons. The columns corresponding to this information are 1, 4, 5, and 7. 
 
-'cut' is a program that will extract columns from files.  It is a very good command to know.  Let's first try out the 'cut' command on a just the exonic lines to make sure we have the command correct by using multiple piped commands and looking at the first 10 lines:
+`cut` is a program that will extract columns from files; it is a very good command to know. Let's first try out the `cut` command on a just the exonic lines to make sure we have the command correct by using multiple piped commands and looking at the first 10 lines:
 
 ```bash
 % grep exon chr1-hg19_genes.gtf | cut -f1,4,5,7  | head
@@ -229,7 +216,7 @@ Now, to count how many unique exons are on chromosome 1, we will add back the `s
 
 What we did in one command up here, we could have done it in multiple steps by saving the output of each command to a file, but that would not be as efficient if all we needed was a number to work with. The intermediate files are not useful and they occupy precious space on the computer and add clutter to the file system. 
 
-**Commands, options, and keystrokes covered in this lesson**
+**Commands, operators, and keystrokes covered in this lesson**
 
 ```bash
 grep
