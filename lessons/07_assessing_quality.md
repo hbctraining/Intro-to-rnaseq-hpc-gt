@@ -271,7 +271,7 @@ To make the fastqc output (.html file) viewable online in an internet browser, f
 
 Now you can open `Chrome` (or another browser) on your laptop and view the output from `FASTQC` using a modified version of the following link: 
 
-**[http://resdev.gene.com/training/<your_username>/Mov10_oe_1.subset_fastqc.html]()** 
+[http://resdev.gene.com/training/<your_username>/Mov10_oe_1.subset_fastqc.html]()
 
 > If you don't know what your username is, run `echo $USER` on the cluster.
 > 
