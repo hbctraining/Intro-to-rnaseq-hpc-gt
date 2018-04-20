@@ -69,7 +69,7 @@ Copy our example data folder to your home directory using the following command:
 % cp -r /gstore/scratch/hpctrain/unix_lesson/ .
 ```
 
->'cp' is the command for copy. This command required you to specify the location of the item you want to copy (/gstore/scratch/hpctrain/unix_lesson/) and the location of the destination (.); please note the space between the 2 in the command. The "-r" is an option that modifies the copy command to do something slightly different than usual. The "." means "here", i.e. the destination location is where you currently are.
+>'cp' is the command for copy. This command requires you to specify the location of the item you want to copy (/gstore/scratch/hpctrain/unix_lesson/) and the location of the destination (.); please note the space between the 2 in the command. The "-r" is an option that modifies the copy command to do something slightly different than usual. The "." means "here", i.e. the destination location is where you currently are.
 
 ## Starting with the shell
 
@@ -127,14 +127,10 @@ Let's go into the raw_fastq directory and see what is in there.
 ```bash
 % cd raw_fastq/
 
-% ls -F
-
-Irrel_kd_1.subset.fq  Irrel_kd_3.subset.fq  Mov10_oe_2.subset.fq
-Irrel_kd_2.subset.fq  Mov10_oe_1.subset.fq  Mov10_oe_3.subset.fq
+% ls -l
 ```
 
-All six items in this directory have no trailing slashes, so they are all files, not folders or programs.
-
+Are the 6 items in this `raw_fastq` directory files or sub-directories? Could you have used the `-F` argument to figues this out?
 
 #### Arguments
 
@@ -156,7 +152,7 @@ Commands that are run from the shell can get extremely complicated. To see an ex
 
 ## The Unix directory file structure (a.k.a. where am I?)
  
-As you've already just seen, you can move around in different directories or folders at the command line. Why would you want to do this, rather than just navigating around the normal way using a GUI (GUI = Graphical User Interface, pronounced like "gooey").
+As you've already just seen, you can move around in different directories or folders at the command line. Why would you want to do this, rather than just navigating around the normal way using a GUI (GUI = Graphical User Interface, pronounced "gooey").
 
 #### Moving around the file system
 
@@ -166,15 +162,15 @@ We're going to work in that `unix_lesson` directory.
 
 First we did something like go to the folder of our username. Then we opened `unix_lesson` then `raw_fastq`
 
-Like on any computer you have used before the file structure within unix is hierarchical, like an upside down tree with root (/) as the starting point of the tree-like structure:
+Like on any computer you have used before the file structure within Unix is hierarchical, like an upside down tree with root (/) as the starting point of the tree-like structure:
 
 ![Unix](../img/Slide1.jpg)
 
 That root (/) is often also called the 'top' level.
 
-When you log in to a remote computer you are on one of the branches of that tree, your home directory (e.g. /home/username)
+When you log in to a remote computer you are on one of the branches of that tree, your home directory (e.g. /gstore/home/username)
 
-> On mac OS, which is a UNIX-based OS, the root level is also "/". On a windows OS, it is drive specific; generally "C:\" is considered root, but it changes to "D:/", if you are on that drive.
+> On mac OS, which is a Unix-based OS, the root level is also "/". On a windows OS, it is drive specific; generally "C:\" is considered root, but it changes to "D:/", if you are on that drive.
 
 Now let's go do that same navigation at the command line.
 
@@ -186,8 +182,7 @@ Type:
 
 > This puts you in your home directory. No matter where you are in the directory system, `cd` will always bring you back to your home directory.
 
-
-Now using `cd` and `ls`, go in to the `unix_lesson` directory and list its contents. Now go into the `raw_fastq` directory, and list its contents.
+Now using `cd` and `ls`, go in to the `unix_lesson` directory and list its contents. Next, go into the `raw_fastq` directory, and list its contents.
 
 Let's also check to see where we are. Sometimes when we're wandering around in the file system, it's easy to lose track of where we are. The command that tells you this is:
 
@@ -211,8 +206,15 @@ Now do `ls` and `pwd`.
 
 > `..` denotes parent directory, and you can use it anywhere in the system to go back to the parent directory. Can you think of an example when this won't work?
 
+Finally, there is handy command that can help you see the structure of any directory, namely `tree`.
 
-#### Examining the contents of other directories
+```bash
+#Ensure that you are in your unix_lesson directory and run the following command
+
+% tree
+```
+
+#### Examining the contents of directories other than `pwd`
 
 By default, the `ls` commands lists the contents of the working directory (i.e. the directory you are in). You can always find the directory you are in using the `pwd` command. However, you can also give `ls` the names of other directories to view. Navigate to the home directory if you are not already there.
 
@@ -228,9 +230,9 @@ Then enter the command:
 % ls unix_lesson/
 ```
 
-This will list the contents of the `unix_lesson` directory without you having to navigate there.
+This will list the contents of the `unix_lesson` directory without you having to navigate there using `cd`.
 
-The `cd` command works in a similar way.
+The `cd` command works in a similar way, you can navigate your way to sub-directories that are a few levels down.
 
 ```bash
 % cd unix_lesson/raw_fastq/
@@ -239,8 +241,7 @@ The `cd` command works in a similar way.
 
 You should now be in `raw_fastq` and you got there without having to go through the intermediate directory. 
 
-> If you are aware of the directory structure, you can string together as long a list as you like.
-
+> If you are aware of the directory structure, you can string together as long a list as you like; the `tree` command helps with this especially in cases where the "tree" is not very large.
 
 ****
 **Exercise**
@@ -260,7 +261,7 @@ The `cd` command takes an argument which is the directory name. Directories can 
 /gstore/home/username
 ```
 
-which is the full path for your home directory. This tells you that you are in a directory called `username`, which sits inside a directory called `home` which sits inside the very top directory in the hierarchy, the *root directory*. So, to summarize: `username` is a directory in `home` which is a directory in `/`.
+The output of `pwd` is the **full path** for your home directory. This tells you that you are in a directory called `username`, which sits inside a directory called `home` which sits inside  the `gstore` directory, which in turn is inside the *root directory*. 
 
 Now enter the following command:
 
@@ -268,16 +269,15 @@ Now enter the following command:
 % cd /gstore/home/username/unix_lesson/raw_fastq/
 ```
 
-This jumps to `raw_fastq`. Now go back to the home directory (`cd`). We saw
-earlier that the command:
+This jumps to `raw_fastq`. Now go back to the home directory (`cd`). We saw earlier that the following command had the same result
 
 ```bash
 % cd unix_lesson/raw_fastq/
 ```
 
-had the same effect - it took us to the `raw_fastq` directory. But, instead of specifying the full path (`/gstore/home/username/unix_lesson/raw_fastq`), we specified a *relative path*. In other words, we specified the path **relative to our current working directory**. 
+ Basically, both take us to the `raw_fastq` directory. But, in the second case, instead of specifying the full path (`/gstore/home/username/unix_lesson/raw_fastq`), we specified a **relative path**. In other words, we specified the path **relative to our current working directory**. 
 
-**A full path always starts with a `/`, a relative path does not.**
+**A full path always starts with a `/` for the *root*, a relative path does not.**
 
 A relative path is like getting directions from someone on the street. They tell you to "go right at the Stop sign, and then turn left on Main Street". That works great if you're standing there together, but not so well if you're trying to tell someone how to get there from another country. A full path is like GPS coordinates. It tells you exactly where something is no matter where you are right now.
 
@@ -318,25 +318,21 @@ Tab completion can also fill in the names of commands. For example, enter `e<tab
 Navigate to the `~/unix_lesson/raw_fastq` directory. This
 directory contains FASTQ files from our RNA-Seq experiment. 
 
-The '*' character is a shortcut for "everything". Thus, if you enter `ls *`, you will see all of the contents of a given directory. Now try this command:
+The `*` character is a shortcut for "everything". Thus, if you enter `ls *`, you will see all of the contents of a given directory. 
+
+Let's try the following commands that use the `*`:
 
 ```bash
-% ls *fq
+% ls I*
+
+# This lists every file that starts with an "I"
 ```
-
-This lists every file that ends with a `fq`. This command:
-
-```bash
-% ls /usr/bin/*.sh
-```
-
-Lists every file in `/usr/bin` that ends in the characters `.sh`.
 
 ```bash
 % ls Mov10*fq
-```
 
-lists only the files that begin with 'Mov10' and end with 'fq'
+# This lists only the files that begin with 'Mov10' and end with 'fq'
+```
 
 So how does this actually work? The shell (bash) considers an asterisk "*" to be a wildcard character that can be used to substitute for any other single character or a string of characters. 
 
@@ -348,11 +344,11 @@ So how does this actually work? The shell (bash) considers an asterisk "*" to be
 Do each of the following using a single `ls` command without
 navigating to a different directory.
 
-1.  List all of the files in `/bin` that start with the letter 'c'
-2.  List all of the files in `/bin` that contain the letter 'a'
-3.  List all of the files in `/bin` that end with the letter 'o'
+1.  List all of the files in `/usr/bin` that start with the letter 'c'
+2.  List all of the files in `/usr/bin` that contain the letter 'a'
+3.  List all of the files in `/usr/bin` that end with the letter 'o'
 
-BONUS: List all of the files in `/bin` that contain the letter 'a' or 'c'.
+BONUS: List all of the files in `/usr/bin` that contain the letter 'a' or 'c'.
 
 ****
 #### Shortcuts
