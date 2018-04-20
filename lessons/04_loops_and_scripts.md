@@ -108,7 +108,7 @@ Let's try another command using the variable that we have created. We can also c
 
 ***
 
-Ok, so we know variables are like buckets, and so far we have seen that bucket filled with a single value. **Variables can store more than just a single value.** They can store multiple values and in this way can be useful to carry out many things at once. Let's create a new variable called `filenames` and this time we will store *all of the filenames* in the `raw_fastq` directory as values. 
+Ok, so we know variables are like buckets, and so far we have seen that bucket filled with a single value. **Variables can store more than just a single value.** They can store multiple values and in this way can be useful to carry out many things at once. Let's create a new variable called `allfiles` and this time we will store *all of the filenames* in the `raw_fastq` directory as values. 
 
 To list all the filenames in the directory that have a `.fq` extension, we know the command is:
 
@@ -116,10 +116,10 @@ To list all the filenames in the directory that have a `.fq` extension, we know 
 % ls *.fq
 ```
 
-Now we want to *assign* the output of `ls` to the variable:
+Now we want to *assign* the output of `ls` to a variable:
 
 ```bash
-% filenames=$(ls *.fq)
+% allfiles=$(ls *.fq)
 ```
 
 > Note the syntax for assigning output of commands to variables, i.e. the ticks around the `ls` command.
@@ -127,22 +127,22 @@ Now we want to *assign* the output of `ls` to the variable:
 Check and see what's stored inside our newly created variable using `echo`:
 	
 ```bash
-% echo $filenames
+% echo $allfiles
 ```
 
-Let's try the `wc -l` command again, but this time using our new variable `filenames` as the argument:
+Let's try the `wc -l` command again, but this time using our new variable `allfiles` as the argument:
 
 ```bash
-% wc -l $filenames
+% wc -l $allfiles
 ```
 
-What just happened? Because our variable contains multiple values, the shell runs the command on each value stored in `filenames` and prints the results to screen. 
+What just happened? Because our variable contains multiple values, the shell runs the command on each value stored in `allfiles` and prints the results to screen. 
 
 ***
 
 **Exercise**
 
-* Use some of the other commands we learned in previous lessons (i.e. `head`, `tail`) on the `filenames` variable. 
+* Use some of the other commands we learned in previous lessons (i.e. `head`, `tail`) on the `allfiles` variable. 
 
 ***
 
