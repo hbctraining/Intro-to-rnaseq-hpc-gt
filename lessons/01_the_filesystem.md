@@ -130,7 +130,7 @@ Let's go into the raw_fastq directory and see what is in there.
 % ls -l
 ```
 
-Are the 6 items in this `raw_fastq` directory files or sub-directories? Could you have used the `-F` argument to figure this out?
+Are the 6 items in this `raw_fastq` directory files or sub-directories? Could you have used the `-F` argument to figues this out?
 
 #### Arguments
 
@@ -315,8 +315,7 @@ Tab completion can also fill in the names of commands. For example, enter `e<tab
 
 #### Wild cards
 
-Navigate to the `~/unix_lesson/raw_fastq` directory. This
-directory contains FASTQ files from our RNA-Seq experiment. 
+Navigate to the `~/unix_lesson/raw_fastq` directory. This directory contains FASTQ files from our RNA-Seq experiment. 
 
 The `*` character is a shortcut for "everything". Thus, if you enter `ls *`, you will see all of the contents of a given directory. 
 
@@ -336,7 +335,7 @@ Let's try the following commands that use the `*`:
 
 So how does this actually work? The shell (bash) considers an asterisk "*" to be a wildcard character that can be used to substitute for any other single character or a string of characters. 
 
-> An asterisk/star is only one of the many wildcards in UNIX, but this is the most powerful one and we will be using this one the most for our exercises.
+> An asterisk/star is only one of the many wildcards, but this is the most powerful one and we will be using this one the most for our exercises.
 
 ****
 **Exercise**
@@ -348,7 +347,7 @@ navigating to a different directory.
 2.  List all of the files in `/usr/bin` that contain the letter 'a'
 3.  List all of the files in `/usr/bin` that end with the letter 'o'
 
-BONUS: List all of the files in `/usr/bin` that contain the letter 'a' or 'c'.
+BONUS: List all of the files in `/usr/bin` that contain **either** the letter 'a' **or** the letter 'c'.
 
 ****
 #### Shortcuts
@@ -377,16 +376,15 @@ Another shortcut is the "..":
 % ls ..
 ```
 
-The shortcut `..` always refers to the directory above your current directory. So, it prints the contents of the `unix_lesson`. You can chain these together, so:
+The shortcut `..` always refers to the directory above your current directory. So, it prints the contents of the `unix_lesson`. You can chain these together:
 
 ```bash
 % ls ../..
+
+# prints the contents of `/gstore/home/username` which is your home directory
 ```
 
-prints the contents of `/gstore/home/username` which is your home directory. 
-
-Finally, the special directory `.` always refers to your current directory. So, `ls`, `ls .`, and `ls ././././.` all do the same thing, they print the contents of the current directory. This may seem like a useless shortcut right now, but we used it earlier when we copied over the data to our home directory.
-
+Finally, the special character `.` always refers to your current directory or "here". So, `ls`, `ls .`, and `ls ././././.` all do the same thing, they print the contents of the current directory. This may seem like a useless shortcut right now, but we used it earlier when we copied over the data to our home directory.
 
 To summarize, while you are in your home directory, the commands `ls ~`, `ls ~/.`, and `ls /gstore/home/username` all do exactly the same thing. These shortcuts are not necessary, but they are really convenient!
 
@@ -403,8 +401,13 @@ You can also review your recent commands with the `history` command.  Just enter
 % history
 ```
 
-to see a numbered list of recent commands, including this just issues
-`history` command. 
+You can use the numbers next to each command to rerun something using the following syntax:
+
+```bash
+!304      
+
+# will execute the command in history that was #304
+```
 
 > Only a certain number of commands are stored and displayed with `history`, there is a way to modify this to store a different number.
 
