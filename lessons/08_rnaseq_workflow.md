@@ -1,7 +1,7 @@
 ---
 title: "RNA-Seq workflow"
 author: "Mary Piper, Meeta Mistry, Radhika Khetani"
-date: "Wednesday, April 4th, 2018"
+date: "Saturday, April 21st, 2018"
 ---
 
 Approximate time: 90 minutes
@@ -281,25 +281,35 @@ Index the BAM file for visualization with IGV:
 
 Once we have the `.bai` index file to go with the `.bam` file, we can copy them over to our directory in the designated location to visualize with IGV.
 
+```bash
+cp Mov10_oe_1_Aligned.sortedByCoord.out.ba* /gne/web/dev/apache/htdocs/training/$USER
+```
 
 **Visualize**
 
 * Start [IGV](https://www.broadinstitute.org/software/igv/download), *you should have this previously installed on your laptop*.
 * Load the Human genome (hg38) into IGV using the dropdown menu at the top left of your screen. If you can't find hg38 right away, click on the "more.." at the bottom of the pull down menu and search for it using the search bar at the top.
 
-**Note**: there is also an option to "Load Genomes from File..." under the "Genomes" pull-down menu - this is useful when working with non-model organisms or with fasta files that are unavailable in IGV.
+> **Note**: there is also an option to "Load Genomes from File..." under the "Genomes" pull-down menu - this is useful when working with non-model organisms or with fasta files that are unavailable in IGV.
 
-* Using the "Load from URL..." option under the **"File"** pull-down menu, add the link to the `.bam` file on the cluster. *IGV requires the `.bai` file to be in the same location as corresponding `.bam` file that you want to load into IGV, but there is no other direct use for this index file.*
+* Use the "Load from URL..." option under the **"File"** pull-down menu and a box will pop up that will let you enter 2 URLs, one for the `.bam` files and another for the `.bai` file (optional). Add the following URLs links in the appropriate input box:
+
+**http://resdev.gene.com/training/\<your_username\>/Mov10_oe_1_Aligned.sortedByCoord.out.bam**
+
+**http://resdev.gene.com/training/\<your_username\>/Mov10_oe_1_Aligned.sortedByCoord.out.bam.bai**
+
+> If not explicitly specified, IGV requires the `.bai` file to be in the same location as corresponding `.bam` file that you want to load into IGV, but there is no other direct use for this index file.*
 
 ![IGV screenshot](../img/igv_screenshot.png)
 
 ***
 **Exercise**
 
-Now that we have done this for one sample, let's try using the same commands to create a samtools index for the `Irrel_kd_1_Aligned.sortedByCoord.out.bam` file, and load into IGV for visualization. 
+Now that we have done this for one sample, let's try using the same commands to create a samtools index for the `Irrel_kd_1_Aligned.sortedByCoord.out.bam` file, and take the necessary steps to load it into IGV for visualization. 
 
 1. How does the MOV10 gene look in the control sample in comparison to the overexpression sample?
 2. Take a look at a few other genes by typing into the search bar. For example, PPM1J and PTPN22. How do these genes compare? 
+3. *Thought question:* Is loading `.bam` files into IGV a valid way to compare expression between samples?
 
 ***
 
