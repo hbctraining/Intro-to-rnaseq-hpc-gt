@@ -4,7 +4,7 @@
 
 | Time            |  Topic  | Instructor |
 |:-------------------:|:------------------------------------------------:|:--------:|
-|9:00 - 9:40 | [Workshop Introduction](../lecutres/Intro_to_workshop.pdf) *(slides)* | Radhika |
+|9:00 - 9:40 | [Workshop Introduction](../lectures/Intro_to_workshop.pdf) *(slides)* | Radhika |
 |9:40 - 10:40 | [Introduction to the Shell](../lessons/01_the_filesystem.md) | Radhika |
 |10:40 - 10:55 | *Break* | |
 |10:55 - 11:25 | [Introduction to the Shell (contd.)](../lessons/01_the_filesystem.md) | Meeta |
@@ -21,11 +21,11 @@
 
 | Time            |   Topic  | Instructor |
 |:------------------------:|:----------:|:--------:|
-|9:00 - 9:45 | [Introduction to High-Performance Computing](../lecutres/HPC_intro_genentech.pdf) *(slides)* | Radhika |
+|9:00 - 9:45 | [Introduction to High-Performance Computing](../lectures/HPC_intro_genentech.pdf) *(slides)* | Radhika |
 |9:45 - 10:30 | [RNA-seq analysis workflow - Quality Assessment](../lessons/07_assessing_quality.md) | Meeta |
 |10:30 - 10:45 | *Break* | |
 |10:45 - 11:15 | [RNA-seq analysis workflow - Quality Assessment](../lessons/07_assessing_quality.md) | Meeta |
-|11:15 - 11:45 | Genome builds and alignment strategies *(slides)* | Meeta |
+|11:15 - 11:45 | [Genome builds and alignment strategies](../lectures/alignment_and_builds.pdf) *(slides)* | Meeta |
 |11:45 - 12:30 | [RNA-seq analysis workflow - Alignment and Counting](../lessons/08_rnaseq_workflow.md) | Mary |
 |12:30 - 13:30 | *Lunch* | |
 |13:30 - 14:20 | [RNA-seq analysis workflow - Alignment and Counting (contd.)](../lessons/08_rnaseq_workflow.md) | Mary |
