@@ -103,7 +103,7 @@ As you can imagine from the description above, when running Salmon there are als
 Get the transcript abundance estimates using the `quant` command and the parameters described below (more information on parameters can be found [here](http://salmon.readthedocs.io/en/latest/salmon.html#id5)):
 
 * **`-i`:** specify the location of the index directory (`/gstore/scratch/hpctrain/salmon.grch38_tx.idx/`)
-* **`-l`:** library type (more info available [here](http://salmon.readthedocs.io/en/latest/salmon.html#what-s-this-libtype)) (single-end reverse reads `SR`, but we can use `A` to automatically infer the library type)
+* **`-l`:** library type (single-end reverse reads `SR`, but we can use `A` to automatically infer the library type) - more information is available [here](http://salmon.readthedocs.io/en/latest/salmon.html#what-s-this-libtype)) 
 * **`-r`:** list of files for sample (`~/unix_lesson/rnaseq/raw_fastq/Mov10_oe_1.subset.fq`)
 * **`--useVBOpt`:** use variational Bayesian EM algorithm rather than the ‘standard EM’ to optimize abundance estimates (more accurate) 
 * **`-o`:** output quantification file name (`Mov10_oe_1.subset.salmon`)
