@@ -243,11 +243,13 @@ You should now be in `raw_fastq` and you got there without having to go through 
 
 > If you are aware of the directory structure, you can string together as long a list as you like; the `tree` command helps with this especially in cases where the "tree" is not very large.
 
-****
+***
+
 **Exercise**
 
 List the `Mov10_oe_1.subset.fq` file from your home directory without changing directories
-****
+
+***
 
 ## Full vs. Relative Paths
 
@@ -286,9 +288,11 @@ You can usually use either a full path or a relative path depending on what is m
 Over time, it will become easier for you to keep a mental note of the structure of the directories that you are using and how to quickly navigate among them.
 
 ***
+
 **Exercise**
 
 Change directories to `/gstore/home/username/unix_lesson/raw_fastq/`, and list the contents of `unix_lesson/other` without changing directories again.
+
 ***
 
 ### Saving time with tab completion, wildcards and other shortcuts 
