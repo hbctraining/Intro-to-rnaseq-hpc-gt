@@ -331,7 +331,7 @@ do
 done
 
 # and add this summary to our run log
-cat *badreads.count.summary >> runlog.txt
+cat *badreads.count.summary > runlog.txt
 
 ```
 
