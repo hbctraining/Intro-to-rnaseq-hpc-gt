@@ -202,7 +202,7 @@ Since our home directory should contain only small scripts or files, we are goin
 ```bash
 echo $SCRATCH
 
-mv -r unix_workshop/rnaseq $SCRATCH
+mv unix_workshop/rnaseq $SCRATCH
 ```
 
 ***
