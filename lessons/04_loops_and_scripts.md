@@ -237,7 +237,10 @@ Now that you've learned how to use loops and variables, let's put this processin
 
 You might not realize it, but this is something that you now know how to do. Let's get started...
 
-Rather than doing all of this in the terminal we are going to create a script file with all relevant commands. Move back in to `unix_lesson` and use `vim` to create our new script file:
+Rather than doing all of this in the terminal we are going to create a script file with all relevant commands. Within outr script we will be sure to comment liberally so that our collaborators or future self will have a better undertanding of what it is we are trying to accomplish.
+
+
+Move back in to `unix_lesson` and use `vim` to create our new script file:
 
 ```bash
 % cd ~/unix_lesson
@@ -256,12 +259,14 @@ This line is the absolute path to the Bash interpreter. The shebang line ensures
 After the shebang line, we enter the commands we want to execute. First we want to move into our `raw_fastq` directory:
 
 ```bash
+# enter directory with raw FASTQs
 cd ~/unix_lesson/raw_fastq
 ```
 
 And now we loop over all the FASTQs:
 
 ```bash
+# count bad reads for each FASTQ file in our directory
 for filename in *.fq
 ```
 
@@ -318,7 +323,7 @@ do
   # tell us what file we're working on	
   echo $filename
 
-  # grab all the bad read records
+  # grab all the bad read records into new file
   grep -B1 -A2 NNNNNNNNNN $filename > $base-badreads.fastq
 
   # grab the number of bad reads and write it to a summary file

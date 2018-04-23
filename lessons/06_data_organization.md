@@ -17,7 +17,9 @@ duration: 35
 
 ## Data Management
 
-The data management lifecycle is displayed below courtesy of the [HMS Data Management Working Group](https://datamanagement.hms.harvard.edu/hms-data-management-working-group):
+One of the most important parts of research that involves large amounts of data, is how best to manage it. We tend to prioritize the analysis, but there are many other important aspects that are  often overlooked in the excitement to get a first look at new data. 
+
+The data management lifecycle displayed below, courtesy of the [HMS Data Management Working Group](https://datamanagement.hms.harvard.edu/hms-data-management-working-group), illustrates some things to consider beyond the data creation and analysis components:
 
 <img src="../img/data_life_cycle_gouldv2.png" width="350">
 
@@ -26,6 +28,7 @@ _Image aquired from the [Harvard Biomedical Data Management Website](https://dat
 Today we will cover some parts of this lifecycle by talking about best practices for  the **Research** half of the above lifecycle. Later in this workshop we will talk a little more about the data storage. For more information about the full lifecycle and more guidelines for data management, please look at the resources linked below.
 
 **Resources at Harvard**
+
 * The [HMS Data Management Working Group's website](https://datamanagement.hms.harvard.edu/)
 * A guide from the [Harvard library](http://guides.library.harvard.edu/dmp).
 
@@ -36,8 +39,6 @@ You should approach your sequencing project in a very similar way to how you do 
 During this stage it is important to keep track of how the experiment was performed and clearly tracking the source of starting materials and kits used. It is also best practice to include information about any small variations within the experiment or variation relative to standard experiments. 
 
 ### Organization
-
-Project organization is one of the most important parts of a sequencing project, but is often overlooked in the excitement to get a first look at new data. While it's best to get yourself organized before you begin analysis, it's never too late to start.
 
 Every computational analysis you do is going to spawn many files, and inevitability you'll want to run some of those analyses again. For each experiment you work on and analyze data for, it is considered best practice to get organized by creating a planned storage space (directory structure).
 
@@ -126,8 +127,8 @@ rnaseq
 
 In your lab notebook, you likely keep track of the different reagents and kits used for a specific protocol. Similarly, recording information about the tools and parameters is important for documenting your computational experiments. 
 
-- **Make note of the software you use.** Do your research and find out what tools are best for the data you are working with. Don't just work with tools that you are able to easily install. Keep up with the literature and make sure you are using the most up-to-date versions!
-- **Keep track of software versions**
+- **Make note of the software you use.** Do your research and find out what tools are best for the data you are working with. Don't just work with tools that you are able to easily install.
+- **Keep track of software versions.** Keep up with the literature and make sure you are using the most up-to-date versions.
 - **Record information on parameters used and summary statistics** at every step (e.g., how many adapters were removed, how many reads did not align)
     - A general rule of thumb is to test on a single sample or a subset of the data before running your entire dataset through. This will allow you to debug quicker and give you a chance to also get a feel for the tool and the different parameters.
     - Different tools have different ways of reporting log messages and you might have to experiment a bit to figure out what output to capture. You can redirect standard output with the `>` symbol which is equivalent to `1> (standard out)`; other tools might require you to use `2>` to re-direct the `standard error` instead.
