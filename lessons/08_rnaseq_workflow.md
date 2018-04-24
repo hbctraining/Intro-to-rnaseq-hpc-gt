@@ -130,7 +130,7 @@ Now let's put it all together! The full GMAP-GSNAP alignment command is provided
 -A sam raw_data/Mov10_oe_1.subset.fq | \
 samtools view -bS - | \
 samtools sort - \
- > results/gsnap/Mov10_oe_1.subset.Aligned.sortedByCoord.out.bam
+ > results/gsnap/Mov10_oe_1.Aligned.sortedByCoord.out.bam
 ```
 
 > **NOTE:** 
@@ -157,7 +157,7 @@ These fields are described briefly below, but for more detailed information the 
 Let's take a quick look at our alignment. To do so we first convert our BAM file into SAM format using samtools and then pipe it to the `less` command. This allows us to look at the contents without having to write it to file (since we don't need a SAM file for downstream analyses).
 
 ```bash
-% samtools view -h results/gsnap/Mov10_oe_1.subset.Aligned.sortedByCoord.out.bam | less
+% samtools view -h results/gsnap/Mov10_oe_1.Aligned.sortedByCoord.out.bam | less
 ```
 Scroll through the SAM file and see how the fields correspond to what we expected.
 
@@ -253,7 +253,7 @@ Vim has nice shortcuts for cleaning up the header of our file using the followin
 1. Move the cursor to the beginning of the document by typing: `gg` (in command mode). 
 2. Remove the first line by typing: `dd` (in command mode).
 2. Remove the file name following the sample name by typing: `:%s/_Aligned.sortedByCoord.out.bam//g` (in command mode).
-3. Remove the path leading up to the file name by typing: `:%s/\/gstore\/home\/username\/unix_lesson\/rnaseq\/results\/gsnap\/bams\///g` (in command mode). 
+3. Remove the path leading up to the file name by typing: `:%s/\/gstore\/home\/username\/unix_lesson\/rnaseq\/results\/gsnap\///g` (in command mode). 
 	
 > Note that we have a `\` preceding each `/`, which tells vim that we are not using the `/` as part of our search and replace command, but instead the `/` is part of the pattern that we are replacing. This is called *escaping* the `/`.
 
