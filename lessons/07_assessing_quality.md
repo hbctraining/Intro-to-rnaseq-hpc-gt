@@ -296,7 +296,7 @@ The **"Overrepresented sequences"** table displays the sequences (at least 20 bp
 We will go over the remaining plots in class. Remember, our report only represents a subset of reads (chromosome 1) for `Mov10_oe_1.subset.fq`, which can skew the QC results. We encourage you to look at the [full set of reads](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/fastqc/Mov10oe_1-fastqc_report.html) and note how the QC results differ when using the entire dataset.
    
 > **_NOTE:_** 
->The other output of FastQC is a zip archive, which when decompressed contains all of the information contained in the report but in text files and image file formats. These zip archives need to be unpacked with the `unzip` program. However, if we try to unzip them all at once (i.e. `unzip *.fq`), it won't work.
+>The other output of FastQC is a zip archive, which when decompressed contains all of the information contained in the report but in text files and image file formats. These zip archives need to be unpacked with the `unzip` program. However, if we try to unzip them all at once (i.e. `unzip *.zip`), it won't work.
 >
 > We could decompress the files one at a time, but if we had many files this would be cumbersome. Instead we can create a for loop to iteratively go through each of our files and unzip them:
 >
