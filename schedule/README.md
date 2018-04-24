@@ -21,7 +21,7 @@
 
 | Time            |   Topic  | Instructor |
 |:------------------------:|:----------:|:--------:|
-|9:00 - 9:45 | [Introduction to High-Performance Computing](../lectures/HPC_intro_genentech.pdf) *(slides)* | Radhika |
+|9:00 - 9:45 | [Introduction to High-Performance Computing](../lectures/HPC_intro_genentech_2.pdf) *(slides)* | Radhika |
 |9:45 - 10:30 | [RNA-seq analysis workflow - Quality Assessment](../lessons/07_assessing_quality.md) | Meeta |
 |10:30 - 10:45 | *Break* | |
 |10:45 - 11:15 | [RNA-seq analysis workflow - Quality Assessment](../lessons/07_assessing_quality.md) | Meeta |
