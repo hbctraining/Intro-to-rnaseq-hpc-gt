@@ -14,10 +14,10 @@ Approximate time: 90 minutes
 
 ## Setting up to run the RNA-seq workflow
 
-To get started with this lesson, we will start an interactive session and ask for 6 cores, by adding `-n 6` to the `srun` command:
+To get started with this lesson, we will start an interactive session and ask for 6 cores, by adding `-c 6` to the `srun` command:
 
 ```bash
-% srun --pty -p defq --qos=interactive -n 6 --mem 8G bash
+% srun --pty -p defq --qos=interactive -c 6 --mem 8G bash
 ```
 
 Change directories into the `rnaseq` directory if not already there:
