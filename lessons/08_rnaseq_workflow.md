@@ -282,7 +282,7 @@ Index the BAM file for visualization with IGV:
 Once we have the `.bai` index file to go with the `.bam` file, we can copy them over to our directory in the designated location to visualize with IGV.
 
 ```bash
-cp Mov10_oe_1_Aligned.sortedByCoord.out.ba* /gne/web/dev/apache/htdocs/training/$USER
+% cp Mov10_oe_1_Aligned.sortedByCoord.out.ba* /gne/web/dev/apache/htdocs/training/$USER
 ```
 
 **Visualize**
