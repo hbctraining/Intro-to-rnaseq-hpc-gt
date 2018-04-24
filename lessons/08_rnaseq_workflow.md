@@ -157,7 +157,7 @@ These fields are described briefly below, but for more detailed information the 
 Let's take a quick look at our alignment. To do so we first convert our BAM file into SAM format using samtools and then pipe it to the `less` command. This allows us to look at the contents without having to write it to file (since we don't need a SAM file for downstream analyses).
 
 ```bash
-% samtools view -h results/gsnap/Mov10_oe_1_Aligned.sortedByCoord.out.bam | less
+% samtools view -h results/gsnap/Mov10_oe_1.subset.Aligned.sortedByCoord.out.bam | less
 ```
 Scroll through the SAM file and see how the fields correspond to what we expected.
 
