@@ -221,7 +221,7 @@ Below is what this second script would look like **\[DO NOT RUN THIS\]**:
 for fq in ~/unix_lesson/rnaseq/raw_data/*.fq
 do
   echo "running analysis on $fq"
-  rnaseq_analysis_on_input_file.sh $fq
+  sh rnaseq_analysis_on_input_file.sh $fq
 done
 ```
 
