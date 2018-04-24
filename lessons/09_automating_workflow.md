@@ -173,7 +173,7 @@ It is best practice to have the script **usage** specified at the top any script
 
 ```
 # This script takes a fastq file of RNA-Seq data, runs FastQC and outputs a counts file for it.
-# USAGE: sh rnaseq_analysis_on_allfiles.sh <name of fastq file>
+# USAGE: sh rnaseq_analysis_on_input_file.sh <name of fastq file>
 ```
 
 It is okay to specify this everything else is set up, since you will have most clarity about the script only once it is fully done.
