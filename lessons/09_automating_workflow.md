@@ -130,10 +130,10 @@ All of our variables are now staged. Next, let's make sure all the modules are l
 ```
 # set up the software environment
 
-module load fastqc
-module load GMAP-GSNAP
-module load samtools
-module load subread
+module load fastqc/0.11.7
+module load GMAP-GSNAP/2016-11-07-foss-2017a
+module load samtools/1.6-foss-2017a
+module load subread/1.6.0-foss-2017a
 ```
 
 ### Preparing for future debugging
