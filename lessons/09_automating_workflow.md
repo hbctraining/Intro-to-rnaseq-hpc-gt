@@ -156,7 +156,7 @@ echo "Processing file $fq"
 fastqc $fq
 
 # Run gsnap
-gsnap -d $genome -D $genome_dir -t 6 --quality-protocol=sanger \
+gsnap -d $genome -D $genome_dir -t $cores --quality-protocol=sanger \
 -M 2 -n 10 -B 2 -i 1 -N 1 -w 200000 -E 1 --pairmax-rna=200000 \
 -A sam $fq | samtools sort - | samtools view -bS - > $align_out
 
