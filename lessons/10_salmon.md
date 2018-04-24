@@ -104,7 +104,7 @@ Get the transcript abundance estimates using the `quant` command and the paramet
 
 * **`-i`:** specify the location of the index directory (`/gstore/scratch/hpctrain/salmon.grch38_tx.idx/`)
 * **`-l`:** library type (single-end reverse reads `SR`, but we can use `A` to automatically infer the library type) - more information is available [here](http://salmon.readthedocs.io/en/latest/salmon.html#what-s-this-libtype)) 
-* **`-r`:** list of files for sample (`~/unix_lesson/rnaseq/raw_fastq/Mov10_oe_1.subset.fq`)
+* **`-r`:** list of files for sample (`~/unix_lesson/rnaseq/raw_data/Mov10_oe_1.subset.fq`)
 * **`--useVBOpt`:** use variational Bayesian EM algorithm rather than the ‘standard EM’ to optimize abundance estimates (more accurate) 
 * **`-o`:** output quantification file name (`Mov10_oe_1.subset.salmon`)
 * **`--writeMappings`:** instead of printing to screen, write to a file (`--writeMappings=salmon.out`)
@@ -114,7 +114,7 @@ To run the quantification step on a single sample we have the command provided b
 ```bash
 % salmon quant -i /gstore/scratch/hpctrain/salmon.grch38_tx.idx/ \
  -l SR \
- -r ~/unix_lesson/rnaseq/raw_fastq/Mov10_oe_1.subset.fq \
+ -r ~/unix_lesson/rnaseq/raw_data/Mov10_oe_1.subset.fq \
  -o Mov10_oe_1.subset.salmon \
  --writeMappings=salmon.out \
  --useVBOpt 
