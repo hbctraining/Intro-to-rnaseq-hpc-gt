@@ -138,7 +138,7 @@ Exit the interactive session and start a new one with 6 cores, and use the multi
 ```bash
 % exit  #exit the current interactive session
 
-% srun --pty -p defq -n 6 --mem 8G --qos=interactive bash    #start a new one with 6 cpus (-n 6)
+% srun --pty -p defq -c 6 --mem 8G --qos=interactive bash    #start a new one with 6 cores on a single node (-c 6)
 
 % module load fastqc  #reload the module for the new session
 
@@ -196,7 +196,7 @@ Following the shebang line are the SBATCH options. For the script to run, we nee
 ```bash
 #SBATCH -p defq 		# partition name
 #SBATCH --qos=short
-#SBATCH -n 6 		# number of cores requested -- this needs to be greater than or equal to the number of cores you plan to use to run your job
+#SBATCH -c 6 		# number of cores requested -- this needs to be greater than or equal to the number of cores you plan to use to run your job
 #SBATCH --job-name rnaseq_mov10_fastqc 		# Job name
 #SBATCH -o %j.out			# File to which standard out will be written
 #SBATCH -e %j.err 		# File to which standard err will be written
