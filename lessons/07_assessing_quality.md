@@ -275,7 +275,7 @@ Now you can open `Chrome` (or another browser) on your laptop and view the outpu
 > 
 > **NOTE 2:** If you have any trouble viewing the file online, we have [linked a similar report](https://www.dropbox.com/s/2p27dwhtomn3toc/Irrel_kd_2.subset_fastqc.html?dl=1) here for you. Download it and open in your browser to follow along. 
 >
-> **NOTE 3:** An alternative approach is to just link to the user's directory since file listing is enabled on this web share. To do so, go to http://resdev.gene.com/training/<your_username>/, and you should see a listing of the files in the directory. From there you can select a file to view. However, this might not be enabled on all web shares, so it may be better to stick with the direct link as noted above.
+> **NOTE 3:** An alternative approach is to just link to the user's directory since file listing is enabled on this web share. To do so, go to http://resdev.gene.com/training/\<your_username\>/, and you should see a listing of the files in the directory. From there you can select a file to view. However, this might not be enabled on all web shares, so it may be better to stick with the direct link as noted above.
 
 ***
 
