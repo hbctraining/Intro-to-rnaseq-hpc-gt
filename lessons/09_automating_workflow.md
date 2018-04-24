@@ -118,9 +118,9 @@ Now that we have already created our output directories, we can now specify vari
 ```
 # set up output filenames and locations
 
-fastqc_out=~/unix_workshop/rnaseq/results/fastqc/
-align_out=~/unix_workshop/rnaseq/results/gsnap/${base}_Aligned.sortedByCoord.out.bam
-counts=~/unix_workshop/rnaseq/results/counts/${base}_featurecounts.txt
+fastqc_out=~/unix_lesson/rnaseq/results/fastqc/
+align_out=~/unix_lesson/rnaseq/results/gsnap/${base}_Aligned.sortedByCoord.out.bam
+counts=~/unix_lesson/rnaseq/results/counts/${base}_featurecounts.txt
 ```
 
 ### Keeping track of tool versions
