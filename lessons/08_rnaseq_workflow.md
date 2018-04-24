@@ -126,7 +126,7 @@ Now let's put it all together! The full GMAP-GSNAP alignment command is provided
 % gsnap -d grch38_chr1 -D /gstore/scratch/hpctrain/chr1_reference_gsnap \
 -t 6 -M 2 -n 10 -N 1 \
 --quality-protocol=sanger -w 200000 --pairmax-rna=200000 \
--E 1 -B 2 --clip-overlap \
+-E 1 -B 2 \
 -A sam raw_data/Mov10_oe_1.subset.fq | \
 samtools view -bS - | \
 samtools sort - \
