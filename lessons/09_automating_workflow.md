@@ -108,9 +108,9 @@ We'll create output directories, but with the `-p` option. This will make sure t
 # The -p option means mkdir will create the whole path if it 
 # does not exist and refrain from complaining if it does exist
 
-mkdir -p ~/unix_workshop/rnaseq/results/fastqc/
-mkdir -p ~/unix_workshop/rnaseq/results/gsnap/
-mkdir -p ~/unix_workshop/rnaseq/results/counts/
+mkdir -p ~/unix_lesson/rnaseq/results/fastqc/
+mkdir -p ~/unix_lesson/rnaseq/results/gsnap/
+mkdir -p ~/unix_lesson/rnaseq/results/counts/
 ```
 
 Now that we have already created our output directories, we can now specify variables with the path to those directories both for convenience but also to make it easier to see what is going on in a long command.
