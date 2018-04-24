@@ -181,7 +181,7 @@ Next comes the Salmon command. Note, that we are adding a parameter called `--nu
 for fq in  /gstore/scratch/hpctrain/full_dataset/*fastq  
  do 
    base=$(basename $fq .fastq)
-   sbatch -p priority -n 6 -t 0-1:30 --mem 8G --reservation=hbc -j ${base}.mov10_salmon -o %j.${base}.out -e %j.${base}.err \
+   sbatch -p defq --qos=short -n 6 --mem 8G -j ${base}.mov10_salmon -o %j.${base}.out -e %j.${base}.err \
    --wrap="salmon quant -i /gstore/scratch/hpctrain/salmon.grch38_tx.idx/ \
    -p 6 -l SR -r $fq --useVBOpt --numBootstraps 30 -o $base.salmon"
  done
