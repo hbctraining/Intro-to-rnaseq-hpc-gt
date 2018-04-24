@@ -39,12 +39,12 @@
 
 ## Contact Info:
 
-Webpage: [http://bioinformatics.sph.harvard.edu/]()
+Webpage: [http://bioinformatics.sph.harvard.edu/](http://bioinformatics.sph.harvard.edu/)
 
 Email: [hbctraining (at) hsph (dot) harvard (dot) edu](mailto:hbctraining@hsph.harvard.edu)
 
-Twitter: [https://twitter.com/bioinfocore]()
+Twitter: [https://twitter.com/bioinfocore](https://twitter.com/bioinfocore)
 
-Training materials: [https://hbctraining.github.io/main/]()
+Training materials: [https://hbctraining.github.io/main/](https://hbctraining.github.io/main/)
 
 ---
