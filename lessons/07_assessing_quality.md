@@ -266,7 +266,7 @@ To make the fastqc output (.html file) viewable online in an internet browser, f
 % mkdir /gne/web/dev/apache/htdocs/training/$USER
 
 # Copy over the file you want to view online
-% cp ~/unix_lesson/rnaseq/raw_data/Mov10_oe_1.subset_fastqc.html /gne/web/dev/apache/htdocs/training/$USER
+% cp ~/unix_lesson/rnaseq/results/fastqc/Mov10_oe_1.subset_fastqc.html /gne/web/dev/apache/htdocs/training/$USER
 ```
 
 Now you can open `Chrome` (or another browser) on your laptop and view the output from `FASTQC` using a modified version of the following URL: **http://resdev.gene.com/training/\<your_username\>/Mov10_oe_1.subset_fastqc.html**
